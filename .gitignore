@@ -12,6 +12,9 @@
 *.la
 *.a
 
+# ejecutables
+bin/*
+
 # Sublime-text (emo)
 algo3-tp1.sublime-project
 algo3-tp1.sublime-workspace
