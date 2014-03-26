@@ -44,13 +44,11 @@ Salida Problema1::resolver(Entrada& e)
   int& dia_inicial = s.d;
   int& max_cant_camiones = s.c;
 
-  dia_inicial = -1;
-  max_cant_camiones = -1;
-  int i, j, cant_camiones;
-
   sort(dias.begin(), dias.end());
   
-  i = j = 0;
+  dia_inicial = -1;
+  max_cant_camiones = -1;
+  int i = 0, j = 0, cant_camiones;
   for (; i < cant_dias; ++i)
   {
     for (; (j < cant_dias) && (dias[j] - dias[i] < cant_dias_inspeccion); ++j)
