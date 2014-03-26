@@ -7,21 +7,21 @@ namespace Problema1
 {
 	struct Entrada
 	{
-	  int D;
-	  int n;
-	  std::vector<int> d;
+	  int cant_dias_inspeccion;
+	  int cant_dias;
+	  std::vector<int> dias;
 	};
 
 	struct Salida
 	{
-	  int d;
-	  int c;
+	  int dia_inicial;
+	  int max_cant_camiones;
 	};
 
 	bool leer_entrada(Entrada& e);
 	void escribir_salida(Salida& s);
 
-	Salida resolver(Entrada& e);
+	Salida resolver(const Entrada& e);
 
 	Entrada generar_instancia_mejor_caso(int n);
 	Entrada generar_instancia_peor_caso(int n);

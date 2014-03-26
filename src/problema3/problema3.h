@@ -32,7 +32,7 @@ namespace Problema3
 	bool leer_entrada(Entrada& e);
 	void escribir_salida(Salida& s);
 
-	Salida resolver(Entrada& e);
+	Salida resolver(const Entrada& e);
 
 	Entrada generar_instancia_unidimensional(int n);
 	Entrada generar_instancia_cuadrada(int n);

@@ -57,7 +57,7 @@ void imprimir_modo_de_uso()
 }
 
 template <typename E, typename S>
-vector<Medicion> tomar_mediciones(int n_max, E (*generar_instancia)(int), S (*resolver)(E&))
+vector<Medicion> tomar_mediciones(int n_max, E (*generar_instancia)(int), S (*resolver)(const E&))
 {
   vector<Medicion> mediciones;
   timespec inicio, fin;
@@ -106,16 +106,16 @@ vector<Medicion> tomar_mediciones(string& problema, string& funcion_generadora, 
     } else {
       throw "El argumento funcion_generadora es inválido.";
     }
-  // } else if(problema == "problema3") { 
-  //   if(funcion_generadora == "generar_instancia_unidimensional") {
-  //     return tomar_mediciones<Problema3::Entrada, Problema3::Salida>
-  //       (n_max, Problema3::generar_instancia_unidimensional, Problema3::resolver);
-  //   } else if(funcion_generadora == "generar_instancia_cuadrada") {
-  //     return tomar_mediciones<Problema3::Entrada, Problema3::Salida>
-  //       (n_max, Problema3::generar_instancia_cuadrada, Problema3::resolver);
-  //   } else {
-  //     throw "El argumento funcion_generadora es inválido.";
-  //   }
+  } else if(problema == "problema3") { 
+    if(funcion_generadora == "generar_instancia_unidimensional") {
+      return tomar_mediciones<Problema3::Entrada, Problema3::Salida>
+        (n_max, Problema3::generar_instancia_unidimensional, Problema3::resolver);
+    } else if(funcion_generadora == "generar_instancia_cuadrada") {
+      return tomar_mediciones<Problema3::Entrada, Problema3::Salida>
+        (n_max, Problema3::generar_instancia_cuadrada, Problema3::resolver);
+    } else {
+      throw "El argumento funcion_generadora es inválido.";
+    }
   } else {
     throw "El argumento problema es inválido.";
   }

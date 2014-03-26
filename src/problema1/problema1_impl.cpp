@@ -9,19 +9,15 @@ using namespace Problema1;
 
 bool Problema1::leer_entrada(Entrada& e)
 {
-  int& cant_dias_inspeccion = e.D;
-  int& cant_dias = e.n;
-  vector<int>& dias = e.d;
+  cin >> e.cant_dias_inspeccion;
+  if(e.cant_dias_inspeccion == 0) return false;
 
-  cin >> cant_dias_inspeccion;
-  if(cant_dias_inspeccion == 0) return false;
-
-  cin >> cant_dias;
-  for (int i = 0; i < cant_dias; ++i)
+  cin >> e.cant_dias;
+  for (int i = 0; i < e.cant_dias; ++i)
   {
     int dia;
     cin >> dia;
-    dias.push_back(dia);
+    e.dias.push_back(dia);
   }
 
   return true;
@@ -29,35 +25,28 @@ bool Problema1::leer_entrada(Entrada& e)
 
 void Problema1::escribir_salida(Salida& s)
 {
-  int& dia_inicial = s.d;
-  int& cant_camiones = s.c;
-
-  cout << dia_inicial << " " << cant_camiones << endl;
+  cout << s.dia_inicial << " " << s.max_cant_camiones << endl;
 }
 
-Salida Problema1::resolver(Entrada& e)
+Salida Problema1::resolver(const Entrada& e)
 {
   Salida s;
-  int& cant_dias_inspeccion = e.D;
-  int& cant_dias = e.n;
-  vector<int>& dias = e.d;
-  int& dia_inicial = s.d;
-  int& max_cant_camiones = s.c;
 
+  vector<int> dias(e.dias);
   sort(dias.begin(), dias.end());
   
-  dia_inicial = -1;
-  max_cant_camiones = -1;
+  s.dia_inicial = -1;
+  s.max_cant_camiones = -1;
   int i = 0, j = 0, cant_camiones;
-  for (; i < cant_dias; ++i)
+  for (; i < e.cant_dias; ++i)
   {
-    for (; (j < cant_dias) && (dias[j] - dias[i] < cant_dias_inspeccion); ++j)
+    for (; (j < e.cant_dias) && (dias[j] - dias[i] < e.cant_dias_inspeccion); ++j)
       ;
     cant_camiones = j - i;
-    if(max_cant_camiones < cant_camiones)
+    if(s.max_cant_camiones < cant_camiones)
     {
-      max_cant_camiones = cant_camiones;
-      dia_inicial = dias[i];
+      s.max_cant_camiones = cant_camiones;
+      s.dia_inicial = dias[i];
     }
   }
 
@@ -67,10 +56,11 @@ Salida Problema1::resolver(Entrada& e)
 Entrada Problema1::generar_instancia_mejor_caso(int n)
 {
   Entrada e;
-  e.D = 10;
-  e.n = n;
+
+  e.cant_dias_inspeccion = 10;
+  e.cant_dias = n;
   for (int i = 0; i < n; ++i)
-    e.d.push_back(i);
+    e.dias.push_back(i);
   
   return e;
 }
@@ -78,10 +68,11 @@ Entrada Problema1::generar_instancia_mejor_caso(int n)
 Entrada Problema1::generar_instancia_peor_caso(int n)
 {
   Entrada e;
-  e.D = 10;
-  e.n = n;
+
+  e.cant_dias_inspeccion = 10;
+  e.cant_dias = n;
   for (int i = 0; i < n; ++i)
-    e.d.push_back(i);
+    e.dias.push_back(i);
   
   return e;
 }
@@ -89,10 +80,11 @@ Entrada Problema1::generar_instancia_peor_caso(int n)
 Entrada Problema1::generar_instancia_aleatoria(int n)
 {
   Entrada e;
-  e.D = 10;
-  e.n = n;
+
+  e.cant_dias_inspeccion = 10;
+  e.cant_dias = n;
   for (int i = 0; i < n; ++i)
-    e.d.push_back(i);
+    e.dias.push_back(i);
   
   return e;
 }
