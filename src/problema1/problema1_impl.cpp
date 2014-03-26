@@ -37,12 +37,15 @@ void Problema1::escribir_salida(Salida& s)
 
 Salida Problema1::resolver(Entrada& e)
 {
+  Salida s;
   int& cant_dias_inspeccion = e.D;
   int& cant_dias = e.n;
   vector<int>& dias = e.d;
+  int& dia_inicial = s.d;
+  int& max_cant_camiones = s.c;
 
-  int dia_inicial = -1;
-  int max_cant_camiones = -1;
+  dia_inicial = -1;
+  max_cant_camiones = -1;
   int i, j, cant_camiones;
 
   sort(dias.begin(), dias.end());
@@ -60,7 +63,6 @@ Salida Problema1::resolver(Entrada& e)
     }
   }
 
-  Salida s = {.d = dia_inicial, .c = max_cant_camiones};
   return s;
 }
 
