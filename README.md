@@ -17,7 +17,7 @@ Las funciones generar_instancia_xxxxx reciben un parámetro n y generan una inst
 >
 > make informe
 
-Desde el directorio raíz. Genera los ejecutables problema1, problema2, problema3 y medir_performance en la carpeta ./bin.
+Se ejecutan estos comandos desde el directorio raíz. Genera los ejecutables problema1, problema2, problema3 y medir_performance en la carpeta ./bin.
 
 ### Tests de verificación
 > ./tests/correr_tests.sh &lt;problema1 | problema2 | problema3&gt;
@@ -27,4 +27,4 @@ Para correr los tests de verificación de un problema. Se leen las entradas de t
 ### Mediciones de performance
 > ./mediciones/tomar_mediciones.sh &lt;problema1 | problema2 | problema3&gt; &lt;max_n&gt;
 
-Para generar archivos de datos con mediciones para instancias generadas dinámicamente (todas las definidas por las funciones generar_instancia_xxxxx de cada problema), de tamaños 1 hasta max_n. Se guardan en ./mediciones/&lt;problema&gt;.
+Para generar archivos de datos con mediciones para instancias generadas dinamicamente (todas las definidas por las funciones generar_instancia_xxxxx de cada problema), de tamaños 1 hasta max_n. Se guardan en ./mediciones/&lt;problema&gt;.
