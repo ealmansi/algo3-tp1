@@ -9,9 +9,9 @@ using namespace Problema3;
 
 bool Problema3::leer_entrada(Entrada& e)
 {
-  if(cin.eof()) return false;
-
   cin >> e.n;
+  if(!cin) return false;
+
   cin >> e.m;
   cin >> e.c;
 
