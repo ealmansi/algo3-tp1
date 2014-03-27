@@ -1,3 +1,47 @@
-Aliquam pulvinar orci eget quam pellentesque imperdiet. Cras auctor purus sit amet facilisis auctor. Nulla auctor orci ac ligula aliquet sagittis. Sed ultrices ligula mattis, tempor eros eu, convallis urna. Aenean tincidunt facilisis nibh id aliquam. Sed quis lectus sit amet enim adipiscing varius. Phasellus tempus feugiat elit, non volutpat metus commodo vel. Suspendisse bibendum ante sed faucibus sagittis. Vivamus et purus id massa dapibus faucibus. In at lobortis elit. Ut ut malesuada nunc. Phasellus adipiscing dui vitae lorem convallis ultricies. Cras condimentum pulvinar malesuada.
+q.v.q. Sea S un conjunto de elementos  ${s_1,...,s_n}$ y T un permutación de los elementos de S / $\forall 1 \leq i  < n$ $\frac{tiempo(T[i])}{perdida(T[i])} \leq \frac{tiempo(T[i+1])}{perdida(T[i+1])} $ optimiza la función C(T) 
+\\
+Siendo C(T) = $\sum_{i=1}^{n} tiempo(T[i]) \sum_{j=i}^{n}perdida(T[j]) $
+\\
+Caso base $\|$ T$\|$ = 1 :
+\\
+Solo existe una permutacion de T, por lo cual claramente es la optima.
+\\
+\\
+Paso inductivo:
+$\forall n > 1$P(n-1) $\Rightarrow$ P(n)
+\\
+Tomo un permutacion optima T / T = $(t_1,...,t_n)$ y construyo T' = $(t'_1,...,t'_n) / t'_1 = t_1 y (t'_2,...,t'_n) es una permutacion de (t_2,...,t_n) / \forall 2 \leq i  < n \frac{tiempo(t'_i)}{perdida(t'_i)} \leq \frac{tiempo(t'_{i+1})}{perdida(t'_{i+1})} $
+\\
+Primero q.v.q. T' es optima para esto calculo C(T) y C(T')
+\\
+C(T) = $tiempo(t_1) \sum_{j=1}^{n}perdida(t_j) + C(T[2,n]) $
+C(T') = $tiempo(t_1) \sum_{j=1}^{n}perdida(t'_j) + C(T'[2,n]) $
+\\
+Como T es optimo, se que C(T') $\leq$ C(T)
+\\
+Tambien se por H.I. que T'[2,n] es optima, por lo cual 
+\\
+C(T'[2,n]) $\leq$ C(T'[2,n])
+$tiempo(t_1) \sum_{j=1}^{n}perdida(t_j)$ + C(T'[2,n]) $\leq$  $tiempo(t_1) \sum_{j=1}^{n}perdida(t_j)$ + C(T'[2,n])
+$\sum_{j=1}^{n}perdida(t_j) = \sum_{j=1}^{n}perdida(t'_j) ya que T' es una permutacion de T, Entonces$
+$tiempo(t_1) \sum_{j=1}^{n}perdida(t'_j)$ + C(T'[2,n]) $\leq$  $tiempo(t_1) \sum_{j=1}^{n}perdida(t_j)$ + C(T'[2,n])
+C(T') $\leq$ C(T)
 
-Sed semper malesuada libero eget egestas. Morbi tincidunt purus non justo posuere consequat. Donec lobortis lorem sit amet est commodo, a lobortis justo accumsan. Morbi sodales risus vel scelerisque consequat. Nullam sed nisl et mi euismod tempus ac id enim. Curabitur a rutrum lacus. Maecenas nisi enim, faucibus id volutpat sit amet, auctor adipiscing justo. Suspendisse mattis ullamcorper libero in ultricies. Proin eget metus sed odio pellentesque lobortis in in nibh. In sit amet ullamcorper tellus, eget feugiat nulla. Donec congue egestas neque ac mollis. Nunc hendrerit, justo et commodo blandit, est nibh aliquam nibh, a sodales odio ligula sed odio. Duis quis arcu tempus, egestas diam eget, facilisis lorem. Maecenas vitae nisi eget leo porta varius. Nunc eu quam tincidunt, varius tellus nec, cursus tellus. Donec in enim rhoncus ligula fermentum iaculis vel facilisis ante.
+C(T') $\leq$ C(T) $\wedge$ C(T') $\leq$ C(T) $\leftarrow$ C(T) = C(T'), osea T' es optimo.
+
+Por ultimo queremos ver que T' cumple con la condicion de P(n), sabemos que T'[2,n] estan ordenados segun $\frac{tiempo(t'_i)}{perdida(t'_i)}$. Nos falta ver que T' completa lo esta, para esto solo hace falta ver $t'_1$ esta ordenado, que es lo mismo que decir que $\frac{tiempo(t'_1)}{perdida(t'_1)}$ $\leq \frac{tiempo(t'_2)}{perdida(t'_2)}$
+
+Para esto tomamos T'' = $(t'_2,t'_1,t'_3,...,t'_n)$
+C(T') = $tiempo(t'_1) \sum_{j=1}^{n}perdida(t'_j) + tiempo(t'_2) \sum_{j=2}^{n}perdida(t'_j) + C(T'[3,n]) $
+C(T'') = $tiempo(t'_2) \sum_{j=1}^{n}perdida(t'_j) + tiempo(t'_1) \sum_{j=1,j\neq 2}^{n}perdida(t'_j) + C(T''[3,n]) $
+C(T') $\leq$ C(T'') por ser T' optimo
+$tiempo(t'_1) \sum_{j=1}^{n}perdida(t'_j) + tiempo(t'_2) \sum_{j=2}^{n}perdida(t'_j) + C(T'[3,n]) \leq tiempo(t'_2) \sum_{j=1}^{n}perdida(t'_j) + tiempo(t'_1) \sum_{j=1,j\neq 2}^{n}perdida(t'_j) + C(T''[3,n])$
+$tiempo(t'_1) \sum_{j=1}^{n}perdida(t'_j) + tiempo(t'_2) \sum_{j=2}^{n}perdida(t'_j)  \leq tiempo(t'_2) \sum_{j=1}^{n}perdida(t'_j) + tiempo(t'_1) \sum_{j=1,j\neq 2}^{n}perdida(t'_j) $ por ser T'[3,n] = T''[3,n]
+$tiempo(t'_1) \sum_{j=1,j\neq 2}^{n}perdida(t'_j) + tiempo(t'_1) * perdida(t'_2) + tiempo(t'_2) \sum_{j=2}^{n}perdida(t'_j) \leq tiempo(t'_1) \sum_{j=1,j\neq 2}^{n}perdida(t'_j) + tiempo(t'_2) \sum_{j=2}^{n}perdida(t'_j)+ tiempo(t'_2) * perdida(t'_1)$  
+$tiempo(t'_1) * perdida(t'_2) \leq tiempo(t'_2) * perdida(t'_1) $ cancelando
+$\frac{tiempo(t'_1)}{perdida(t'_1)} \leq \frac{tiempo(t'_2}{perdida(t'_2)}$
+
+Con lo que finaliza la demostracion
+
+
+
