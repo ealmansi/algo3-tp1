@@ -27,8 +27,15 @@ namespace Problema3
 	struct Salida
 	{
 	  std::vector<std::vector<int> > casillas;
+	  
 	};
 
+	struct Tablero
+	{
+	  std::vector<std::vector<Pieza> > casillas;
+	  int fichas;
+	};
+	
 	bool leer_entrada(Entrada& e);
 	void escribir_salida(Salida& s);
 
@@ -36,6 +43,8 @@ namespace Problema3
 
 	Entrada generar_instancia_unidimensional(int n);
 	Entrada generar_instancia_cuadrada(int n);
+	
+	void BT(Salida& mejorHastaAhora,Salida& trabajoConEste, int fila, int columna, const Entrada& e); 
 }
 
 #endif /* PROBLEMA_3_H */
