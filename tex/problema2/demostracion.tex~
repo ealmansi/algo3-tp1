@@ -1,26 +1,26 @@
 q.v.q. Sea S un conjunto de elementos  ${s_1,...,s_n}$ y T un permutación de los elementos de S / $\forall 1 \leq i  < n$ $\frac{tiempo(T[i])}{perdida(T[i])} \leq \frac{tiempo(T[i+1])}{perdida(T[i+1])} $ optimiza la función C(T) 
-
+\\
 Siendo C(T) = $\sum_{i=1}^{n} tiempo(T[i]) \sum_{j=i}^{n}perdida(T[j]) $
-
+\\
 Caso base $\|$ T$\|$ = 1 :
-
+\\
 Solo existe una permutacion de T, por lo cual claramente es la optima.
-
+\\
+\\
 Paso inductivo:
 $\forall n > 1$P(n-1) $\Rightarrow$ P(n)
-
+\\
 Tomo un permutacion optima T / T = $(t_1,...,t_n)$ y construyo T' = $(t'_1,...,t'_n) / t'_1 = t_1 y (t'_2,...,t'_n) es una permutacion de (t_2,...,t_n) / \forall 2 \leq i  < n \frac{tiempo(t'_i)}{perdida(t'_i)} \leq \frac{tiempo(t'_{i+1})}{perdida(t'_{i+1})} $
-
+\\
 Primero q.v.q. T' es optima para esto calculo C(T) y C(T')
-
+\\
 C(T) = $tiempo(t_1) \sum_{j=1}^{n}perdida(t_j) + C(T[2,n]) $
-
 C(T') = $tiempo(t_1) \sum_{j=1}^{n}perdida(t'_j) + C(T'[2,n]) $
-
+\\
 Como T es optimo, se que C(T') $\leq$ C(T)
-
+\\
 Tambien se por H.I. que T'[2,n] es optima, por lo cual 
-
+\\
 C(T'[2,n]) $\leq$ C(T'[2,n])
 $tiempo(t_1) \sum_{j=1}^{n}perdida(t_j)$ + C(T'[2,n]) $\leq$  $tiempo(t_1) \sum_{j=1}^{n}perdida(t_j)$ + C(T'[2,n])
 $\sum_{j=1}^{n}perdida(t_j) = \sum_{j=1}^{n}perdida(t'_j) ya que T' es una permutacion de T, Entonces$
