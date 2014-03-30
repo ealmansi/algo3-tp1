@@ -5,9 +5,7 @@
 
 namespace Problema3
 {
-	struct Entrada
-	{
-	  struct Pieza
+	struct Pieza
 	  {
 	  	Pieza(int indice, int sup, int izq, int der, int inf)
 	  		: indice(indice), sup(sup), izq(izq), der(der), inf(inf) {}
@@ -17,7 +15,10 @@ namespace Problema3
 	  	int der;
 	  	int inf;
 	  };
-
+	
+	
+	struct Entrada
+	{
 	  int n;
 	  int m;
 	  int c;
@@ -44,7 +45,10 @@ namespace Problema3
 	Entrada generar_instancia_unidimensional(int n);
 	Entrada generar_instancia_cuadrada(int n);
 	
-	void BT(Salida& mejorHastaAhora,Salida& trabajoConEste, int fila, int columna, const Entrada& e); 
+	void BT(Tablero& mejorHastaAhora,Tablero& trabajoConEste, int fila, int columna, const Entrada& e, std::vector<bool> estaDisp); 
+	bool esValido(Tablero& t, int fila, int columna);
+	bool valeLaPena(Tablero& t, int fila, int columna, const Entrada& e);
+	void SiguientePos(int& sigFila,int& sigCol,int& fila,int& columna,const Entrada& e);
 }
 
 #endif /* PROBLEMA_3_H */
