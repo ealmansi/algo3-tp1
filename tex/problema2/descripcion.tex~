@@ -24,4 +24,4 @@ En este ejemplo la solución es la siguiente secuencia:
 
 La pérdida total para esta solución es: $3x1 + 2x2 + 1x3 = 10$
 
-En cambio si eligiéramos como solución otra secuencia, como por ejemplo [Pieza 2, Pieza 1, Pieza 3], la pérdida total sería de: $2x1 + 3x2 + 1x3 = 11$.
+En cambio si eligiéramos como solución la secuenia [Pieza 2, Pieza 1, Pieza 3], la pérdida total sería de: $2x1 + 3x2 + 1x3 = 11$.

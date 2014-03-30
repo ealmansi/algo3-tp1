@@ -4,7 +4,7 @@ La problemática radica en que cada pieza \emph{i} de este conjunto tiene una ca
 
 Lo que este problema nos pide es determinar un orden para la fabricación de estas piezas que minimice las perdidas. La complejidad del algoritmo utilizado debe ser $O(n^2)$.
 
-A continuación vamos a dar un ejemplo del problema planteado junto con su solución. Supongamos que tenemos las siguientes piezas:
+A continuación vamos a dar algunos ejemplos del problema planteado junto con sus correspindientes soluciones.
 
 \begin{tabular}{|c|c|c|}
  \hline
@@ -21,7 +21,3 @@ A continuación vamos a dar un ejemplo del problema planteado junto con su soluc
 En este ejemplo la solución es la siguiente secuencia:
 
 \textbf{Solución} = [Pieza 1, Pieza 2, Pieza 3]
-
-La pérdida total para esta solución es: $3x1 + 2x2 + 1x3 = 10$
-
-En cambio si eligiéramos como solución otra secuencia, como por ejemplo [Pieza 2, Pieza 1, Pieza 3], la pérdida total sería de: $2x1 + 3x2 + 1x3 = 11$.
