@@ -2,7 +2,7 @@ Este problema se trata de un joyero que debe fabricar un conjunto de piezas para
 
 La problemática radica en que cada pieza \emph{i} de este conjunto tiene una cantidad de días que requiere para su fabricación  (\emph{$t_i$}), y además cada una pierde una fracción de su valor (\emph{$p_i$})por cada día que pasa.
 
-Lo que este problema nos pide es determinar un orden para la fabricación de estas piezas que minimice las perdidas. La complejidad del algoritmo utilizado debe ser $O(n^2)$.
+Lo que este problema nos pide hacer un algoritmo que determine un orden para la fabricación de estas piezas que minimice las perdidas, y además mostrar cuál es dicha pérdida. La complejidad del algoritmo utilizado debe ser $O(n^2)$.
 
 A continuación vamos a dar un ejemplo del problema planteado junto con su solución. Supongamos que tenemos las siguientes piezas:
 
@@ -24,4 +24,4 @@ En este ejemplo la solución es la siguiente secuencia:
 
 La pérdida total para esta solución es: $3x1 + 2x2 + 1x3 = 10$
 
-En cambio si eligiéramos como solución otra secuencia, como por ejemplo [Pieza 2, Pieza 1, Pieza 3], la pérdida total sería de: $2x1 + 3x2 + 1x3 = 11$.
+En cambio si eligiéramos como solución otra secuencia, como por ejemplo [Pieza 2, Pieza 1, Pieza 3], la pérdida total sería de: $2x1 + 3x2 + 1x3 = 11$. Si eligieramos [Pieza 3, Pieza 2, Pieza 1], la pérdida total sería de: $1x1 + 2x2 + 3x3 = 14$.

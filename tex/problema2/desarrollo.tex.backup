@@ -1,0 +1,4 @@
+Lo que hayamos (y demostramos luego en este informe) es que el orden óptimo es de menor a mayor según el coeficiente $\frac{Tiempo_i}{Perdida_i}$. El orden es el siguiente:
+
+$(\forall i \in [1..\#{piezas})) \frac{Tiempo_i}{Perdida_i} < \frac{Tiempo_{i+1}}{Perdida_{i+1}}$
+

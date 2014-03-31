@@ -6,4 +6,4 @@ Lo que nuestro algoritmo hace es leer la entrada que nos pasan, y formar un vect
 
 Una vez generado el vector con todas las piezas, lo ordenamos de menor a mayor según el coeficiente antes dicho, para eso usamos el algoritmo ``Sort'' de la librería \emph{<algorithm>} de C++.
 
-Luego calculamos la perdida que ocasiona armar las piezas en el orden que nosotros propusimos y para terminar mostramos las piezas en el orden final y la perdida total por consola.
+Luego calculamos la perdida que ocasiona armar las piezas en el orden que nosotros propusimos y para terminar
