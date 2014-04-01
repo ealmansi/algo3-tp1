@@ -41,8 +41,12 @@ void Problema3::escribir_salida(Salida& s)
 Salida Problema3::resolver(const Entrada& e)
 {
 	///iniciarlos en 0 TODO, en ingles 'tudu'
-  Tablero mejorHastaAhora = {.casillas = vector<vector<Pieza> >(), .fichas = 0};
-  Tablero trabajoConEste = {.casillas = vector<vector<Pieza> >(), .fichas = 0};
+  Tablero mejorHastaAhora;
+  mejorHastaAhora.casillas = vector<vector<Pieza> >();
+  mejorHastaAhora.fichas = 0;
+  Tablero trabajoConEste;
+  trabajoConEste.casillas = vector<vector<Pieza> >();
+  trabajoConEste.fichas = 0;
   vector<bool> estaDisp(e.n*e.m,true);
   for (int i = 0; i<e.n; i++){
   	for (int j = 0; j<e.m; j++){
@@ -56,7 +60,8 @@ Salida Problema3::resolver(const Entrada& e)
   ///salida final, salida que trabajo, fila, columna, entrada
   ///fila y columna son los que voy a escribir AHORA
   BT(mejorHastaAhora, trabajoConEste, 0, 0, e, estaDisp); 
-  Salida s =  {.casillas = vector<vector<int> >()}; 
+  Salida s;
+  s.casillas = vector<vector<int> >();
   for (int i = 0; i<e.n; i++){
   	for (int j = 0; j<e.m; j++){
   		s.casillas[i][j] = mejorHastaAhora.casillas[i][j].indice;

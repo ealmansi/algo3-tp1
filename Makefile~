@@ -9,10 +9,7 @@ CXX     	= g++
 CXXFLAGS	= -Wall -Wno-unused-parameter -Wextra -I$(LIB)
 LDFLAGS 	= -I$(LIB)
 
-all: create_bin_folder problema1 problema2 problema3 medir_performance
-
-create_bin_folder:
-	mkdir -p bin
+all: problema1 problema2 problema3 medir_performance
 
 problema1: $(SRC)/problema1/problema1.o $(SRC)/problema1/problema1_impl.o
 	$(CXX) -o $(BIN)/$@ $^ $(LDFLAGS)
