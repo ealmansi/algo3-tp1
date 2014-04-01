@@ -3,6 +3,7 @@ BIN						= bin
 TEX						= tex
 LIB						= lib
 MEDICIONES		= mediciones
+GRAFICOS			= graficos
 
 CXX     	= g++
 CXXFLAGS	= -Wall -Wno-unused-parameter -Wextra -I$(LIB)
@@ -49,7 +50,7 @@ informe: $(TEX)/informe.tex
 	mv informe.pdf ..; \
 	cd ..
 
-.PHONY: clean clean_ejecutables clean_mediciones clean_tex clean_todo
+.PHONY: clean clean_ejecutables clean_mediciones clean_graficos clean_tex clean_todo
 
 clean:
 	rm -f $(SRC)/*.o
@@ -65,9 +66,14 @@ clean_mediciones:
 	rm -f $(MEDICIONES)/problema2/*
 	rm -f $(MEDICIONES)/problema3/*
 
+clean_graficos:
+	rm -f $(GRAFICOS)/problema1/*
+	rm -f $(GRAFICOS)/problema2/*
+	rm -f $(GRAFICOS)/problema3/*
+
 clean_tex:
 	rm -f $(TEX)/*.aux
 	rm -f $(TEX)/*.toc
 	rm -f $(TEX)/*.log
 	
-clean_todo: clean clean_ejecutables clean_mediciones clean_tex
+clean_todo: clean clean_ejecutables clean_mediciones clean_graficos clean_tex

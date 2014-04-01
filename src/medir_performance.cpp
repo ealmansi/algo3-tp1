@@ -126,8 +126,9 @@ void escribir_datos(vector<Medicion>& mediciones, string& nombre_archivo_salida)
   ofstream archivo_salida;
   archivo_salida.open(nombre_archivo_salida.c_str());
 
+  archivo_salida << "\"n\"" << "," << "\"tiempo (ns)\"" << endl;
   for (vector<Medicion>::const_iterator i = mediciones.begin(); i != mediciones.end(); ++i)
-    archivo_salida << i->n << ";" << i->tiempo << ";" << endl;
+    archivo_salida << i->n << "," << i->tiempo << endl;
 
   archivo_salida.close();
 }
