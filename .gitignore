@@ -18,6 +18,8 @@ bin/*
 # archivos temporales de gedit
 *.cpp~
 *.tex~
+Makefile~
+.gitignore~
 
 # auxiliares de tex
 tex/*.aux

@@ -7,7 +7,7 @@ GRAFICOS			= graficos
 
 CXX     	= g++
 CXXFLAGS	= -Wall -Wno-unused-parameter -Wextra -I$(LIB)
-LDFLAGS 	= -I$(LIB)
+LDFLAGS 	= -I$(LIB) -lrt
 
 all: create_bin_folder problema1 problema2 problema3 medir_performance
 
@@ -42,7 +42,7 @@ problema3_impl.o: $(SRC)/problema3/problema3_impl.cpp $(SRC)/problema3/problema3
 	$(CXX) -c $(CXXFLAGS) $<
 
 medir_performance: $(SRC)/medir_performance.o $(SRC)/problema1/problema1_impl.o $(SRC)/problema2/problema2_impl.o $(SRC)/problema3/problema3_impl.o
-	$(CXX) -o $(BIN)/$@ $^ $(LDFLAGS) -lrt
+	$(CXX) -o $(BIN)/$@ $^ $(LDFLAGS)
 
 medir_performance.o: $(SRC)/medir_performance.cpp $(SRC)/problema1/problema1.h $(SRC)/problema2/problema2.h $(SRC)/problema3/problema3.h
 	$(CXX) -c $(CXXFLAGS) $<
