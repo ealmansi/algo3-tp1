@@ -1,28 +1,30 @@
-Salida Problema1::resolver(Entrada& e)
+struct Pieza
 {
-  int& cant_dias_inspeccion = e.D;
-  int& cant_dias = e.n;
-  vector<int>& dias = e.d;
-
-  int dia_inicial = -1;
-  int max_cant_camiones = -1;
-  int i, j, cant_camiones;
-
-  sort(dias.begin(), dias.end());
-  
-  i = j = 0;
-  for (; i < cant_dias; ++i)
+  Pieza(int indice, int perdida, int tiempo)
+    : indice(indice), perdida(perdida), tiempo(tiempo) {}
+  static bool comparar_piezas(const Pieza& lhs, const Pieza& rhs)
   {
-    for (; (j < cant_dias) && (dias[j] - dias[i] < cant_dias_inspeccion); ++j)
-      ;
-    cant_camiones = j - i;
-    if(max_cant_camiones < cant_camiones)
-    {
-      max_cant_camiones = cant_camiones;
-      dia_inicial = dias[i];
-    }
+    return lhs.tiempo * rhs.perdida < rhs.tiempo * lhs.perdida;
   }
 
-  Salida s = {.d = dia_inicial, .c = max_cant_camiones};
+  int indice;
+  int perdida;
+  int tiempo;
+};
+
+Salida Problema2::resolver(const Entrada& e)
+{
+  Salida s;
+
+  s.piezas = vector<Pieza>(e.piezas);
+  sort(s.piezas.begin(), s.piezas.end(), Pieza::comparar_piezas);
+
+  int acum_tiempo = 0;
+  for (vector<Pieza>::const_iterator i = s.piezas.begin(); i != s.piezas.end(); ++i)
+  {
+    acum_tiempo += i->tiempo;
+    s.perdida_total += acum_tiempo * i->perdida;
+  }
+
   return s;
 }
