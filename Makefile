@@ -2,6 +2,7 @@ SRC						= src
 BIN						= bin
 TEX						= tex
 LIB						= lib
+TESTS					= tests
 MEDICIONES		= mediciones
 GRAFICOS			= graficos
 
@@ -9,10 +10,7 @@ CXX     	= g++
 CXXFLAGS	= -Wall -Wno-unused-parameter -Wextra -I$(LIB)
 LDFLAGS 	= -I$(LIB) -lrt
 
-all: create_bin_folder problema1 problema2 problema3 medir_performance
-
-create_bin_folder:
-	mkdir -p bin
+all: crear_carpetas problema1 problema2 problema3 medir_performance
 
 problema1: $(SRC)/problema1/problema1.o $(SRC)/problema1/problema1_impl.o
 	$(CXX) -o $(BIN)/$@ $^ $(LDFLAGS)
@@ -53,7 +51,19 @@ informe: $(TEX)/informe.tex
 	mv informe.pdf ..; \
 	cd ..
 
-.PHONY: clean clean_ejecutables clean_mediciones clean_graficos clean_tex clean_todo
+.PHONY: crear_carpetas clean clean_ejecutables clean_mediciones clean_graficos clean_tex clean_todo
+
+crear_carpetas:
+	mkdir -p $(BIN)
+	mkdir -p $(TESTS)/problema1
+	mkdir -p $(TESTS)/problema2
+	mkdir -p $(TESTS)/problema3
+	mkdir -p $(MEDICIONES)/problema1
+	mkdir -p $(MEDICIONES)/problema2
+	mkdir -p $(MEDICIONES)/problema3
+	mkdir -p $(GRAFICOS)/problema1
+	mkdir -p $(GRAFICOS)/problema2
+	mkdir -p $(GRAFICOS)/problema3
 
 clean:
 	rm -f $(SRC)/*.o
