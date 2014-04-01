@@ -2,12 +2,15 @@
 #include <iostream>
 #include <fstream>
 #include <vector>
+#include <algorithm>
 #include <cstdlib>
 #include <sys/time.h>
 
 #include "problema1/problema1.h"
 #include "problema2/problema2.h"
 #include "problema3/problema3.h"
+
+#define CANT_MEDICIONES_POR_N 11
 
 using namespace std;
 
@@ -64,11 +67,19 @@ vector<Medicion> tomar_mediciones(int n_max, E (*generar_instancia)(int), S (*re
   
   for (int n = 1; n <= n_max; ++n)
   {
-    E e = generar_instancia(n);
-    clock_gettime(CLOCK_REALTIME, &inicio);
-    resolver(e);
-    clock_gettime(CLOCK_REALTIME, &fin);
-    mediciones.push_back(Medicion(n, (fin.tv_sec - inicio.tv_sec) * 1e9 + (fin.tv_nsec - inicio.tv_nsec)));
+    int mediana;
+    vector<int> mediciones_por_n;
+    for (int i = 0; i < CANT_MEDICIONES_POR_N; ++i)
+    {
+      E e = generar_instancia(n);
+      clock_gettime(CLOCK_REALTIME, &inicio);
+      resolver(e);
+      clock_gettime(CLOCK_REALTIME, &fin);
+      mediciones_por_n.push_back((fin.tv_sec - inicio.tv_sec) * 1e9 + (fin.tv_nsec - inicio.tv_nsec));
+    }
+    sort(mediciones_por_n.begin(), mediciones_por_n.end());
+    mediana = mediciones_por_n[CANT_MEDICIONES_POR_N / 2];
+    mediciones.push_back(Medicion(n, mediana));
   }
   
   return mediciones;
