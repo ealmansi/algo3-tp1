@@ -15,6 +15,10 @@
 # ejecutables
 bin/*
 
+# archivos temporales de gedit
+*.cpp~
+*.tex~
+
 # auxiliares de tex
 tex/*.aux
 tex/*.log
