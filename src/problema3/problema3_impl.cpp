@@ -15,7 +15,6 @@ bool Problema3::leer_entrada(Entrada& e)
   cin >> e.n;
   cin >> e.m;
   cin >> e.c;
-
   for (int i = 0; i < e.n * e.m; ++i)
   {
     int sup, izq, der, inf;
@@ -73,31 +72,54 @@ Salida Problema3::resolver(const Entrada& e)
 void Problema3::BT(Tablero& mejorHastaAhora, Tablero& trabajoConEste, int fila, int columna, const Entrada& e, vector<bool> estaDisp){
 	
 	///aca va el problema
+  DEBUG("trabajo pos:");
+  EXPR(fila);
+  EXPR(columna);
   int sigFila;
   int sigCol;
   siguientePos(sigFila , sigCol , fila , columna , e); //logica para encontrar la sig pos
+  
   if(trabajoConEste.fichas > mejorHastaAhora.fichas){  //si es mejor lo guardo
-    mejorHastaAhora.fichas = trabajoConEste.fichas;
-    mejorHastaAhora.casillas = trabajoConEste.casillas;
-  }
+
+		mejorHastaAhora.fichas = trabajoConEste.fichas;
+
+		for (int i = 0; i<e.n; i++){
+ 			mejorHastaAhora.casillas[i] = trabajoConEste.casillas[i];
+ 			} 
+	}
+	DEBUG("mejor hasta ahora");
+	EXPR(mejorHastaAhora.fichas);
   for(int i = 0; i < e.n*e.m; i++){   //recorro todas las piezas
   	if(!estaDisp[i]) continue;	 										//para las que todavia no puse
-		
+	DEBUG("pongo la ficha");
+	EXPR(i);
     //if(trabajoConEste.casillas[fila][columna].indice == 0){
       trabajoConEste.fichas++;
     //} //si es la primera pieza q pongo en ese casillero sumo 1 a la cant de piezas (si no lo es ya lo sume antes)
     trabajoConEste.casillas[fila][columna] = e.piezas[i];   //pongo la pieza en el tablero
     estaDisp[i] = false;                  //la marco como no disp
-  	if(esValido(trabajoConEste,fila,columna) && valeLaPena(trabajoConEste,fila,columna,e)){ //si llego a una instancia valida y q puede llegar a ser optima
-  		BT(mejorHastaAhora,trabajoConEste,sigFila,sigCol,e,estaDisp);  //recursion
+  	if(esValido(trabajoConEste,fila,columna)){
+  	  if(valeLaPena(trabajoConEste,fila,columna,e)){ //si llego a una instancia valida y q puede llegar a ser optima
+  		  BT(mejorHastaAhora,trabajoConEste,sigFila,sigCol,e,estaDisp);  //recursion
+      }
+      else if(fila == e.n -1 && columna == e.m -1){
+        if(trabajoConEste.fichas > mejorHastaAhora.fichas){  //si es mejor lo guardo
+
+		      mejorHastaAhora.fichas = trabajoConEste.fichas;
+
+		      for (int i = 0; i<e.n; i++){
+ 			      mejorHastaAhora.casillas[i] = trabajoConEste.casillas[i];
+ 			    } 
+	      }
+      }  	
   	}
   	estaDisp[i] = true; 			//vuelvo a habilitar la pieza
-    trabajoConEste.fichas++;
+    trabajoConEste.fichas--;
     trabajoConEste.casillas[fila][columna] = Pieza(0,0,0,0,0);
   }
 	/// Caso ficha blanca
   //if(trabajoConEste.casillas[fila][columna].indice != 0){
-    trabajoConEste.fichas--;
+    //trabajoConEste.fichas--;
   //} //si puse alguna pieza en esa pos reduzco el contador
   trabajoConEste.casillas[fila][columna] = Pieza(0,0,0,0,0);      //pongo la ficha blanca
   /*if(valeLaPena(trabajoConEste,fila,columna,e)){            //si puede llegar a ser optima (seguro es valido)
@@ -118,9 +140,9 @@ bool Problema3::esValido(Tablero& t, int fila, int columna){
 }
 
 bool Problema3::valeLaPena(Tablero& t, int fila, int columna, const Entrada& e){
-	/*if(fila == e.n-1 || columna == e.m-1){
+	if(fila == e.n -1 && columna == e.m -1){
     return false;
-  } */ 
+  } 
   return true;
 }
 
@@ -132,7 +154,6 @@ void Problema3::siguientePos(int& sigFila,int& sigCol,int& fila,int& columna,con
 		sigCol = 0;
 	}
 	else{sigCol++;}
-  cout << "fila: " << sigFila << " columna: " << sigCol << endl;
 }
 
 
