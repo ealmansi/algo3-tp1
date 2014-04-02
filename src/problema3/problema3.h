@@ -48,7 +48,7 @@ namespace Problema3
 	
 	void BT(Tablero& mejorHastaAhora,Tablero& trabajoConEste, int fila, int columna, const Entrada& e, std::vector<bool> estaDisp); 
 	bool esValido(Tablero& t, int fila, int columna);
-	bool valeLaPena(Tablero& t, int fila, int columna, const Entrada& e);
+	bool valeLaPena(Tablero& t, int fila, int columna, const Entrada& e, int maxHastaAhora);
 	void siguientePos(int& sigFila,int& sigCol,int& fila,int& columna,const Entrada& e);
 }
 

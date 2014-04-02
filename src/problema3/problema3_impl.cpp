@@ -99,7 +99,7 @@ void Problema3::BT(Tablero& mejorHastaAhora, Tablero& trabajoConEste, int fila, 
     trabajoConEste.casillas[fila][columna] = e.piezas[i];   //pongo la pieza en el tablero
     estaDisp[i] = false;                  //la marco como no disp
   	if(esValido(trabajoConEste,fila,columna)){
-  	  if(valeLaPena(trabajoConEste,fila,columna,e)){ //si llego a una instancia valida y q puede llegar a ser optima
+  	  if(valeLaPena(trabajoConEste,fila,columna,e,mejorHastaAhora.fichas)){ //si llego a una instancia valida y q puede llegar a ser optima
   		  BT(mejorHastaAhora,trabajoConEste,sigFila,sigCol,e,estaDisp);  //recursion
       }
       else if(fila == e.n -1 && columna == e.m -1){
@@ -122,9 +122,10 @@ void Problema3::BT(Tablero& mejorHastaAhora, Tablero& trabajoConEste, int fila, 
     //trabajoConEste.fichas--;
   //} //si puse alguna pieza en esa pos reduzco el contador
   trabajoConEste.casillas[fila][columna] = Pieza(0,0,0,0,0);      //pongo la ficha blanca
-  /*if(valeLaPena(trabajoConEste,fila,columna,e)){            //si puede llegar a ser optima (seguro es valido)
+  if(valeLaPena(trabajoConEste,fila,columna,e,mejorHastaAhora.fichas)){            //si puede llegar a ser optima (seguro es valido)
     BT(mejorHastaAhora,trabajoConEste,sigFila,sigCol,e,estaDisp);     //recursion
-	}*/
+	}
+	DEBUG("vuelvo para atras");
 	return;
 }
 
@@ -139,11 +140,12 @@ bool Problema3::esValido(Tablero& t, int fila, int columna){
 	return res;
 }
 
-bool Problema3::valeLaPena(Tablero& t, int fila, int columna, const Entrada& e){
+bool Problema3::valeLaPena(Tablero& t, int fila, int columna, const Entrada& e, int maxHastaAhora){
 	if(fila == e.n -1 && columna == e.m -1){
     return false;
-  } 
-  return true;
+  }
+  
+  return maxHastaAhora < t.fichas + e.m - columna -1 + (e.n - fila -1) * e.m;
 }
 
 void Problema3::siguientePos(int& sigFila,int& sigCol,int& fila,int& columna,const Entrada& e){
