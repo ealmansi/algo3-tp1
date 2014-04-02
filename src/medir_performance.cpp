@@ -1,9 +1,10 @@
+#include <cstdlib>
+#include <ctime>
 #include <string>
 #include <iostream>
 #include <fstream>
 #include <vector>
 #include <algorithm>
-#include <cstdlib>
 #include <sys/time.h>
 
 #include "problema1/problema1.h"
@@ -41,6 +42,7 @@ int main(int argc, char const *argv[])
   int n_max = atoi(argv[3]);
 
   try {
+    srand(time(NULL));
     vector<Medicion> mediciones = tomar_mediciones(problema, funcion_generadora, n_max);
     escribir_datos(mediciones, nombre_archivo_salida);
   } catch(const char* error) {

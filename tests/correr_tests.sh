@@ -21,6 +21,7 @@ do
  ENTRADA=$(cat $F_IN | sed '/^#/ d' | sed '/^$/d')
  SALIDA_ESPERADA=$(cat $F_OUT | sed '/^#/ d' | sed '/^$/d')
  SALIDA=$(echo $ENTRADA | $EJECUTABLE)
+ echo $SALIDA
  if [ "$SALIDA" == "$SALIDA_ESPERADA" ];
  then
   echo "Test $F_IN (✔)"

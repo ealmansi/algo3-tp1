@@ -1,3 +1,4 @@
+#include <ctime>
 #include <iostream>
 #include <vector>
 #include <algorithm>
@@ -81,10 +82,27 @@ Entrada Problema1::generar_instancia_aleatoria(int n)
 {
   Entrada e;
 
-  e.cant_dias_inspeccion = 10;
+  e.cant_dias_inspeccion = 100;
   e.cant_dias = n;
   for (int i = 0; i < n; ++i)
-    e.dias.push_back(i);
+    e.dias.push_back(rand());
   
   return e;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

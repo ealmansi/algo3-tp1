@@ -7,11 +7,12 @@
 using namespace std;
 using namespace Problema3;
 
+#define DEBUG(str) {cout << #str << endl;}
+#define EXPR(expr) {cout << #expr << " " << (expr) << endl;}
+
 bool Problema3::leer_entrada(Entrada& e)
 {
   cin >> e.n;
-  if(!cin) return false;
-
   cin >> e.m;
   cin >> e.c;
 
@@ -30,6 +31,7 @@ bool Problema3::leer_entrada(Entrada& e)
 
 void Problema3::escribir_salida(Salida& s)
 {
+  cout << "hola" << endl;
   for (vector<vector<int> >::const_iterator i = s.casillas.begin(); i != s.casillas.end(); ++i)
   {
     for (vector<int>::const_iterator j = i->begin(); j != i->end(); ++j)
@@ -40,67 +42,67 @@ void Problema3::escribir_salida(Salida& s)
 
 Salida Problema3::resolver(const Entrada& e)
 {
-	///iniciarlos en 0 TODO, en ingles 'tudu'
-  Tablero mejorHastaAhora;
-  mejorHastaAhora.casillas = vector<vector<Pieza> >();
-  mejorHastaAhora.fichas = 0;
-  Tablero trabajoConEste;
-  trabajoConEste.casillas = vector<vector<Pieza> >();
-  trabajoConEste.fichas = 0;
-  vector<bool> estaDisp(e.n*e.m,true);
-  for (int i = 0; i<e.n; i++){
-  	for (int j = 0; j<e.m; j++){
-  		mejorHastaAhora.casillas[i][j] = Pieza(0,0,0,0,0);
-  		trabajoConEste.casillas[i][j] = Pieza(0,0,0,0,0);
- 	} 
+  Tablero mejorHastaAhora, trabajoConEste;
+  vector<bool> estaDisp(e.n * e.m, true);
+  for (int i = 0; i < e.n; i++) {
+    mejorHastaAhora.casillas.push_back(vector<Pieza>());
+    trabajoConEste.casillas.push_back(vector<Pieza>());
+    for (int j = 0; j < e.m; j++) {
+      mejorHastaAhora.casillas[i].push_back(Pieza(0,0,0,0,0));
+      trabajoConEste.casillas[i].push_back(Pieza(0,0,0,0,0));
+    } 
   }
   //vector<vector<bool> > estaDisp = 
   ///n filas, m columnas
   //int cant
   ///salida final, salida que trabajo, fila, columna, entrada
   ///fila y columna son los que voy a escribir AHORA
-  BT(mejorHastaAhora, trabajoConEste, 0, 0, e, estaDisp); 
+  BT(mejorHastaAhora, trabajoConEste, 0, 0, e, estaDisp);
+
   Salida s;
   s.casillas = vector<vector<int> >();
-  for (int i = 0; i<e.n; i++){
-  	for (int j = 0; j<e.m; j++){
-  		s.casillas[i][j] = mejorHastaAhora.casillas[i][j].indice;
- 	} 
+  for (int i = 0; i < e.n; i++){
+    s.casillas.push_back(vector<int>());
+    for (int j = 0; j < e.m; j++){
+      s.casillas[i].push_back(mejorHastaAhora.casillas[i][j].indice);
+    } 
   }
+
   return s;
 }
-
-void Problema3::BT(Tablero& mejorHastaAhora,Tablero& trabajoConEste, int fila, int columna, const Entrada& e, vector<bool> estaDisp){
+void Problema3::BT(Tablero& mejorHastaAhora, Tablero& trabajoConEste, int fila, int columna, const Entrada& e, vector<bool> estaDisp){
 	
 	///aca va el problema
-	int sigFila;
-	int sigCol;
-	SiguientePos(sigFila , sigCol , fila , columna , e); //logica para encontrar la sig pos
-	if(trabajoConEste.fichas > mejorHastaAhora.fichas){  //si es mejor lo guardo
-		mejorHastaAhora.fichas = trabajoConEste.fichas;
-		for (int i = 0; i<e.n; i++){
-  			for (int j = 0; j<e.m; j++){
-  			mejorHastaAhora.casillas[i][j] = trabajoConEste.casillas[i][j];
- 			} 
-  		}
-	}
-	for(int i = 0; i < e.n*e.m; i++){   //recorro todas las piezas
-		if(estaDisp[i]){	 										//para las que todavia no puse
-			trabajoConEste.casillas[fila][columna] = e.piezas[i];  	//pongo la pieza en el tablero
-			estaDisp[i] = false;									//la marco como no disp
-			if(trabajoConEste.casillas[fila][columna].indice != 0){trabajoConEste.fichas++;} //si es la primera pieza q pongo en ese casillero sumo 1 a la cant de piezas (si no lo es ya lo sume antes)
-			if(esValido(trabajoConEste,fila,columna) && valeLaPena(trabajoConEste,fila,columna,e)){ //si llego a una instancia valida y q puede llegar a ser optima
-				BT(mejorHastaAhora,trabajoConEste,sigFila,sigCol,e,estaDisp);  //recursion
-			}
-			estaDisp[i] = true; 			//vuelvo a habilitar la pieza
-		}	
-	}
+  int sigFila;
+  int sigCol;
+  siguientePos(sigFila , sigCol , fila , columna , e); //logica para encontrar la sig pos
+  if(trabajoConEste.fichas > mejorHastaAhora.fichas){  //si es mejor lo guardo
+    mejorHastaAhora.fichas = trabajoConEste.fichas;
+    mejorHastaAhora.casillas = trabajoConEste.casillas;
+  }
+  for(int i = 0; i < e.n*e.m; i++){   //recorro todas las piezas
+  	if(!estaDisp[i]) continue;	 										//para las que todavia no puse
+		
+    //if(trabajoConEste.casillas[fila][columna].indice == 0){
+      trabajoConEste.fichas++;
+    //} //si es la primera pieza q pongo en ese casillero sumo 1 a la cant de piezas (si no lo es ya lo sume antes)
+    trabajoConEste.casillas[fila][columna] = e.piezas[i];   //pongo la pieza en el tablero
+    estaDisp[i] = false;                  //la marco como no disp
+  	if(esValido(trabajoConEste,fila,columna) && valeLaPena(trabajoConEste,fila,columna,e)){ //si llego a una instancia valida y q puede llegar a ser optima
+  		BT(mejorHastaAhora,trabajoConEste,sigFila,sigCol,e,estaDisp);  //recursion
+  	}
+  	estaDisp[i] = true; 			//vuelvo a habilitar la pieza
+    trabajoConEste.fichas++;
+    trabajoConEste.casillas[fila][columna] = Pieza(0,0,0,0,0);
+  }
 	/// Caso ficha blanca
-	if(trabajoConEste.casillas[fila][columna].indice != 0){trabajoConEste.fichas--;} //si puse alguna pieza en esa pos reduzco el contador
-	trabajoConEste.casillas[fila][columna] = Pieza(0,0,0,0,0);   		//pongo la ficha blanca
-	if(valeLaPena(trabajoConEste,fila,columna,e)){						//si puede llegar a ser optima (seguro es valido)
-		BT(mejorHastaAhora,trabajoConEste,sigFila,sigCol,e,estaDisp);			//recursion
-	}
+  //if(trabajoConEste.casillas[fila][columna].indice != 0){
+    trabajoConEste.fichas--;
+  //} //si puse alguna pieza en esa pos reduzco el contador
+  trabajoConEste.casillas[fila][columna] = Pieza(0,0,0,0,0);      //pongo la ficha blanca
+  /*if(valeLaPena(trabajoConEste,fila,columna,e)){            //si puede llegar a ser optima (seguro es valido)
+    BT(mejorHastaAhora,trabajoConEste,sigFila,sigCol,e,estaDisp);     //recursion
+	}*/
 	return;
 }
 
@@ -116,17 +118,21 @@ bool Problema3::esValido(Tablero& t, int fila, int columna){
 }
 
 bool Problema3::valeLaPena(Tablero& t, int fila, int columna, const Entrada& e){
-	return true;
+	/*if(fila == e.n-1 || columna == e.m-1){
+    return false;
+  } */ 
+  return true;
 }
 
-void Problema3::SiguientePos(int& sigFila,int& sigCol,int& fila,int& columna,const Entrada& e){
+void Problema3::siguientePos(int& sigFila,int& sigCol,int& fila,int& columna,const Entrada& e){
 	sigFila = fila;
 	sigCol = columna;
-	if(columna == e.m){
+	if(columna == e.m - 1){
 		sigFila++;
 		sigCol = 0;
 	}
 	else{sigCol++;}
+  cout << "fila: " << sigFila << " columna: " << sigCol << endl;
 }
 
 

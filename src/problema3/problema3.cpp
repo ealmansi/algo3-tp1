@@ -3,15 +3,14 @@
 using namespace std;
 using namespace Problema3;
 
+#include <iostream>
+
 int main()
 {
-  while(true)
-  {
-    Entrada e;
-    if(!leer_entrada(e)) break;
-    Salida s = resolver(e);
-    escribir_salida(s);
-  }
+  Entrada e;
+  leer_entrada(e);
+  Salida s = resolver(e);
+  escribir_salida(s);
 
   return 0;
 }

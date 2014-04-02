@@ -33,6 +33,7 @@ namespace Problema3
 
 	struct Tablero
 	{
+		Tablero() : fichas(0) {}
 	  std::vector<std::vector<Pieza> > casillas;
 	  int fichas;
 	};
@@ -48,7 +49,7 @@ namespace Problema3
 	void BT(Tablero& mejorHastaAhora,Tablero& trabajoConEste, int fila, int columna, const Entrada& e, std::vector<bool> estaDisp); 
 	bool esValido(Tablero& t, int fila, int columna);
 	bool valeLaPena(Tablero& t, int fila, int columna, const Entrada& e);
-	void SiguientePos(int& sigFila,int& sigCol,int& fila,int& columna,const Entrada& e);
+	void siguientePos(int& sigFila,int& sigCol,int& fila,int& columna,const Entrada& e);
 }
 
 #endif /* PROBLEMA_3_H */

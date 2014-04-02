@@ -25,12 +25,9 @@ bool Problema2::leer_entrada(Entrada& e)
 
 void Problema2::escribir_salida(Salida& s)
 {
-  cout << "El orden optimo es: ";
-  for (vector<Pieza>::const_iterator i = s.piezas.begin(); i != s.piezas.end(); ++i){
-	cout << i->indice << " ";
-	}
-  cout << endl;
-  cout << "Y la perdida total es: " << s.perdida_total << endl;
+  for (vector<Pieza>::const_iterator i = s.piezas.begin(); i != s.piezas.end(); ++i)
+	 cout << i->indice << " ";
+  cout << s.perdida_total << endl;
 }
 
 Salida Problema2::resolver(const Entrada& e)
