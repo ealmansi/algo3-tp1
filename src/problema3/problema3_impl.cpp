@@ -132,10 +132,10 @@ void Problema3::BT(Tablero& mejorHastaAhora, Tablero& trabajoConEste, int fila, 
 bool Problema3::esValido(Tablero& t, int fila, int columna){
 	bool res = true;
 	if(fila !=0){ ///Si no es la primera fila
-		res = res && t.casillas[fila][columna].sup == t.casillas[fila-1][columna].inf;
+		res = res && (t.casillas[fila][columna].sup == t.casillas[fila-1][columna].inf || t.casillas[fila][columna].sup == 0 || t.casillas[fila-1][columna].inf == 0);
 	}
 	if(columna !=0){ ///Si no es la primera columna
-		res = res && t.casillas[fila][columna].izq == t.casillas[fila][columna-1].der;
+		res = res && (t.casillas[fila][columna].izq == t.casillas[fila][columna-1].der || t.casillas[fila][columna].izq == 0 || t.casillas[fila][columna-1].der == 0);
 	}
 	return res;
 }
