@@ -21,11 +21,16 @@ do
  ENTRADA=$(cat $F_IN | sed '/^#/ d' | sed '/^$/d')
  SALIDA_ESPERADA=$(cat $F_OUT | sed '/^#/ d' | sed '/^$/d')
  SALIDA=$(echo $ENTRADA | $EJECUTABLE)
- echo $SALIDA
- if [ "$SALIDA" == "$SALIDA_ESPERADA" ];
- then
-  echo "Test $F_IN (✔)"
+ 
+ if [[ $? == 0 ]] ; then
+   if [ "$SALIDA" == "$SALIDA_ESPERADA" ];
+   then
+    echo "Test $F_IN (✔)"
+   else
+    echo "Test $F_IN (x)"
+   fi
  else
-  echo "Test $F_IN (x)"
+  printf "Test $F_IN (x)\t (!!) código de retorno distinto de 0, posible segfault.\n"
  fi
+
 done

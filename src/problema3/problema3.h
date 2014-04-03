@@ -5,20 +5,19 @@
 
 namespace Problema3
 {
-	struct Pieza
-	  {
-	  	Pieza(int indice, int sup, int izq, int der, int inf)
-	  		: indice(indice), sup(sup), izq(izq), der(der), inf(inf) {}
-	  	int indice;
-	  	int sup;
-	  	int izq;
-	  	int der;
-	  	int inf;
-	  };
-	
-	
 	struct Entrada
 	{
+		struct Pieza
+		{
+			Pieza(int indice, int sup, int izq, int der, int inf)
+				: indice(indice), sup(sup), izq(izq), der(der), inf(inf) {}
+			int indice;
+			int sup;
+			int izq;
+			int der;
+			int inf;
+		};
+	
 	  int n;
 	  int m;
 	  int c;
@@ -27,17 +26,9 @@ namespace Problema3
 
 	struct Salida
 	{
-	  std::vector<std::vector<int> > casillas;
-	  
+	  std::vector<std::vector<int> > casilleros;
 	};
 
-	struct Tablero
-	{
-		Tablero() : fichas(0) {}
-	  std::vector<std::vector<Pieza> > casillas;
-	  int fichas;
-	};
-	
 	bool leer_entrada(Entrada& e);
 	void escribir_salida(Salida& s);
 
@@ -45,11 +36,6 @@ namespace Problema3
 
 	Entrada generar_instancia_unidimensional(int n);
 	Entrada generar_instancia_cuadrada(int n);
-	
-	void BT(Tablero& mejorHastaAhora,Tablero& trabajoConEste, int fila, int columna, const Entrada& e, std::vector<bool> estaDisp); 
-	bool esValido(Tablero& t, int fila, int columna);
-	bool valeLaPena(Tablero& t, int fila, int columna, const Entrada& e, int maxHastaAhora);
-	void siguientePos(int& sigFila,int& sigCol,int& fila,int& columna,const Entrada& e);
 }
 
 #endif /* PROBLEMA_3_H */
