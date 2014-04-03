@@ -24,21 +24,21 @@ Osea, T' tiene el primer elemento igual al primer elemento de T, y los otros $n-
 
 Primero vamos demostrar que T' es óptima, para esto calculo C(T) y C(T') :
 
-C(T) = $tiempo(t_1) \sum_{j=1}^{n}perdida(t_j) + C(T[2..n]) $
+C(T) = $tiempo(t_1) \sum_{j=1}^{n}perdida(t_j) + C(T[2,n]) $
 
-C(T') = $tiempo(t_1) \sum_{j=1}^{n}perdida(t'_j) + C(T'[2..n]) $
+C(T') = $tiempo(t_1) \sum_{j=1}^{n}perdida(t'_j) + C(T'[2,n]) $
 
 Como T es optimo, se que C(T') $\leq$ C(T)
 
 Tambien se por H.I. que T'[2..n] es óptima, por lo cual: 
 
-C(T'[2,n]) $\leq$ C(T[2..n]) $\iff$
+C(T'[2,n]) $\leq$ C(T[2,n]) $\longleftrightarrow$
 
-$tiempo(t_1) \sum_{j=1}^{n}perdida(t_j)$ + C(T'[2..n]) $\leq$  $tiempo(t_1) \sum_{j=1}^{n}perdida(t_j)$ + C(T[2..n])
+$tiempo(t_1) \sum_{j=1}^{n}perdida(t_j)$ + C(T'[2,n]) $\leq$  $tiempo(t_1) \sum_{j=1}^{n}perdida(t_j)$ + C(T[2,n])
 
 Sabemos que $\sum_{j=1}^{n}perdida(t_j) = \sum_{j=1}^{n}perdida(t'_j)$ ya que T' es una permutacion de T, Entonces:
 
-$tiempo(t_1) \sum_{j=1}^{n}perdida(t'_j)$ + C(T'[2..n]) $\leq$  $tiempo(t_1) \sum_{j=1}^{n}perdida(t_j)$ + C(T'[2..n]) $\iff$
+$tiempo(t_1) \sum_{j=1}^{n}perdida(t'_j)$ + C(T'[2,n]) $\leq$  $tiempo(t_1) \sum_{j=1}^{n}perdida(t_j)$ + C(T'[2,n]) $\longleftrightarrow$
 
 C(T') $\leq$ C(T)
 
@@ -46,7 +46,7 @@ Pero habíamos dicho que T es óptimo, por lo tanto C(T) $\leq$ C(T').
 
 Entonces, como C(T') $\leq$ C(T) $\wedge$ C(') $\leq$ C(T'), entonces C(T) = C(T'). Por lo tanto T' es optimo.
 
-Por ultimo queremos ver que T' cumple con la condición de P(n), sabemos que T'[2..n] tiene a sus elementos ordenados según $\frac{tiempo(t'_i)}{perdida(t'_i)}$. Nos falta ver que T' completa los tiene, para esto sólo hace falta ver $t'_1$ esta ordenado, que es lo mismo que decir que $\frac{tiempo(t'_1)}{perdida(t'_1)}$ $\leq \frac{tiempo(t'_2)}{perdida(t'_2)}$
+Por ultimo queremos ver que T' cumple con la condicion de P(n), sabemos que T'[2,n] estan ordenados segun $\frac{tiempo(t'_i)}{perdida(t'_i)}$. Nos falta ver que T' completa lo esta, para esto solo hace falta ver $t'_1$ esta ordenado, que es lo mismo que decir que $\frac{tiempo(t'_1)}{perdida(t'_1)}$ $\leq \frac{tiempo(t'_2)}{perdida(t'_2)}$
 
 Para esto tomamos T'' = $(t'_2,t'_1,t'_3,...,t'_n)$
 
@@ -56,28 +56,17 @@ C(T'') = $tiempo(t'_2) \sum_{j=1}^{n}perdida(t'_j) + tiempo(t'_1) \sum_{j=1,j\ne
 
 C(T') $\leq$ C(T'') por ser T' optimo
 
-$tiempo(t'_1) \sum_{j=1}^{n}perdida(t'_j) + tiempo(t'_2) \sum_{j=2}^{n}perdida(t'_j) + C(T'[3,n]) \leq tiempo(t'_2) \sum_{j=1}^{n}perdida(t'_j) + tiempo(t'_1) \sum_{j=1,j\neq 2}^{n}perdida(t'_j) + C(T''[3,n]) \iff$
+$tiempo(t'_1) \sum_{j=1}^{n}perdida(t'_j) + tiempo(t'_2) \sum_{j=2}^{n}perdida(t'_j) + C(T'[3,n]) \leq tiempo(t'_2) \sum_{j=1}^{n}perdida(t'_j) + tiempo(t'_1) \sum_{j=1,j\neq 2}^{n}perdida(t'_j) + C(T''[3,n])$
 
-Como T'(3..n) = T''(3..n) entonces C(T'(3..n)) = C(T''(3..n)) y los puedo cancelar.
+$tiempo(t'_1) \sum_{j=1}^{n}perdida(t'_j) + tiempo(t'_2) \sum_{j=2}^{n}perdida(t'_j)  \leq tiempo(t'_2) \sum_{j=1}^{n}perdida(t'_j) + tiempo(t'_1) \sum_{j=1,j\neq 2}^{n}perdida(t'_j) $ por ser T'[3,n] = T''[3,n]
 
-$tiempo(t'_1) \sum_{j=1}^{n}perdida(t'_j) + tiempo(t'_2) \sum_{j=2}^{n}perdida(t'_j)  \leq tiempo(t'_2) \sum_{j=1}^{n}perdida(t'_j) + tiempo(t'_1) \sum_{j=1,j\neq 2}^{n}perdida(t'_j)  \iff$
+$tiempo(t'_1) \sum_{j=1,j\neq 2}^{n}perdida(t'_j) + tiempo(t'_1) * perdida(t'_2) + tiempo(t'_2) \sum_{j=2}^{n}perdida(t'_j) \leq tiempo(t'_1) \sum_{j=1,j\neq 2}^{n}perdida(t'_j) + tiempo(t'_2) \sum_{j=2}^{n}perdida(t'_j)+ tiempo(t'_2) * perdida(t'_1)$  
 
-$tiempo(t'_1) \sum_{j=1,j\neq 2}^{n}perdida(t'_j) + tiempo(t'_1) * perdida(t'_2) + tiempo(t'_2) \sum_{j=2}^{n}perdida(t'_j) \leq tiempo(t'_1) \sum_{j=1,j\neq 2}^{n}perdida(t'_j) + tiempo(t'_2) \sum_{j=2}^{n}perdida(t'_j)+ tiempo(t'_2) * perdida(t'_1) \iff$  
-
-Cancelo un término:
-
-$tiempo(t'_1) * perdida(t'_2) + tiempo(t'_2) \sum_{j=2}^{n}perdida(t'_j) \leq + tiempo(t'_2) \sum_{j=2}^{n}perdida(t'_j)+ tiempo(t'_2) * perdida(t'_1) \iff$
-
-Cancelo el otro:
-
-$tiempo(t'_1) * perdida(t'_2) \leq tiempo(t'_2) * perdida(t'_1) $
+$tiempo(t'_1) * perdida(t'_2) \leq tiempo(t'_2) * perdida(t'_1) $ cancelando
 
 $\frac{tiempo(t'_1)}{perdida(t'_1)} \leq \frac{tiempo(t'_2}{perdida(t'_2)}$
 
-Con lo que finaliza la demostracion.
-\begin{flushright}
-\hfill \ensuremath{\Box}
-\end{flushright}
+Con lo que finaliza la demostracion
 
 
 
