@@ -54,16 +54,16 @@ informe: $(TEX)/informe.tex
 .PHONY: crear_carpetas clean clean_ejecutables clean_mediciones clean_graficos clean_tex clean_todo
 
 crear_carpetas:
-	mkdir -p $(BIN)
-	mkdir -p $(TESTS)/problema1
-	mkdir -p $(TESTS)/problema2
-	mkdir -p $(TESTS)/problema3
-	mkdir -p $(MEDICIONES)/problema1
-	mkdir -p $(MEDICIONES)/problema2
-	mkdir -p $(MEDICIONES)/problema3
-	mkdir -p $(GRAFICOS)/problema1
-	mkdir -p $(GRAFICOS)/problema2
-	mkdir -p $(GRAFICOS)/problema3
+	@mkdir -p $(BIN)
+	@mkdir -p $(TESTS)/problema1
+	@mkdir -p $(TESTS)/problema2
+	@mkdir -p $(TESTS)/problema3
+	@mkdir -p $(MEDICIONES)/problema1
+	@mkdir -p $(MEDICIONES)/problema2
+	@mkdir -p $(MEDICIONES)/problema3
+	@mkdir -p $(GRAFICOS)/problema1
+	@mkdir -p $(GRAFICOS)/problema2
+	@mkdir -p $(GRAFICOS)/problema3
 
 clean:
 	rm -f $(SRC)/*.o

@@ -44,7 +44,7 @@ Salida Problema1::resolver(const Entrada& e)
     for (; (j < e.cant_dias) && (dias[j] - dias[i] < e.cant_dias_inspeccion); ++j)
       ;
     cant_camiones = j - i;
-    if(s.max_cant_camiones < cant_camiones)
+    if (s.max_cant_camiones < cant_camiones)
     {
       s.max_cant_camiones = cant_camiones;
       s.dia_inicial = dias[i];
