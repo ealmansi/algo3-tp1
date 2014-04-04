@@ -94,10 +94,15 @@ void resolverBacktracking(int i, int j, Tablero& solucionParcial, Tablero& soluc
 
 bool llamarRecursivamente(int i, int j, Tablero& solucionParcial, Tablero& solucionOptima, vector<bool>& piezaDisponible, const Entrada& e)
 {
+  if (solucionOptima.cantPiezas == e.n * e.m)
+    return false;
+
   if (e.n <= i || e.m <= j)
     return false;
 
-  int espaciosRestantes = e.n * e.m - (i * e.m + j);
+  int espaciosRestantes = e.n * e.m - ((i+1) * e.m + j);
+
+  
   if (solucionParcial.cantPiezas + espaciosRestantes <= solucionOptima.cantPiezas)
     return false;
 
