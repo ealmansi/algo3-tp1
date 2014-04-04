@@ -2,79 +2,78 @@ Para resolver este problema tenemos que encontrar un orden óptimo para armar la
 
 La propiedad que queremos demostrar es la siguiente:
 
-Sea S un conjunto de elementos  ${s_1,...,s_n}$ y T un permutación de los elementos de S / $\forall 1 \leq i  < n$ $\frac{tiempo(T[i])}{perdida(T[i])} \leq \frac{tiempo(T[i+1])}{perdida(T[i+1])} $ optimiza la función C(T) 
+Sea S un conjunto de elementos  ${s_1,...,s_n}$ y R un permutación de los elementos de S / $(\forall \ 1 \leq i  < n)$ $\frac{t(R[i])}{p(R[i])} \leq \frac{t(R[i+1])}{p(R[i+1])} $, minimiza la función C(R) 
 
-Siendo C(T) = $\sum_{i=1}^{n} tiempo(T[i]) \sum_{j=i}^{n}perdida(T[j]) $
+Siendo C(R) = $\sum_{i=1}^{n} t(R[i]) \sum_{j=i}^{n}p(R[j]) $
 
-Para demostrar esto vamos a hacer inducción en el tamaño de T.
+Para demostrar esto vamos a hacer inducción en el tamaño de R.
 
-El caso base  es $\|$ T$\|$ = 1 :
+El caso base  es $\|$ R$\|$ = 1 :
 
-Este caso es trivial porque sólo existe una permutación de T, por lo cual claramente es la óptima.
+Este caso es trivial porque sólo existe una permutación de R, por lo cual claramente es la mínima.
 
 Para continuar con la demostración debemos realizar el paso inductivo, que es el siguiente:
 
-$\forall n > 1$P(n-1) $\Rightarrow$ P(n)
+$(\forall n > 1)$  P(n-1) $\Rightarrow$ P(n)
 
 Para realizar el paso inductivo vamos a usar como Hipótesis inductiva que vale P(n-1) y a partir de eso vamos a demostrar que vale P(n).
 
-Tomamos un permutación óptima T / T = $(t_1,...,t_n)$ y construyo T' = $(t'_1,...,t'_n) / t'_1 = t_1 y (t'_2,...,t'_n) es una permutacion de (t_2,...,t_n) / \forall 2 \leq i  < n \frac{tiempo(t'_i)}{perdida(t'_i)} \leq \frac{tiempo(t'_{i+1})}{perdida(t'_{i+1})} $
+Tomamos un permutación óptima R = $(r_1,...,r_n)$ y construyo R' = $(r'_1,...,r'_n) / \  r'_1 = r_1 \  y \ (r'_2,...,r'_n)$ es una permutacion de $(r_2,...,r_n) / (\forall 2 \leq i  < n) \frac{t(r'_i)}{p(r'_i)} \leq \frac{t(r'_{i+1})}{p(r'_{i+1})} $
 
-Osea, T' tiene el primer elemento igual al primer elemento de T, y los otros $n-1$ elementos están ordenados según nuestro orden propuesto.
+Osea, R' tiene el primer elemento igual al primer elemento de R, y los otros $n-1$ elementos están ordenados según nuestro orden propuesto.
 
-Primero vamos demostrar que T' es óptima, para esto calculo C(T) y C(T') :
+Primero vamos demostrar que R' es óptima, para esto calculo C(R) y C(R') :
 
-C(T) = $tiempo(t_1) \sum_{j=1}^{n}perdida(t_j) + C(T[2..n]) $
+C(R) = $t(r_1) \sum_{j=1}^{n}p(r_j) + C(R[2..n]) $
 
-C(T') = $tiempo(t_1) \sum_{j=1}^{n}perdida(t'_j) + C(T'[2..n]) $
+C(R') = $t(r_1) \sum_{j=1}^{n}p(r'_j) + C(R'[2..n]) $
 
-Como T es optimo, se que C(T') $\leq$ C(T)
+Como R es optimo, se que C(R) $\leq$ C(R')
 
-Tambien se por H.I. que T'[2..n] es óptima, por lo cual: 
+Tambien se por H.I. que R'[2..n] es óptima, por lo cual: 
 
-C(T'[2,n]) $\leq$ C(T[2..n]) $\iff$
+C(R'[2,n]) $\leq$ C(R[2..n]) $\iff$
 
-$tiempo(t_1) \sum_{j=1}^{n}perdida(t_j)$ + C(T'[2..n]) $\leq$  $tiempo(t_1) \sum_{j=1}^{n}perdida(t_j)$ + C(T[2..n])
+$t(r_1) \sum_{j=1}^{n}p(r_j)$ + C(R'[2..n]) $\leq$  $t(r_1) \sum_{j=1}^{n}p(r_j)$ + C(R[2..n])
 
-Sabemos que $\sum_{j=1}^{n}perdida(t_j) = \sum_{j=1}^{n}perdida(t'_j)$ ya que T' es una permutacion de T, Entonces:
+Sabemos que $\sum_{j=1}^{n}p(r_j) = \sum_{j=1}^{n}p(r'_j)$ ya que R' es una permutacion de R, Entonces:
 
-$tiempo(t_1) \sum_{j=1}^{n}perdida(t'_j)$ + C(T'[2..n]) $\leq$  $tiempo(t_1) \sum_{j=1}^{n}perdida(t_j)$ + C(T'[2..n]) $\iff$
+$t(r_1) \sum_{j=1}^{n}p(r'_j)$ + C(R'[2..n]) $\leq$  $t(r_1) \sum_{j=1}^{n}p(r_j)$ + C(R'[2..n]) $\iff$
 
-C(T') $\leq$ C(T)
+C(R') $\leq$ C(R)
 
-Pero habíamos dicho que T es óptimo, por lo tanto C(T) $\leq$ C(T').
+Pero habíamos dicho que R es óptimo, por lo tanto C(R) $\leq$ C(R').
 
-Entonces, como C(T') $\leq$ C(T) $\wedge$ C(') $\leq$ C(T'), entonces C(T) = C(T'). Por lo tanto T' es optimo.
+Entonces, como C(R') $\leq$ C(R) $\wedge$ C(R) $\leq$ C(R'), entonces C(R) = C(R'). Por lo tanto R' es optimo.
 
-Por ultimo queremos ver que T' cumple con la condición de P(n), sabemos que T'[2..n] tiene a sus elementos ordenados según $\frac{tiempo(t'_i)}{perdida(t'_i)}$. Nos falta ver que T' completa los tiene, para esto sólo hace falta ver $t'_1$ esta ordenado, que es lo mismo que decir que $\frac{tiempo(t'_1)}{perdida(t'_1)}$ $\leq \frac{tiempo(t'_2)}{perdida(t'_2)}$
+Por ultimo queremos ver que R' cumple con la condición de P(n), sabemos que R'[2..n] tiene a sus elementos ordenados según $\frac{t(r'_i)}{p(r'_i)}$. Nos falta ver que R' completa esta ordenada, para esto sólo hace falta ver $r'_1$ esta ordenado, que es lo mismo que decir que $\frac{t(r'_1)}{p(r'_1)}$ $\leq \frac{t(r'_2)}{p(r'_2)}$
 
-Para esto tomamos T'' = $(t'_2,t'_1,t'_3,...,t'_n)$
+Para esto tomamos R'' = $(r'_2,r'_1,r'_3,...,r'_n)$
 
-C(T') = $tiempo(t'_1) \sum_{j=1}^{n}perdida(t'_j) + tiempo(t'_2) \sum_{j=2}^{n}perdida(t'_j) + C(T'[3,n]) $
+C(R') = $t(r'_1) \sum_{j=1}^{n}p(r'_j) + t(r'_2) \sum_{j=2}^{n}p(r'_j) + C(R'[3,n]) $
 
-C(T'') = $tiempo(t'_2) \sum_{j=1}^{n}perdida(t'_j) + tiempo(t'_1) \sum_{j=1,j\neq 2}^{n}perdida(t'_j) + C(T''[3,n]) $
+C(R'') = $t(r'_2) \sum_{j=1}^{n}p(r'_j) + t(r'_1) \sum_{j=1,j\neq 2}^{n}p(r'_j) + C(R''[3,n]) $
 
-C(T') $\leq$ C(T'') por ser T' optimo
+C(R') $\leq$ C(R'') por ser R' optimo
 
-$tiempo(t'_1) \sum_{j=1}^{n}perdida(t'_j) + tiempo(t'_2) \sum_{j=2}^{n}perdida(t'_j) + C(T'[3,n]) \leq tiempo(t'_2) \sum_{j=1}^{n}perdida(t'_j) + tiempo(t'_1) \sum_{j=1,j\neq 2}^{n}perdida(t'_j) + C(T''[3,n]) \iff$
+$t(r'_1) \sum_{j=1}^{n}p(r'_j) + t(r'_2) \sum_{j=2}^{n}p(r'_j) + C(R'[3,n]) \leq t(r'_2) \sum_{j=1}^{n}p(r'_j) + t(r'_1) \sum_{j=1,j\neq 2}^{n}p(r'_j) + C(R''[3,n]) \iff$
 
-Como T'(3..n) = T''(3..n) entonces C(T'(3..n)) = C(T''(3..n)) y los puedo cancelar.
+Como R'(3..n) = R''(3..n) entonces C(R'(3..n)) = C(R''(3..n)) y los puedo cancelar.
 
-$tiempo(t'_1) \sum_{j=1}^{n}perdida(t'_j) + tiempo(t'_2) \sum_{j=2}^{n}perdida(t'_j)  \leq tiempo(t'_2) \sum_{j=1}^{n}perdida(t'_j) + tiempo(t'_1) \sum_{j=1,j\neq 2}^{n}perdida(t'_j)  \iff$
+$t(r'_1) \sum_{j=1}^{n}p(r'_j) + t(r'_2) \sum_{j=2}^{n}p(r'_j)  \leq t(r'_2) \sum_{j=1}^{n}p(r'_j) + t(r'_1) \sum_{j=1,j\neq 2}^{n}p(r'_j)  \iff$
 
-$tiempo(t'_1) \sum_{j=1,j\neq 2}^{n}perdida(t'_j) + tiempo(t'_1) * perdida(t'_2) + tiempo(t'_2) \sum_{j=2}^{n}perdida(t'_j) \leq tiempo(t'_1) \sum_{j=1,j\neq 2}^{n}perdida(t'_j) + tiempo(t'_2) \sum_{j=2}^{n}perdida(t'_j)+ tiempo(t'_2) * perdida(t'_1) \iff$  
+$t(r'_1) \sum_{j=1,j\neq 2}^{n}p(r'_j) + t(r'_1) * p(r'_2) + t(r'_2) \sum_{j=2}^{n}p(r'_j) \leq t(r'_1) \sum_{j=1,j\neq 2}^{n}p(r'_j) + t(r'_2) \sum_{j=2}^{n}p(r'_j)+ t(r'_2) * p(r'_1) \iff$  
 
 Cancelo un término:
 
-$tiempo(t'_1) * perdida(t'_2) + tiempo(t'_2) \sum_{j=2}^{n}perdida(t'_j) \leq + tiempo(t'_2) \sum_{j=2}^{n}perdida(t'_j)+ tiempo(t'_2) * perdida(t'_1) \iff$
+$t(r'_1) * p(r'_2) + t(r'_2) \sum_{j=2}^{n}p(r'_j) \leq + t(r'_2) \sum_{j=2}^{n}p(r'_j)+ t(r'_2) * p(r'_1) \iff$
 
 Cancelo el otro:
 
-$tiempo(t'_1) * perdida(t'_2) \leq tiempo(t'_2) * perdida(t'_1) $
+$t(r'_1) * p(r'_2) \leq t(r'_2) * p(r'_1) $
 
-$\frac{tiempo(t'_1)}{perdida(t'_1)} \leq \frac{tiempo(t'_2}{perdida(t'_2)}$
+$\frac{t(r'_1)}{p(r'_1)} \leq \frac{t(r'_2)}{p(r'_2)}$
 
-Con lo que finaliza la demostracion.
 \begin{flushright}
 \hfill \ensuremath{\Box}
 \end{flushright}
