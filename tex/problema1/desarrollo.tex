@@ -1,3 +1,31 @@
+\begin{pseudo}
+\State Tipo de dato Camion es Tupla $\langle$ id : entero, carga : entero $\rangle$
+    \Procedure{Pascual-y-el-correo}{$\langle p_1, \ldots, p_n \rangle, L$}
+        \State $C \leftarrow$ nuevo min-heap de Camion, ordenado por carga \Ode{1}
+        \ForAll{$p$ \In $\langle p_1, \ldots, p_n \rangle$}
+            \If{$C.tama\tilde{n}o = 0$} \Ode{1}
+                \State $C.encolar(\langle 1 , p \rangle)$ \Ode{log(n)}
+            \ElsIf{$C.siguiente() + p \leq L$} \Ode{1}
+                \State $c : Camion \leftarrow C.siguiente()$ \Ode{1}
+                \State $c.carga \leftarrow c.carga + p$ \Ode{1}
+                \State $C.desencolar()$ \Ode{log(n)}
+                \State $C.encolar(c)$ \Ode{log(n)}
+            \Else
+                \State $C.encolar(\langle C.tama\tilde{n}o(), p \rangle)$ \Ode{log(n)}
+            \EndIf
+        \EndFor
+
+   \State $Camiones \leftarrow$ Arreglo de camiones de C.tamaño()
+        \ForAll{$i$ \In $\langle 1, \ldots,$ C.tamaño() $\rangle$}  
+       \State Camiones[i] $\leftarrow$ $C.siguiente()$  \Ode{1}
+       \State $C.desencolar()$  \Ode{log(n)}
+        \EndFor
+        
+        \State $Ordenar(Camiones)$ (Ordenamiento por id) \Ode{log(n)}
+        \State \textbf{return} $Camiones$
+    \EndProcedure
+\end{pseudo}
+
 Proin accumsan erat dignissim elit posuere, sed facilisis nisi semper. Cras suscipit sapien sed neque consectetur, ac pellentesque erat tristique. Interdum et malesuada fames ac ante ipsum primis in faucibus. Mauris lectus dolor, mattis eget ante sed, gravida blandit ante. Phasellus in bibendum lectus. Sed ut lectus hendrerit, convallis erat sed, feugiat nisl. Donec porttitor volutpat tortor, ac convallis mauris volutpat id. Nam a dictum ante. Maecenas ultrices eu elit in tincidunt. Morbi pellentesque varius ante nec scelerisque. Suspendisse potenti.
 
 Nullam sem felis, consequat quis dui quis, rutrum gravida felis. Aenean et felis et dolor convallis elementum. Etiam neque lorem, ullamcorper vitae pulvinar id, molestie id elit. Morbi urna sapien, porttitor sit amet lorem sit amet, consequat convallis velit. Vestibulum auctor sapien ac ullamcorper volutpat. Nulla ut tellus at nibh luctus congue. Nam luctus feugiat feugiat.
