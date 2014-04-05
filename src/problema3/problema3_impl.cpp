@@ -100,9 +100,44 @@ bool llamarRecursivamente(int i, int j, Tablero& solucionParcial, Tablero& soluc
   if (e.n <= i || e.m <= j)
     return false;
 
-  int espaciosRestantes = e.n * e.m - ((i+1) * e.m + j);
-
+  int espaciosRestantes = e.n * e.m - (i * e.m + j);
+  //poda 2.0
+	vector<int> coloresNecesarios(e.c,0);
+	int f, c ;
+	if(i != 0)
+	{
+	f = i-1;
+	c = j;
+	}
+	else
+	{
+	f = c = 0;
+	}
+	int indice;
+	for(;f != i && c != j ;calcularSiguientePos(f,c,f,c,e))
+	{
+		indice = solucionParcial.casilleros[f][c];
+		if(indice != 0)
+		{
+			++coloresNecesarios[e.piezas[indice -1].inf -1];
+		}
+	}
+  for(int h = 0; h < e.n * e.m; ++h)
+  {
+  	if(piezaDisponible[h])
+  	{
+  		--coloresNecesarios[e.piezas[h -1].sup -1];
+  	}
+  }
+  for(int h = 0; h < e.c;++h)
+  {
+  	if(coloresNecesarios[h] > 0)
+  	{
+  		espaciosRestantes -= coloresNecesarios[h]; 
+  	}
+  }
   
+  //
   if (solucionParcial.cantPiezas + espaciosRestantes <= solucionOptima.cantPiezas)
     return false;
 
