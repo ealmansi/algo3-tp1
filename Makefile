@@ -7,7 +7,7 @@ MEDICIONES		= mediciones
 GRAFICOS			= graficos
 
 CXX     	= g++
-CXXFLAGS	= -g -Wall -Wno-unused-parameter -Wextra -I$(LIB)
+CXXFLAGS	= -Wall -Wno-unused-parameter -Wextra -I$(LIB)
 LDFLAGS 	= -I$(LIB) -lrt
 
 all: crear_carpetas problema1 problema2 problema3 medir_performance
