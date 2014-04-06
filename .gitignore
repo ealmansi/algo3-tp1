@@ -27,9 +27,5 @@ tex/*.log
 tex/*.toc
 tex/*.backup
 tex/informe.synctex.gz
-tex/problema1/*.tex.backup
-tex/problema2/*.tex.backup
-tex/problema3/*.tex.backup
-tex/problema1/*.log
-tex/problema2/*.log
-tex/problema3/*.log
+tex/problema*/*.tex.backup
+tex/problema*/*.log
