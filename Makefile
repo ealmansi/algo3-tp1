@@ -34,8 +34,8 @@ HDR_P2 		= $(SRC_DIR)/problema2/problema2.h
 HDR_P3 		= $(SRC_DIR)/problema3/problema3.h
 
 CXX     	= g++
-CXXFLAGS	= -g -Wall -Wno-unused-parameter -Wextra -I$(LIB)
-LDFLAGS 	= -I$(LIB) -lrt
+CXXFLAGS	= -g -Wall -Wno-unused-parameter -Wextra
+LDFLAGS 	= -lrt
 
 all: crear_carpetas $(BIN_P1) $(BIN_P2) $(BIN_P3) $(BIN_MP)
 
