@@ -1,3 +1,11 @@
+# para ejecutar:
+# cat ./tests/problema3/ejemplo_del_tp.in | sed '/^#/ d' | sed '/^$/d' | ./bin/problema3
+
+# n m c
+# sup izq der inf
+# ...
+# rojo azul amarillo verde
+
 3 3 9
 1 1 1 1
 2 2 2 2

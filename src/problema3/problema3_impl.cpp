@@ -41,9 +41,10 @@ void Problema3::escribir_salida(Salida& s)
 {
   for (vector<vector<int> >::const_iterator i = s.casilleros.begin(); i != s.casilleros.end(); ++i)
   {
-    for (vector<int>::const_iterator j = i->begin(); j != i->end(); ++j)
+    vector<int>::const_iterator j;
+    for (j = i->begin(); j + 1 != i->end(); ++j)
       cout << *j  << " ";
-    cout << endl;
+    cout << *j  << endl;
   }
 }
 

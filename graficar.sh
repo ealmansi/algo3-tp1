@@ -15,6 +15,6 @@ if ! which matlab > /dev/null; then
 fi
 
 PROBLEMA=$1
-DIR_SCRIPTS_MATLAB=$(dirname $0)/../matlab
+DIR_SCRIPTS_MATLAB=$(dirname $0)/matlab
 
 matlab -nodisplay -nosplash -r "try, addpath('$DIR_SCRIPTS_MATLAB');graficar_mediciones('$PROBLEMA'), catch, end, quit" > /dev/null

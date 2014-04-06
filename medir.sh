@@ -5,10 +5,10 @@ if (( $# != 2 )); then
  exit
 fi
 
-EJECUTABLE=$(dirname $0)/../bin/medir_performance
+EJECUTABLE=$(dirname $0)/bin/medir_performance
 PROBLEMA=$1
-DIR_SALIDA=$(dirname $0)/$PROBLEMA
-HEADER=$(dirname $0)/../src/$PROBLEMA/"${PROBLEMA}.h"
+DIR_SALIDA=$(dirname $0)/mediciones/$PROBLEMA
+HEADER=$(dirname $0)/src/$PROBLEMA/"${PROBLEMA}.h"
 FUNCIONES=$(cat $HEADER | grep generar_instancia | sed 's/^.*Entrada //' | sed 's/(int n);$//')
 NLIMITE=$2
 
