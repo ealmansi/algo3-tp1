@@ -1,28 +1,22 @@
-\begin{pseudo}
-\State Tipo de dato Camion es Tupla $\langle$ id : entero, carga : entero $\rangle$
-    \Procedure{Pascual-y-el-correo}{$\langle p_1, \ldots, p_n \rangle, L$}
-        \State $C \leftarrow$ nuevo min-heap de Camion, ordenado por carga \Ode{1}
-        \ForAll{$p$ \In $\langle p_1, \ldots, p_n \rangle$}
-            \If{$C.tama\tilde{n}o = 0$} \Ode{1}
-                \State $C.encolar(\langle 1 , p \rangle)$ \Ode{log(n)}
-            \ElsIf{$C.siguiente() + p \leq L$} \Ode{1}
-                \State $c : Camion \leftarrow C.siguiente()$ \Ode{1}
-                \State $c.carga \leftarrow c.carga + p$ \Ode{1}
-                \State $C.desencolar()$ \Ode{log(n)}
-                \State $C.encolar(c)$ \Ode{log(n)}
-            \Else
-                \State $C.encolar(\langle C.tama\tilde{n}o(), p \rangle)$ \Ode{log(n)}
-            \EndIf
-        \EndFor
+El algoritmo utilizado para resolver el problema opera de la siguiente forma: se consideran como posibles candidatos para $d$ únicamente los valores $d_1\;d_2\;...\;d_n$, y para cada $i$ de $1$ a $n$ se computa la cantidad de elementos contenidos en $[d_i, d_i + D)$. En cada paso, se mantiene un registro del valor de $d$ para el cual esta cantidad es mayor, y finalmente se emite como solución dicho valor y la cantidad de números contenidos en su respectivo intervalo.
 
-   \State $Camiones \leftarrow$ Arreglo de camiones de C.tamaño()
-        \ForAll{$i$ \In $\langle 1, \ldots,$ C.tamaño() $\rangle$}  
-       \State Camiones[i] $\leftarrow$ $C.siguiente()$  \Ode{1}
-       \State $C.desencolar()$  \Ode{log(n)}
-        \EndFor
-        
-        \State $Ordenar(Camiones)$ (Ordenamiento por id) \Ode{log(n)}
-        \State \textbf{return} $Camiones$
+Una posible manera para llevar a cabo este procedimiento consiste en tomar cada valor $d_i$ y, para cada valor $1 \leq j \leq n$, evaluar la condición de pertenencia $d_i \leq d_j < d_i + D$. Esto conlleva una cantidad de operaciones cuadrática en $n$, por lo que se optó por el siguiente algoritmo (expresado en pseudocódigo).
+
+\begin{pseudo}
+    \Procedure{Camiones-Sospechosos}{$D, n, \langle d_1, \ldots, d_n \rangle$}
+        \State $ordenar(\langle d_1, \ldots, d_n \rangle)$ \Ode{n\;log(n)}
+        \State $d \leftarrow 0, \#camiones \leftarrow 0$ \Ode{1}
+        \State $i \leftarrow 1$, $j \leftarrow 1$ \Ode{1}
+        \While{$i \leq n$} \Ode{1}
+            \While{$(j \leq n) \land (d_i \leq d_j < d_i + D)$} \Ode{1}
+                \State $j \leftarrow j + 1$ \Ode{1}
+            \EndWhile
+            \If{$\#camiones < j - i$} \Ode{1}
+                \State $\#camiones \leftarrow j - i$ \Ode{1}
+                \State $d \leftarrow i$ \Ode{1}
+            \EndIf
+            \State $i \leftarrow i + 1$ \Ode{1}
+        \EndWhile
     \EndProcedure
 \end{pseudo}
 
