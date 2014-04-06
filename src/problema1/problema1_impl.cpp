@@ -8,10 +8,10 @@
 using namespace std;
 using namespace Problema1;
 
-bool Problema1::leer_entrada(Entrada& e)
+bool Problema1::leer_entrada(Entrada &e)
 {
   cin >> e.cant_dias_inspeccion;
-  if(e.cant_dias_inspeccion == 0) return false;
+  if (e.cant_dias_inspeccion == 0) return false;
 
   cin >> e.cant_dias;
   for (int i = 0; i < e.cant_dias; ++i)
@@ -24,18 +24,18 @@ bool Problema1::leer_entrada(Entrada& e)
   return true;
 }
 
-void Problema1::escribir_salida(Salida& s)
+void Problema1::escribir_salida(Salida &s)
 {
   cout << s.dia_inicial << " " << s.max_cant_camiones << endl;
 }
 
-Salida Problema1::resolver(const Entrada& e)
+Salida Problema1::resolver(const Entrada &e)
 {
   Salida s;
 
   vector<int> dias(e.dias);
   sort(dias.begin(), dias.end());
-  
+
   s.dia_inicial = -1;
   s.max_cant_camiones = -1;
   int i = 0, j = 0, cant_camiones;
@@ -62,7 +62,7 @@ Entrada Problema1::generar_instancia_mejor_caso(int n)
   e.cant_dias = n;
   for (int i = 0; i < n; ++i)
     e.dias.push_back(i);
-  
+
   return e;
 }
 
@@ -74,7 +74,7 @@ Entrada Problema1::generar_instancia_peor_caso(int n)
   e.cant_dias = n;
   for (int i = 0; i < n; ++i)
     e.dias.push_back(i);
-  
+
   return e;
 }
 
@@ -86,7 +86,7 @@ Entrada Problema1::generar_instancia_aleatoria(int n)
   e.cant_dias = n;
   for (int i = 0; i < n; ++i)
     e.dias.push_back(rand());
-  
+
   return e;
 }
 

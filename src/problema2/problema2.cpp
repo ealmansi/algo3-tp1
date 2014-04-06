@@ -5,10 +5,10 @@ using namespace Problema2;
 
 int main()
 {
-  while(true)
+  while (true)
   {
     Entrada e;
-    if(!leer_entrada(e)) break;
+    if (!leer_entrada(e)) break;
     Salida s = resolver(e);
     escribir_salida(s);
   }
