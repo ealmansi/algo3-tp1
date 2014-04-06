@@ -1,3 +1,39 @@
-Ut ultrices nisi magna, a viverra nulla feugiat id. Vestibulum mollis magna nec augue volutpat auctor. Phasellus posuere leo in urna dapibus elementum vehicula nec odio. Nulla laoreet felis id est ultricies tempus. Nullam congue ipsum vel leo euismod laoreet. Donec gravida id justo ut lobortis. Curabitur id luctus neque. Fusce ullamcorper ligula quis nisl mattis pellentesque. Aenean dapibus odio turpis, vitae porta eros tempus quis. Praesent volutpat dui non molestie aliquam. Sed ullamcorper venenatis enim at aliquam. Integer nec orci leo.
+Nuestro algoritmo tiene una complejidad de O(n.log n) operaciones. Para eso vamos a analizar el pseudocodigo de a partes.
 
-Maecenas fermentum laoreet ultricies. Fusce ultrices lorem a lacus congue pellentesque. Cras vestibulum lectus sed purus imperdiet, sit amet tempus tellus vulputate. Nullam eu elementum nunc. Nulla eu magna commodo nunc tempor luctus. Nulla facilisi. Maecenas in quam laoreet leo sodales lacinia. Quisque facilisis, enim sit amet vehicula adipiscing, massa sapien mollis ipsum, mattis fringilla diam lorem ut mauris. Nunc vel elit imperdiet, aliquet arcu non, posuere urna. Quisque sem enim, iaculis non nibh et, fermentum lobortis ligula. Aliquam purus libero, convallis a tincidunt sit amet, rutrum sed velit. Vestibulum luctus, sem ac vulputate accumsan, nibh arcu vulputate erat, ac mattis arcu arcu vitae odio. Phasellus et feugiat ante. Nam in placerat sem. Mauris tempor augue eu erat hendrerit, vel suscipit libero cursus.
+\begin{pseudo}
+\State Tipo de dato Pieza es Tupla $\langle$ id : entero, pérdida : entero, tiempo : entero $\rangle$
+    \Procedure{La joya del Río de la Plata}{$\langle p_1, \ldots, p_n \rangle, L$}
+        \State $V \leftarrow$ nuevo vector de Pieza \Ode{1}
+        \State Cargo\_Piezas(V) \Ode{n}
+        \State Sort(V) \Ode{n*log(n)}
+        
+        \Comment Este sort se hace de menor a mayor según el coeficiente anteriormente dicho
+        \State \textbf{return} Calcular\_perdida(V) \Ode{n}
+    \EndProcedure
+\end{pseudo}
+
+\begin{pseudo}
+ \State  \textbf{$V \leftarrow$ nuevo vector de Pieza}
+\end{pseudo}
+
+Tiene complejidad O(1).
+
+\begin{pseudo}
+ \State \textbf{Cargo\_Piezas(V)}
+\end{pseudo}
+
+Tiene un costo de O(n), ya que agregar n elementos a un vector tiene costo O(n).
+
+\begin{pseudo}
+ \State \textbf{Sort(V)}
+\end{pseudo}
+
+Como vimos en el la sección del ejercicio 1, el sort tiene complejidad O(n.log n).
+
+\begin{pseudo}
+ \State \textbf{return Calcular\_perdida(V)}
+\end{pseudo}
+
+Devolver el resultado es O(1), y calcular la pérdida es O(n)
+
+Por algebra de ordenes O(1) + O(n) + O(n.log n) + O(1) + O(n) = O(n.log n), como queriamos demostrar.
