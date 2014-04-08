@@ -2,13 +2,21 @@ El pseudocódigo de la solución (figura \ref{problema1-pseudo}) incluye al fina
 
 En primer lugar, la etapa de ordenamiento es realizable en tiempo $O(n\;log\;n)$ mediante conocidos algoritmos como Mergesort, Heapsort o Introsort.
 
-Luego, dado que $j$ se inicializa en $1$ y su valor es incrementado en el cuerpo del ciclo interno, la guarda del mismo no puede ser verdadera más de $n$ veces. Como además siempre vale que $d_i \leq d_i < d_i + D$, este se ejecuta al menos una vez por cada valor de $i$. En total, la operación $j + 1$ se ejecuta $n$ veces, incurriendo en un costo lineal en $n$.
+Luego, dado que $j$ se inicializa en $1$ y su valor es incrementado en el cuerpo del ciclo interno, la guarda del mismo no puede ser verdadera más de $n$ veces. Como además siempre vale que $d_i \leq d_i < d_i + D$, este se ejecuta al menos una vez por cada valor de $i$. Por lo tanto, la operación $j + 1$ se ejecuta $n$ veces, incurriendo en un costo lineal en $n$ en la totalidad del algoritmo (no así por cada valor de $i$).
 
-Por otro lado, el ciclo externo se ejecuta exactamente $n$ veces, con $i = 1\;, ...\;, n$. Las operaciones de actualización del máximo tienen un costo constante (incluso en el peor caso donde el condicional resulta siempre verdadero), por lo cual en el total de la ejecución consumen un tiempo proporcional a $n$.
+Por otro lado, el ciclo externo se ejecuta exactamente $n$ veces, con $i = 1\;, ...\;, n$. Las operaciones de actualización del máximo tienen un costo constante (incluso en el peor caso donde el condicional resulta siempre verdadero), por lo cual en la totalidad del algoritmo comprenden una cantidad de operaciones proporcional a $n$.
 
-En conjunto, la etapa de ordenamiento domina la complejidad del procedimiento, permitiendo dar la cota $O(n\;log(n))$ para la solución.
+En conjunto, el procedimiento de búsqueda del máximo tiene una complejidad $O(n)$, por lo cual la etapa de ordenamiento domina la complejidad del algoritmo, permitiendo dar la cota $O(n\;log(n))$ para la solución.
 
-% NO SE DONDE PONER LO DEL SORT XQ LO USAMOS EN LOS PROB 1 Y 2.
 
-% En los algoritmos 1 y 2 usamos el sort de la stl. Para lograr calcular las complejidades de ambos, necesitamos saber la complejidad del sort. Buscando en ``AGREGAR DONDE ENCONTRAMOS ESTA INFO'', encontramos que su complejidad es O(n.log n ) comparaciones. Como con solo esta informacion no podiamos asegurar que tenga complejidad O(n.log n) operaciones, por eso buscamos que hacia el sort de stl. Encontramos que para casos chicos hacia InsertionSort (ERA ESTE?), y en casos mas grandes IntroSort. IntroSort intenta ordenar usando QuickSort, si no lo resuelve en n.log n pasos, usa HeapSort para garantizar O(n.log n) comparaciones. Viendo el código del algortimo llegamos a que ademas de hacer O(n.log n) comparaciones tambien hace a lo sumo O(n.log n) swaps.
-% Como en ambos casos donde usamos el algoritmo sort de la stl, nuestros parametros son vector<int> sabemos que la comparaciones y swaps son O(1). Por lo cual podemos garantizar que sort tiene una complejidad O(n log n) operaciones
+%%%% Esto va en una sección general porque afecta a dos problemas
+
+% Antes de empezar la demostración vamos a aclarar algo que vale tanto para el problema 1 como el 2:
+
+% En los algoritmos 1 y 2 usamos el algoritmo sort de la stl. Para lograr calcular las complejidades de ambos, necesitamos saber la complejidad de dicho algoritmo. Buscando en la pagina de http://www.cplusplus.com/reference/algorithm/sort/, encontramos que su complejidad es O(n.log n ) comparaciones. Como con sólo esta informacion no podíamos asegurar que tenga complejidad O(n.log n) operaciones, buscamos que hace el algoritmo sort. Encontramos que para casos chicos hace InsertionSort (ERA ESTE?), y en casos mas grandes IntroSort. IntroSort intenta ordenar usando QuickSort, si no lo resuelve en n.log n pasos, usa HeapSort para garantizar O(n.log n) comparaciones. Viendo el código del algortimo llegamos a que ademas de hacer O(n.log n) comparaciones tambien hace a lo sumo O(n.log n) swaps.
+
+% Como en ambos casos donde usamos el algoritmo sort de la stl, nuestros parametros son vector<int> sabemos que la comparaciones y swaps son O(1). Por lo cual podemos garantizar que sort tiene una complejidad O(n log n) operaciones.
+
+% Dicho esto pasamos a demostrar que la complejidad del algoritmo utilizado para resolver el problema 1 es O(n log n).
+
+%%%% ^ ^ ^ Esto va en una sección general porque afecta a dos problemas
