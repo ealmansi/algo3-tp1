@@ -1,4 +1,4 @@
-El algoritmo desarrollado para resolver el problema considera como posibles candidatos para fecha de inicio únicamente a los valores $d_1\;d_2\;...\;d_n$, haciendo uso de la siguiente propiedad (demostración en la sección \ref{problema1-demo}):
+El algoritmo desarrollado para resolver el problema considera como posibles candidatos para fecha de inicio únicamente a los valores $d_1\;d_2\;...\;d_n$, haciendo uso de la siguiente propiedad (demostración en la sección \ref{problema1-demostracion}):
 
 \begin{propiedad}\label{propiedad-candidatos}
 Siempre existe un intervalo óptimo $[d, d + D)$ (en el sentido de que comprende la mayor cantidad posible de elementos de la lista) cuyo límite inferior sea $d \in \{d_1,d_2,...,d_n\}$.
@@ -11,7 +11,7 @@ Dado el requerimiento de que la solución tenga complejidad temporal subcuadrát
 En cambio, la resolución propuesta realiza primeramente un ordenamiento sobre la lista, y luego recorre la misma linealmente mediante dos índices $i,j$, manteniendo en cada iteración el siguiente invariante\footnote{Los subíndices refieren a los elementos de la lista ya ordenada}:
 $$(\forall k: i \leq k < j)\;d_k \in [d_i, d_i + D)$$
 
-En la i-ésima iteración, el máximo $j$ que cumple el invariante determina la cantidad de elementos contenidos en $[d_i, d_i + D)$, calculada como $j - i$\footnote{Porque hay $j - i$ valores de $k$ que cumplen la condición.}. Adicionalmente, la búsqueda del máximo $j$ que cumple la condición puede realizarse a partir el valor de $j$ de la iteración anterior\footnote{En el caso base, se toma $j = 1$ para comenzar a partir del primer elemento.}, fundamentado en la siguiente propiedad (demostración en la sección \ref{problema1-demo}):
+En la i-ésima iteración, el máximo $j$ que cumple el invariante determina la cantidad de elementos contenidos en $[d_i, d_i + D)$, calculada como $j - i$\footnote{Porque hay $j - i$ valores de $k$ que cumplen la condición.}. Adicionalmente, la búsqueda del máximo $j$ que cumple la condición puede realizarse a partir el valor de $j$ de la iteración anterior\footnote{En el caso base, se toma $j = 1$ para comenzar a partir del primer elemento.}, fundamentado en la siguiente propiedad (demostración en la sección \ref{problema1-demostracion}):
 
 \begin{propiedad}\label{propiedad-maximo-j}
 $$(\forall k: i + 1 \leq k < j)\;d_k \in [d_i, d_i + D) \rightarrow d_k \in [d_{i+1}, d_{i+1} + D)$$
