@@ -32,7 +32,9 @@ void Problema2::escribir_salida(Salida &s)
 
 Salida Problema2::resolver(const Entrada &e)
 {
-  Salida s = {.piezas = vector<Pieza>(e.piezas), .perdida_total = 0};
+  Salida s; 
+  s.piezas = vector<Pieza>(e.piezas);
+  s.perdida_total = 0;
 
   sort(s.piezas.begin(), s.piezas.end(), Pieza::comparar_piezas);
 
