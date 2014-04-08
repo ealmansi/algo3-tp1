@@ -17,7 +17,7 @@ Si sucede que $d_{i-1} = d_i$, se está en presencia de un candidato que ya ha s
 Adicionalmente, la búsqueda del máximo $j$ que cumple el invariante puede realizarse a partir del valor de $j$ de la iteración anterior\footnote{En el caso base, se toma $j = 1$ para comenzar a partir del primer elemento.}, fundamentado en la siguiente propiedad (demostración en la sección \ref{problema1-demostracion}):
 
 \begin{propiedad}\label{propiedad-maximo-j}
-$$((\forall k: i \leq k < j)\;d_k \in [d_i, d_i + D)) \rightarrow ((\forall k: i + 1 \leq k < j)\;d_k \in [d_{i+1}, d_{i+1} + D))$$
+$$((\forall k: i \leq k < j)\;d_k \in [d_i, d_i + D)) \Rightarrow ((\forall k: i + 1 \leq k < j)\;d_k \in [d_{i+1}, d_{i+1} + D))$$
 \end{propiedad}
 
 Es decir, si vale el invariante para $(i,j)$, entonces vale para $(i+1,j)$. Esto permite obtener el valor máximo de $j$ correspondiente a cada $i$ mediante un único recorrido lineal, ya que $j$ nunca decrece. En la figura \ref{problema1-pseudo} se incluye pseudocódigo describiendo el algoritmo desarrollado en detalle, y en el apéndice \ref{problema1-codigo} se incluye el código completo.
