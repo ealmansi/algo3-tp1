@@ -74,7 +74,7 @@ $(OBJ_MP): $(SRC_MP) $(HDR_P1) $(HDR_P2) $(HDR_P3) $(MAKE)
 
 informe: $(TEX_DIR)/informe.tex
 	cd $(TEX_DIR); \
-	pdflatex informe.tex; \
+	pdflatex --shell-escape informe.tex; \
 	mv informe.pdf ../informe_tp1_1c_2014.pdf; \
 	cd ..
 
