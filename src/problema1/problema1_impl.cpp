@@ -41,11 +41,11 @@ Salida Problema1::resolver(const Entrada &e)
   int i = 0, j = 0, cant_camiones;
   for (; i < e.cant_dias; ++i)
   {
-    if (0 < i && dias[i-1] == dias[i]) continue;
+    if (0 < i && dias[i - 1] == dias[i]) continue;
 
     for (; (j < e.cant_dias) && (dias[j] - dias[i] < e.cant_dias_inspeccion); ++j)
       ;
-    
+
     cant_camiones = j - i;
     if (s.max_cant_camiones < cant_camiones)
     {
