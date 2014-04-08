@@ -57,35 +57,11 @@ Salida Problema1::resolver(const Entrada &e)
   return s;
 }
 
-Entrada Problema1::generar_instancia_mejor_caso(int n)
-{
-  Entrada e;
-
-  e.cant_dias_inspeccion = 10;
-  e.cant_dias = n;
-  for (int i = 0; i < n; ++i)
-    e.dias.push_back(i);
-
-  return e;
-}
-
-Entrada Problema1::generar_instancia_peor_caso(int n)
-{
-  Entrada e;
-
-  e.cant_dias_inspeccion = 10;
-  e.cant_dias = n;
-  for (int i = 0; i < n; ++i)
-    e.dias.push_back(i);
-
-  return e;
-}
-
 Entrada Problema1::generar_instancia_aleatoria(int n)
 {
   Entrada e;
 
-  e.cant_dias_inspeccion = 100;
+  e.cant_dias_inspeccion = rand();
   e.cant_dias = n;
   for (int i = 0; i < n; ++i)
     e.dias.push_back(rand());
@@ -93,19 +69,32 @@ Entrada Problema1::generar_instancia_aleatoria(int n)
   return e;
 }
 
+Entrada Problema1::generar_instancia_ordenada_siempre_actualiza(int n)
+{
+  Entrada e;
 
+  e.cant_dias_inspeccion = 10;
+  e.cant_dias = n;
+  int elem = 1, aux = 1;
+  for (int i = 1; i <= n; ++i) {
+    e.dias.push_back(elem);
+    if (i == aux) { 
+      ++elem;
+      aux = aux + elem;
+    }
+  }
 
+  return e;
+}
 
+Entrada Problema1::generar_instancia_todos_distintos(int n)
+{
+  Entrada e;
 
+  e.cant_dias_inspeccion = 1;
+  e.cant_dias = n;
+  for (int i = 0; i < n; ++i)
+    e.dias.push_back(i+1);
 
-
-
-
-
-
-
-
-
-
-
-
+  return e;
+}

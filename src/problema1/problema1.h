@@ -23,9 +23,9 @@ namespace Problema1
 
 	Salida resolver(const Entrada& e);
 
-	Entrada generar_instancia_mejor_caso(int n);
-	Entrada generar_instancia_peor_caso(int n);
 	Entrada generar_instancia_aleatoria(int n);
+	Entrada generar_instancia_ordenada_siempre_actualiza(int n);
+	Entrada generar_instancia_todos_distintos(int n);
 }
 
 #endif /* PROBLEMA_1_H */
