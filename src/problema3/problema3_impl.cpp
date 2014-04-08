@@ -62,7 +62,8 @@ Salida Problema3::resolver(const Entrada &e)
 
   resolverBacktracking(0, 0, solucionParcial, solucionOptima, piezaDisponible, e);
 
-  Salida s = {.casilleros = solucionOptima.casilleros};
+  Salida s;
+  s.casilleros = solucionOptima.casilleros;
   return s;
 }
 
