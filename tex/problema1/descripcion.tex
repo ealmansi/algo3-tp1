@@ -13,23 +13,17 @@ Salida:  &$d\;c$
 
 \subsubsection{Ejemplos y observaciones}
 
-A partir de cualquier $d$ natural se puede tomar un intervalo válido, por lo cual el conjunto de posibles soluciones es no vacío. Como además la cantidad de elementos que puede contener cualquier intervalo está acotada entre $0$ y $n$, siempre existe al menos una solución óptima. Sin embargo, esta no tiene por qué ser única. Se muestra un ejemplo con múltiples soluciones óptimas:
+La lista de días de llegada de los camiones no necesariamente se encuentra ordenada, y además puede contener días repetidos, que deben ser contados con su debida multiplicidad al computar la solución. Esto es razonable ya que muchos camiones pueden llegar al puesto de control en un mismo día. Por lo tanto, el siguiente es un ejemplo de instancia válida y su respectiva solución:
 
 \begin{tabular}{ll}
-Entrada: &$3\;2\;7\;6$            \\
-Salida:  &$5\;2$ \hspace{10mm} ó  \\
-Salida:  &$6\;2$ \hspace{10mm}
-\end{tabular}
-
-En el ejemplo anterior se observa que la lista no necesariamente se encuentra ordenada. Adicionalmente, esta puede contener repetidos que deben ser contados con su debida multiplicidad al computar la solución.
-
-\begin{tabular}{ll}
-Entrada: &$1\;4\;23\;23\;23\;23$            \\
+Entrada: &$1\;5\;23\;23\;23\;23\;2$            \\
 Salida:  &$23\;4$ \hspace{10mm}
 \end{tabular}
 
-% Nulla facilisi. Pellentesque a velit nisi. Quisque nunc tellus, dictum sed nulla quis, molestie elementum nulla. Pellentesque in metus vulputate urna feugiat molestie. Proin id rhoncus lorem. Sed fringilla, enim tincidunt hendrerit condimentum, quam risus euismod mauris, a rutrum urna mi non lorem. Ut eget mi urna. Nulla ac turpis sit amet nibh pulvinar scelerisque.
+Por otro lado, es importante notar que si bien la cantidad máxima $c$ de camiones inspeccionados es única, la fecha de inicio del período de contratación no lo es. Distintos valores para $d$ pueden generar intervalos $[d, d + D)$ incluyendo igual cantidad de elementos de la lista.
 
-% Curabitur sagittis semper augue. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; In sed hendrerit lectus. Pellentesque hendrerit sem sit amet tellus lobortis cursus. Fusce vel pellentesque diam, non pulvinar erat. Ut gravida diam nec ligula molestie, non dapibus tortor sollicitudin. Ut condimentum tempor arcu eget pretium. Fusce accumsan neque ac lobortis cursus. Duis nec nibh vitae ante lobortis dignissim id iaculis augue. Curabitur in nisl massa. Curabitur eget pretium lorem.
-
-% Vivamus adipiscing diam quis dolor tempor consectetur. Sed porttitor ante ipsum, ac sagittis urna eleifend in. Nam rutrum ac ligula nec pharetra. Nullam a urna nec est molestie aliquam nec a ligula. Nullam non massa posuere erat aliquam condimentum vel sed nisi. Ut fringilla viverra scelerisque. Phasellus mattis tristique sapien, nec pharetra velit porttitor ac. Praesent fringilla tempor accumsan. Aenean lorem sapien, luctus id purus a, egestas dapibus eros.
+\begin{tabular}{ll}
+Entrada: &$3\;2\;6\;7$            \\
+Salida:  &$5\;2$ \hspace{10mm} ó  \\
+Salida:  &$6\;2$ \hspace{10mm}
+\end{tabular}
