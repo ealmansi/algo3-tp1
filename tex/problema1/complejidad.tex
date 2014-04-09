@@ -7,16 +7,3 @@ Luego, dado que $j$ se inicializa en $1$ y su valor es incrementado en el cuerpo
 Por otro lado, el ciclo externo se ejecuta exactamente $n$ veces, con $i = 1, ..., n$. En peor caso, los elementos son todos distintos y jamás se saltea el cuerpo del ciclo. Las operaciones de actualización del máximo tienen un costo constante (incluso si hay que realizar la actualización), por lo cual en la totalidad del algoritmo comprenden una cantidad de operaciones proporcional a $n$.
 
 En conjunto, el procedimiento de búsqueda del máximo tiene una complejidad $O(n)$; por esta razón, la etapa de ordenamiento domina la complejidad del algoritmo, permitiendo dar la cota $O(n\;log(n))$ para la solución.
-
-
-%%%% Esto va en una sección general porque afecta a dos problemas
-
-% Antes de empezar la demostración vamos a aclarar algo que vale tanto para el problema 1 como el 2:
-
-% En los algoritmos 1 y 2 usamos el algoritmo sort de la stl. Para lograr calcular las complejidades de ambos, necesitamos saber la complejidad de dicho algoritmo. Buscando en la pagina de http://www.cplusplus.com/reference/algorithm/sort/, encontramos que su complejidad es O(n.log n ) comparaciones. Como con sólo esta informacion no podíamos asegurar que tenga complejidad O(n.log n) operaciones, buscamos que hace el algoritmo sort. Encontramos que para casos chicos hace InsertionSort (ERA ESTE?), y en casos mas grandes IntroSort. IntroSort intenta ordenar usando QuickSort, si no lo resuelve en n.log n pasos, usa HeapSort para garantizar O(n.log n) comparaciones. Viendo el código del algortimo llegamos a que ademas de hacer O(n.log n) comparaciones tambien hace a lo sumo O(n.log n) swaps.
-
-% Como en ambos casos donde usamos el algoritmo sort de la stl, nuestros parametros son vector<int> sabemos que la comparaciones y swaps son O(1). Por lo cual podemos garantizar que sort tiene una complejidad O(n log n) operaciones.
-
-% Dicho esto pasamos a demostrar que la complejidad del algoritmo utilizado para resolver el problema 1 es O(n log n).
-
-%%%% ^ ^ ^ Esto va en una sección general porque afecta a dos problemas
