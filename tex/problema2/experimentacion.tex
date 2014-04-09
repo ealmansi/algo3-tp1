@@ -25,3 +25,9 @@ En las figuras siguientes podemos observar que, sin contar la etapa de ordenamie
     \includegraphics[width=0.5\linewidth]{problema1/graficos/problema1_aleatoria_1000.eps}
 \end{figure}
 \emph{\hspace{2cm}Figura 5: Caso n=1000, sin sorting \hspace{2,5cm}Figura 6: Idem, pero n=10000}
+
+Cabe aclarar que en el caso de este problema, al remover la etapa de ordenamiento no existe ni mejor caso ni peor caso (O mejor dicho, todos los casos son $\theta$(n)). Esto se debe a que este algoritmo recorre una vez el vector para guardar los datos, y una vez más para calcular las pérdidas. Siempre realiza esto, sin importar los datos.
+
+Por otro lado, como utilizamos el sort de la STL, no podemos asegurar si un caso en particular va a ser un ``mejor caso'', o un ``peor caso''. Esto se debe a que, como lo explicamos anteriormente, el sorting utiliza un \emph{intro sort} que usa primordialmente un \emph{quick sort}. Como ya sabemos, el \emph{quick sort} depende del azar si es un buen caso o un peor caso y por esto no se puede saber \emph{a priori} si un caso va a ser un ``mejor caso'', o un ``peor caso''.
+
+Por estas razones, no incluimos gráficos extra en los cuales hablamos de ``peor caso'' y ``mejor caso''.
