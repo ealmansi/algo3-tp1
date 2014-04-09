@@ -27,6 +27,6 @@ Nuestro algoritmo crea un vector, y coloca una a una las piezas una atrás de ot
         \State Cargo\_Piezas(V) %\Ode{n}
         \State Sort(V) %\Ode{n*log(n)}
         \Comment Este sort se hace de menor a mayor según el coeficiente anteriormente dicho
-        \State \textbf{return} Calcular\_perdida(V) %\Ode{n}
+        \State \textbf{return} V, Calcular\_perdida(V) %\Ode{n}
     \EndProcedure
 \end{pseudo}

@@ -8,7 +8,7 @@ Nuestro algoritmo tiene una complejidad de O(n.log n) operaciones. Para eso vamo
         \State Sort(V) \Ode{n*log(n)}
         
         \Comment Este sort se hace de menor a mayor según el coeficiente anteriormente dicho
-        \State \textbf{return} Calcular\_perdida(V) \Ode{n}
+        \State \textbf{return} V, Calcular\_perdida(V) \Ode{n}
     \EndProcedure
 \end{pseudo}
 
@@ -31,9 +31,9 @@ Lo que hace la función Cargo\_Piezas, es leer la entrada que nos pasan y agrega
 Como vimos en la sección del ejercicio 1, la función Sort tiene complejidad O(n.log n).
 
 \begin{pseudo}
- \State \textbf{return Calcular\_perdida(V)}
+ \State \textbf{return V, Calcular\_perdida(V)}
 \end{pseudo}
 
-Devolver el resultado es O(1), y calcular la pérdida es O(n), ya que hay que recorrer todas las piezas.
+Devolver el vector es O(1), y calcular la pérdida es O(n), ya que hay que recorrer todas las piezas.
 
 Por algebra de ordenes O(1) + O(n) + O(n.log n) + O(1) + O(n) = O(n.log n), como queriamos demostrar.
