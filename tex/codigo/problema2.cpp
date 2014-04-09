@@ -12,11 +12,12 @@ struct Pieza
   int tiempo;
 };
 
-Salida Problema2::resolver(const Entrada& e)
+Salida Problema2::resolver(const Entrada &e)
 {
-  Salida s;
-
+  Salida s; 
   s.piezas = vector<Pieza>(e.piezas);
+  s.perdida_total = 0;
+
   sort(s.piezas.begin(), s.piezas.end(), Pieza::comparar_piezas);
 
   int acum_tiempo = 0;
