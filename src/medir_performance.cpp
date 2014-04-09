@@ -67,23 +67,26 @@ void imprimir_modo_de_uso()
 template <typename E, typename S>
 vector<Medicion> tomar_mediciones(int n_max, E (*generar_instancia)(int), S (*resolver)(const E &))
 {
-  vector<Medicion> mediciones;
   timespec inicio, fin;
-
-  for (int n = 1; n <= n_max; ++n)
+  vector<vector<int> > mediciones_por_n(n_max, vector<int>(CANT_MEDICIONES_POR_N, -1));
+  for (int i = 0; i < CANT_MEDICIONES_POR_N; ++i)
   {
-    int mediana;
-    vector<int> mediciones_por_n;
-    for (int i = 0; i < CANT_MEDICIONES_POR_N; ++i)
+    for (int n = 1; n <= n_max; ++n)
     {
       E e = generar_instancia(n);
-      clock_gettime(CLOCK_REALTIME, &inicio);
+      clock_gettime(CLOCK_PROCESS_CPUTIME_ID, &inicio);
       resolver(e);
-      clock_gettime(CLOCK_REALTIME, &fin);
-      mediciones_por_n.push_back((fin.tv_sec - inicio.tv_sec) * 1e9 + (fin.tv_nsec - inicio.tv_nsec));
+      clock_gettime(CLOCK_PROCESS_CPUTIME_ID, &fin);
+      mediciones_por_n[n - 1][i] = (fin.tv_sec - inicio.tv_sec) * 1e9 + (fin.tv_nsec - inicio.tv_nsec);
     }
-    sort(mediciones_por_n.begin(), mediciones_por_n.end());
-    mediana = mediciones_por_n[CANT_MEDICIONES_POR_N / 2];
+  }
+
+  int mediana;
+  vector<Medicion> mediciones;
+  for (int n = 1; n <= n_max; ++n)
+  {
+    sort(mediciones_por_n[n - 1].begin(), mediciones_por_n[n - 1].end());
+    mediana = mediciones_por_n[n - 1][CANT_MEDICIONES_POR_N / 2];
     mediciones.push_back(Medicion(n, mediana));
   }
 
