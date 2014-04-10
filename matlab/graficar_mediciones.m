@@ -24,6 +24,30 @@ function graficar_mediciones(problema)
     grafico_comparacion_complejidades(ms1, 'Aleatoria', ms2, 'Siempre actualiza', ms3, 'Todos distintos');
     saveas(gca, [dir_graficos '/' tipo_medicion1 '_vs_' tipo_medicion2 '_vs_' tipo_medicion3 '.eps'],'epsc');
 
+  else if problema == 'problema2'
+
+    tipo_medicion = 'problema2_aleatoria_10000';
+    ms = cargar_mediciones([dir_mediciones '/' tipo_medicion '.csv']);
+    grafico_complejidad(ms, 'Instancias aleatorias');
+    saveas(gca, [dir_graficos '/' tipo_medicion '.eps'],'epsc');
+    grafico_complejidad_div_n(ms, 'Instancias aleatorias');
+    saveas(gca, [dir_graficos '/' tipo_medicion '_div_n' '.eps'],'epsc');
+    grafico_complejidad_div_logn(ms, 'Instancias aleatorias');
+    saveas(gca, [dir_graficos '/' tipo_medicion '_div_logn' '.eps'],'epsc');
+    grafico_complejidad_div_nlogn(ms, 'Instancias aleatorias');
+    saveas(gca, [dir_graficos '/' tipo_medicion '_div_nlogn' '.eps'],'epsc');
+
+    tipo_medicion = 'problema2_ordenada_8000';
+    ms = cargar_mediciones([dir_mediciones '/' tipo_medicion '.csv']);
+    grafico_complejidad(ms, 'Instancias ordenadas (sin invocar a sort)');
+    saveas(gca, [dir_graficos '/' tipo_medicion '.eps'],'epsc');
+    grafico_complejidad_div_n(ms, 'Instancias ordenadas (sin invocar a sort)');
+    saveas(gca, [dir_graficos '/' tipo_medicion '_div_n' '.eps'],'epsc');
+    grafico_complejidad_div_logn(ms, 'Instancias ordenadas (sin invocar a sort)');
+    saveas(gca, [dir_graficos '/' tipo_medicion '_div_logn' '.eps'],'epsc');
+    grafico_complejidad_div_nlogn(ms, 'Instancias ordenadas (sin invocar a sort)');
+    saveas(gca, [dir_graficos '/' tipo_medicion '_div_nlogn' '.eps'],'epsc');
+
   else
     files = dir([dir_mediciones '/' '*.csv']);
     for file = files'

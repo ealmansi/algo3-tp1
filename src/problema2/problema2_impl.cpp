@@ -48,35 +48,13 @@ Salida Problema2::resolver(const Entrada &e)
   return s;
 }
 
-Entrada Problema2::generar_instancia_mejor_caso(int n)
-{
-  Entrada e;
-
-  e.cant_piezas = n;
-  for (int i = 0; i < n; ++i)
-    e.piezas.push_back(Pieza(i + 1, i, i));
-
-  return e;
-}
-
-Entrada Problema2::generar_instancia_peor_caso(int n)
-{
-  Entrada e;
-
-  e.cant_piezas = n;
-  for (int i = 0; i < n; ++i)
-    e.piezas.push_back(Pieza(i + 1, i, i));
-
-  return e;
-}
-
 Entrada Problema2::generar_instancia_aleatoria(int n)
 {
   Entrada e;
 
   e.cant_piezas = n;
   for (int i = 0; i < n; ++i)
-    e.piezas.push_back(Pieza(i + 1, i, i));
+    e.piezas.push_back(Pieza(i + 1, rand() % 1000, rand() % 1000));
 
   return e;
 }
