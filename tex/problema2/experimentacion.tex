@@ -29,7 +29,7 @@ Como se puede observar en la figura 4, nuevamente al dividir por $n$ a cada resu
 
 Cabe aclarar que en el caso de este problema, al remover la etapa de ordenamiento no existe ni mejor caso ni peor caso (O, mejor dicho, todos los casos son $\theta$(n)). Esto se debe a que este algoritmo recorre una vez el vector para guardar los datos, y una vez más para calcular las pérdidas. Siempre realiza esto, sin importar los datos.
 
-En este problema tuvimos dificultades similares a las del ejercicio 1 en cuanto a determinar cuál es el peor y el mejor caso del algoritmo, ya que usamos un algoritmo de ordenamiento de las librerías de C++ y como éste usa en general el algoritmo de quick sort, depende del azar el hecho de que ordenar un vector tarde más o menos comparaciones (siempre manteniendose en el orden de complejidad temporal de $O(n * log n)$).
+En este problema tuvimos dificultades similares a las del ejercicio 1 en cuanto a determinar cuál es el peor y el mejor caso del algoritmo, ya que usamos un algoritmo de ordenamiento de las librerías de C++ y como éste usa en general el algoritmo de \emph{QuickSort}(en realidad usa \emph{IntroSort} ya explicado anteriormente), depende del azar el hecho de que ordenar un vector tarde más o menos comparaciones (siempre manteniéndose en el orden de complejidad temporal de $O(n * log n)$).
 
 Pero además en este ejercicio que un caso sea peor o mejor depende exclusivamente de cuanto tarde el algoritmo en ordenar la entrada, ya que luego de esto sólo recorre el vector para calcular la pérdida total y devuelve dicho vector, esto siempre toma la misma cantidad de pasos, por lo tanto no nos es posible determinar \emph{a priori} si un caso va a resultar mejor o peor para este algoritmo.
 
