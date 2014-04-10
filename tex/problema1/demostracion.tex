@@ -15,13 +15,31 @@ Como cualquier valor $d$ natural genera un intervalo $[d, d + D)$ válido, el co
   \begin{itemize}
     \item Como $d^*$ es el menor elemento que cumple la propiedad de ser mayor o igual que $d'$:
     $$d' \leq d_i \rightarrow d^*\leq d_i$$
-    \item Como $d' \leq d^*$, se desprende que $d' + D \leq d^* + D$, y por lo tanto:
+    \item Como $d' \leq d^*$ por definición, se desprende que $d' + D \leq d^* + D$, y por lo tanto:
     $$(d_i < d' + D) \rightarrow (d_i < d^* + D)$$
   \end{itemize}
   Entonces, vale que todo elemento contenido en el intervalo óptimo también está contenido en el intervalo $[d^*, d^* + D)$. Como $d^* \in \{d_1,d_2,...,d_n\}$, queda demostrada la propiedad.
 \end{itemize}
 
 \subsubsection{Correctitud del ciclo}
+
+En la inicialización previa al ciclo, se configura $(i, j) \leftarrow (1, 1)$ y por lo tanto, vale trivialmente el invariante:
+
+$$(\forall k: i \leq k < j)\;d_k \in [d_i, d_i + D)$$
+
+El cuerpo del ciclo se ejecuta únicamente para el primer elemento de la lista, y para todos aquellos que no sean iguales al inmediatamente anterior. Como la lista está ordenada, esto es equivalente a evaluar únicamente la primera aparición de cada valor dentro de la lista, ignorando sus posibles repeticiones posteriores.
+
+El ciclo interno tiene la única función de incrementar el valor de $j$. La guarda del mismo es:
+
+$$(j \leq n) \land (d_i \leq d_j < d_i + D) \equiv (j \leq n) \land d_j \in [d_i, d_i + D)$$
+
+Es decir, $j$ jamás se incrementa si el $j$-ésimo elemento no pertenece al intervalo $[d_i, d_i + D)$. Esto mantiene el invariante, evitando que algún elemento con índice menor a $j$ no pertenezca al intervalo del candidato en evaluación. Como además $j$ se incrementa tantas veces como sea posible sin romper el invariante, esto garantiza que al terminar el ciclo interno la variable tendrá su valor máximo (cuando $j = n + 1$ ó $d_j \notin [d_i, d_i + D)$).
+
+Luego, $d_i$ es el primer elemento de la lista contenido en $[d_i, d_i + D)$ por no tener predecesor o por ser mayor que el mismo. Además, $d_{j-1}$ es el último elemento de la lista contenido en $[d_i, d_i + D)$ por no tener sucesor, o porque lo garantiza el invariante en caso contrario. De ello se desprende que existen $(j - 1) - i + 1 = j - i$ elementos de la lista contenidos en el intervalo, por lo cual es el valor que se utiliza para actualizar el estado de la solucion parcial.
+
+Por último, es necesario probar que el invariante se mantiene al incrementar $i$ al final del ciclo. Esto es equivalente a demostrar la propiedad \ref{propiedad-maximo-j}.
+
+\subsubsection{Demostración de la Propiedad \ref{propiedad-maximo-j}}
 
 Ahora queremos demostrar la propiedad 2 : $((\forall k: i \leq k < j)\;d_k \in [d_i, d_i + D)) \Rightarrow ((\forall k: i + 1 \leq k < j)\;d_k \in [d_{i+1}, d_{i+1} + D))$
 
