@@ -13,7 +13,7 @@ using namespace std;
 
 int main(int argc, char const *argv[])
 {
-  for(int i = 3; i < 4; ++i)
+  for(int i = argv[1]; i <= argv[2]; ++i)
   {
   	Problema3::generar_toda_instancia(i);
   }
