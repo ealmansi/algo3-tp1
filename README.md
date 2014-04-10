@@ -28,3 +28,8 @@ Para correr los tests de verificación de un problema. Se leen las entradas de t
 > ./mediciones/tomar_mediciones.sh &lt;problema1 | problema2 | problema3&gt; &lt;max_n&gt;
 
 Para generar archivos de datos con mediciones para instancias generadas dinamicamente (todas las definidas por las funciones generar_instancia_xxxxx de cada problema), de tamaños 1 hasta max_n. Se guardan en ./mediciones/&lt;problema&gt;.
+
+### Mediciones de podas
+> ./bin/medir_poda nDesde nHasta > archivoDeSalida (o por consola si no ponen nada).
+
+Para cada n entre nDesde y nHasta (inclusive ambas), genera todos los tableros posibles, los resuelve y acumula e imprime cuantos llamados recursivos se hicieron para cada n.
