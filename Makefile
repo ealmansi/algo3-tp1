@@ -12,6 +12,7 @@ BIN_P1 = $(BIN_DIR)/problema1
 BIN_P2 = $(BIN_DIR)/problema2
 BIN_P3 = $(BIN_DIR)/problema3
 BIN_MP = $(BIN_DIR)/medir_performance
+BIN_PP = $(BIN_DIR)/medir_poda
 
 OBJ_P1 		= $(OBJ_DIR)/problema1.o
 OBJ_P1_I 	= $(OBJ_DIR)/problema1_impl.o
@@ -20,6 +21,7 @@ OBJ_P2_I 	= $(OBJ_DIR)/problema2_impl.o
 OBJ_P3 		= $(OBJ_DIR)/problema3.o
 OBJ_P3_I 	= $(OBJ_DIR)/problema3_impl.o
 OBJ_MP 		= $(OBJ_DIR)/medir_performance.o
+OBJ_PP		= $(OBJ_DIR)/medir_poda.o
 
 SRC_P1 		= $(SRC_DIR)/problema1/problema1.cpp
 SRC_P1_I 	= $(SRC_DIR)/problema1/problema1_impl.cpp
@@ -28,6 +30,7 @@ SRC_P2_I 	= $(SRC_DIR)/problema2/problema2_impl.cpp
 SRC_P3 		= $(SRC_DIR)/problema3/problema3.cpp
 SRC_P3_I 	= $(SRC_DIR)/problema3/problema3_impl.cpp
 SRC_MP 		= $(SRC_DIR)/medir_performance.cpp
+SRC_PP		= $(SRC_DIR)/medir_poda.cpp
 
 HDR_P1 		= $(SRC_DIR)/problema1/problema1.h
 HDR_P2 		= $(SRC_DIR)/problema2/problema2.h
@@ -37,7 +40,7 @@ CXX     	= g++
 CXXFLAGS	= -g -Wall -Wno-unused-parameter -Wextra
 LDFLAGS 	= -lrt
 
-all: crear_carpetas $(BIN_P1) $(BIN_P2) $(BIN_P3) $(BIN_MP)
+all: crear_carpetas $(BIN_P1) $(BIN_P2) $(BIN_P3) $(BIN_MP) $(BIN_PP)
 
 $(BIN_P1): $(OBJ_P1) $(OBJ_P1_I)
 	$(CXX) -o $@ $^ $(LDFLAGS)
@@ -49,6 +52,9 @@ $(BIN_P3): $(OBJ_P3) $(OBJ_P3_I)
 	$(CXX) -o $@ $^ $(LDFLAGS)
 
 $(BIN_MP): $(OBJ_MP) $(OBJ_P1_I) $(OBJ_P2_I) $(OBJ_P3_I)
+	$(CXX) -o $@ $^ $(LDFLAGS)
+
+$(BIN_PP): $(OBJ_PP) $(OBJ_P3_I)
 	$(CXX) -o $@ $^ $(LDFLAGS)
 
 $(OBJ_P1): $(SRC_P1) $(HDR_P1) $(MAKE)
@@ -70,6 +76,9 @@ $(OBJ_P3_I): $(SRC_P3_I) $(HDR_P3) $(MAKE)
 	$(CXX) -c $(CXXFLAGS) -o $@ $<
 
 $(OBJ_MP): $(SRC_MP) $(HDR_P1) $(HDR_P2) $(HDR_P3) $(MAKE)
+	$(CXX) -c $(CXXFLAGS) -o $@ $<
+
+$(OBJ_PP): $(SRC_PP) $(HDR_P3) $(MAKE)
 	$(CXX) -c $(CXXFLAGS) -o $@ $<
 
 informe: $(TEX_DIR)/informe.tex
