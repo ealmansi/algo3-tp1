@@ -1,20 +1,19 @@
 \subsection{Lenguaje de implementación}
 
-Para implementar las soluciones algorítmicas desarrolladas en cada problema se utilizó el lenguaje C++, el cual presenta una serie de características muy convenientes. Este lenguaje es imperativo, al igual que el lenguaje de pseudocódigo utilizado para describir las soluciones y probar su correctitud. Adicionalmente, el mismo posee librerías estándar muy completas, versátiles y bien documentadas, lo cual permite abstraer el manejo de memoria, la implementación de estructuras de datos y algoritmos de uso frecuente, y provee mecanismos para realizar mediciones de tiempo de manera fidedigna.
+Para implementar las soluciones algorítmicas desarrolladas en cada problema utilizamos el lenguaje C++, el cual presenta una serie de características muy convenientes. Este lenguaje es imperativo, al igual que el lenguaje de pseudocódigo utilizado para describir las soluciones y probar su correctitud. Adicionalmente, el mismo posee librerías estándar muy completas, versátiles y bien documentadas, lo cual permite abstraer el manejo de memoria, la implementación de estructuras de datos y algoritmos de uso frecuente, y provee mecanismos para realizar mediciones de tiempo de manera fidedigna.
 
 \subsection{Algoritmo de ordenamiento}
 
-En los algoritmos 1 y 2 usamos el algoritmo sort de la stl. Para lograr calcular las complejidades de ambos, necesitamos saber la complejidad de dicho algoritmo.
+En los algoritmos 1 y 2 de este trabajo práctico usamos el algoritmo sort de la \emph{stl}. Para lograr calcular las complejidades de ambos, necesitamos saber la complejidad de dicho algoritmo.
 
-Buscando en la pagina de http://www.cplusplus.com/reference/algorithm/sort/, encontramos que su complejidad es O(n.log n ) comparaciones. Como con sólo esta informacion no podíamos asegurar que tenga complejidad O(n.log n) operaciones, buscamos que hace el algoritmo sort. Encontramos que para casos chicos hace InsertionSort (ERA ESTE?), y en casos mas grandes IntroSort. IntroSort intenta ordenar usando QuickSort, si no lo resuelve en n.log n pasos, usa HeapSort para garantizar O(n.log n) comparaciones. Viendo el código del algortimo llegamos a que ademas de hacer O(n.log n) comparaciones tambien hace a lo sumo O(n.log n) swaps.
+Buscando en la pagina de cplusplus\footnote{http://www.cplusplus.com/reference/algorithm/sort/}, encontramos que su complejidad es $O(n*log (n))$  comparaciones. Con sólo esta informacion no podemos asegurar que el algoritmo en su totalidad tenga una complejidad temporal de $O(n*log (n))$  operaciones, buscamos que hace el algoritmo \emph{std::sort}. Encontramos que, para casos con cantidad de elementos a ordenar menor a 64, hace un sort especial (el cual no nos interesa ya que queremos evaluar lo que pasa para n grande). En casos mas grandes, realiza \emph{IntroSort}. \emph{IntroSort} intenta ordenar usando \emph{QuickSort}, si no lo resuelve en $n*log (n)$ pasos, usa HeapSort para garantizar $O(n*log (n))$ comparaciones. Además de hacer $O(n*log (n))$  comparaciones tambien hace a lo sumo $O(n*log (n))$ swaps. Esta cantidad la comprobamos revisando el código de \emph{algorithm.h}.
 
-Como en ambos casos donde usamos el algoritmo sort de la stl, nuestros parametros son vector<int> sabemos que la comparaciones y swaps son O(1). Por lo cual podemos garantizar que sort tiene una complejidad O(n log n) operaciones.
 
-Dicho esto pasamos a demostrar que la complejidad del algoritmo utilizado para resolver el problema 1 es O(n log n).
+En ambos algoritmos, guardamos los datos en \emph{vector<int>} por lo que sabemos que la comparaciones y swaps son $O(1)$. Luego, en ambos algoritmos, usamos dicho algoritmo de sorting sobre el  \emph{vector<int>}. Por esto, cual podemos garantizar que ordenar los \emph{vector<int>} tiene una complejidad de $O(n*log (n))$ operaciones.
 
 \subsection{Mediciones de performance}
 
-Para llevar a cabo mediciones de performance sobre las implementaciones desarrolladas, se midió el tiempo consumido para resolver instancias de sucesivos tamaños en función de un parámetro a definir según el caso. Se procuró medir exclusivamente el tiempo consumido por la etapa de resolución, ignorando tareas adicionales propias al proceso como, por ejemplo, la generación de la instancia a ser resuelta.
+Para llevar a cabo mediciones de performance sobre las implementaciones desarrolladas, medimos el tiempo consumido para resolver instancias de sucesivos tamaños en función de un parámetro a definir según el caso. Procuramos medir exclusivamente el tiempo consumido por la etapa de resolución, ignorando tareas adicionales propias al proceso como, por ejemplo, la generación de la instancia a ser resuelta.
 
 La función del sistema que se escogió para medir intervalos de tiempo es la siguiente:
 
@@ -22,6 +21,6 @@ La función del sistema que se escogió para medir intervalos de tiempo es la si
   int clock_gettime(clockid_t clk_id, struct timespec *tp);
 \end{verbatim}
 
-de la librería \textbf{time.h}. La misma permite realizar mediciones de alta resolución, específicas al tiempo de ejecución del proceso que la invoca (y no al sistema en su totalidad), configurando el parámetro clk\_id con el valor CLOCK\_PROCESS\_CPUTIME\_ID\footnote{Referencia http://linux.die.net/man/3/clock\_gettime.}.
+de la librería \emph{time.h}. La misma nos permite realizar mediciones de alta resolución, específicas al tiempo de ejecución del proceso que la invoca (y no al sistema en su totalidad), configurando el parámetro clk\_id con el valor CLOCK\_PROCESS\_CPUTIME\_ID\footnote{http://linux.die.net/man/3/clock\_gettime}.
 
-Por otro lado, dado que la medición de tiempos en un sistema operativo activo introduce inherentemente un cierto nivel de ruido, cada medición se realizó múltiples veces. Una vez obtenidos los distintos valores para una misma medición (es decir, para instancias de mismo tamaño), se registra como valor definitivo la mediana de la serie de valores. Se escogió este criterio en vez de, por ejemplo, tomar el promedio, ya que es menos suceptible a la presencia de valores atípicos o outliers.
+Por otro lado, dado que la medición de tiempos en un sistema operativo activo introduce inherentemente un cierto nivel de ruido, cada medición se realizó múltiples veces. Una vez obtenidos los distintos valores para una misma medición (es decir, para diferentes instancias del mismo tamaño), registramos como valor definitivo la mediana de la serie de valores. Escogimos este criterio en vez de, por ejemplo, tomar la media, ya que utilizar la mediana es menos suceptible a la presencia de valores atípicos o \emph{outliers}.

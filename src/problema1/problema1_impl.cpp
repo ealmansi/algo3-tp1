@@ -42,7 +42,7 @@ Salida Problema1::resolver(const Entrada &e)
   for (; i < e.cant_dias; ++i)
   {
     if (0 < i && dias[i - 1] == dias[i]) continue;
-
+	///El cuerpo de este for, esta vacio adrede
     for (; (j < e.cant_dias) && (dias[j] - dias[i] < e.cant_dias_inspeccion); ++j)
       ;
 
