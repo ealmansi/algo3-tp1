@@ -23,7 +23,7 @@ $$((\forall k: i \leq k < j)\;d_k \in [d_i, d_i + D)) \Rightarrow ((\forall k: i
 Es decir, si vale el invariante para $(i,j)$, entonces vale para $(i+1,j)$. Esto permite obtener el valor máximo de $j$ correspondiente a cada $i$ mediante un único recorrido lineal, ya que $j$ nunca decrece. En la figura \ref{problema1-pseudo} se incluye pseudocódigo describiendo el algoritmo desarrollado en detalle, y en el apéndice \ref{problema1-codigo} se incluye el código completo.
 
 \begin{center}
-\begin{figure}
+\begin{figure}[H]
     \begin{pseudo}
         \Procedure{Camiones-Sospechosos}{$D, n, \langle d_1, \ldots, d_n \rangle$}
             \State $ordenar(\langle d_1, \ldots, d_n \rangle)$ \Ode{n\;log(n)}

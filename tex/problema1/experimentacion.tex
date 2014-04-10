@@ -5,13 +5,13 @@ Para experimentar, utilizamos una computadora con las siguientes característica
  \item RAM: 
 \end{itemize}
 
-La primer etapa de experimentación consistió en verificar empíricamente la cota de complejidad temporal obtenida teóricamente para el algoritmo completo. Estas primeras cuatro figuras nos permiten ver que efectivamente nuestro algoritmo es $O(n * log(n))$
+La primer etapa de experimentación consistió en verificar empíricamente la cota de complejidad temporal obtenida teóricamente para el algoritmo completo. Estas primeras dos figuras nos permiten ver que efectivamente nuestro algoritmo es $O(n * log(n))$
 
 \begin{figure}[H]
     \includegraphics[width=0.5\linewidth]{problema1/graficos/problema1_aleatoria_10000.eps}
     \includegraphics[width=0.5\linewidth]{problema1/graficos/problema1_aleatoria_10000_div_logn.eps}
 \end{figure}
-\emph{\hspace{2,5cm}Figura 1: Caso n = 10000 \hspace{3cm}Figura 2: Idem, pero dividido por $log(n)$}
+\emph{\hspace{2,5cm}Figura 1: n <= 10000 \hspace{3cm}Figura 2: Idem, pero dividido por $log(n)$}
 
 Como se puede observar en las figura 2, una vez que dividimos por $log n$ a cada resultado obtenido por nuestras medicion, éstos forman una recta. Es decir, $T(n)/log(n) \in O(n)$. Esto significa que la complejidad del algoritmo en su totalidad es de $O(n * log(n))$.
 
@@ -23,7 +23,7 @@ En las figuras siguientes podemos observar que, sin contar la etapa de ordenamie
     \includegraphics[width=0.5\linewidth]{problema1/graficos/problema1_ordenada_siempre_actualiza_10000_vs_problema1_ordenada_todos_distintos_10000.eps}
     %\includegraphics[width=0.5\linewidth]{problema2/graficos/problema2_ordenada_8000_div_n.eps}
 \end{figure}
-\emph{\hspace{2,5cm}Figura 3: Caso n = 10000 \hspace{3cm}Figura 4: Idem, pero dividido por $n$}
+\emph{\hspace{2,5cm}Figura 3: n <= 10000 \hspace{3cm}Figura 4: ACA PONEMOS ALGO???}
 
 Curiosamente, ``siempre actualiza'' es mejor que ``Todos distintos''. Investigamos y llegamos a la conclusión que esto se debe a como creamos las instancias de entrada. Las creamos siguiendo la siguiente secuencia:
 
