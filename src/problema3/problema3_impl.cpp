@@ -104,7 +104,7 @@ bool llamarRecursivamente(int i, int j, Tablero &solucionParcial, Tablero &soluc
   if (e.n <= i || e.m <= j)
     return false;
 
- /* int espaciosRestantes = e.n * e.m - (i * e.m + j);
+  int espaciosRestantes = e.n * e.m - (i * e.m + j);
   vector<int> coloresNecesarios(e.c, 0);
   int f, c, indice;
   f = (i == 0) ? 0 : i - 1;
@@ -126,7 +126,7 @@ bool llamarRecursivamente(int i, int j, Tablero &solucionParcial, Tablero &soluc
 
   if (solucionParcial.cantPiezas + espaciosRestantes <= solucionOptima.cantPiezas)
     return false;
-*/
+
   return true;
 }
 
