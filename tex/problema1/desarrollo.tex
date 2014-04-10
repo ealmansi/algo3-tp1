@@ -30,15 +30,14 @@ Es decir, si vale el invariante para $(i,j)$, entonces vale para $(i+1,j)$. Esto
             \State $d \leftarrow 0, c \leftarrow 0$ \Ode{1}
             \State $i \leftarrow 1$, $j \leftarrow 1$ \Ode{1}
             \While{$i \leq n$} \Ode{1}
-                \If{$0 < i \land d_{i-1} = d_i$}
-                    \textbf{continue} \Ode{1}
-                \EndIf
-                \While{$(j \leq n) \land (d_i \leq d_j < d_i + D)$} \Ode{1}
-                    \State $j \leftarrow j + 1$ \Ode{1}
-                \EndWhile
-                \If{$c < j - i$} \Ode{1}
-                    \State $c \leftarrow j - i$ \Ode{1}
-                    \State $d \leftarrow i$ \Ode{1}
+                \If{$i = 0 \lor d_{i-1} \neq d_i$} \Ode{1}
+                    \While{$(j \leq n) \land (d_i \leq d_j < d_i + D)$} \Ode{1}
+                        \State $j \leftarrow j + 1$ \Ode{1}
+                    \EndWhile
+                    \If{$c < j - i$} \Ode{1}
+                        \State $c \leftarrow j - i$ \Ode{1}
+                        \State $d \leftarrow i$ \Ode{1}
+                    \EndIf
                 \EndIf
                 \State $i \leftarrow i + 1$ \Ode{1}
             \EndWhile
