@@ -1,33 +1,45 @@
 Para demostrar la correctitud del algoritmo, vamos a demostrar 2 propiedades:
 
-Primero queremos ver que siempre existe una solucion optima que empieza en algunos de los dias dados.
+Primero queremos ver que siempre existe una solucion optima que empieza en algunos de los dias dados(Propiedad 1).
 
 $(\forall \ n,\ D\ , S = \{d_1,..,d_n\} ) \ \exists \ 0 < i \leq n \ / \ [d_i,d_i + D )$ es optimo 
 
-Tomo cualquier solucion optima T que empieza en el dia d'.
-Si $(\exists i: 0 < i\leq n ) \ d' = d_i$ para algun 0 $<$ i $\leq$ n, encontre lo que buscaba.
+Tomamos cualquier solución óptima T que empieza en el día d'.
+Si $(\exists i: 0 < i\leq n ) \ d' = d_i$ para algún 0 $<$ i $\leq$ n, encontramos lo que buscabamos.
 
-Si $(\forall i: 0<i \leq n) \  d' \neq d_i$, divido en 2 subcasos
+Si $(\forall i: 0<i \leq n) \  d' \neq d_i$, dividimos en 2 subcasos
 
-Si $(\exists i: 0<i\leq n) \ d' < d_i$, tomo el minimo i / d' $< d_i$
-Ahora construyo una nueva solucion desde $d_i$, veamos que todo elemento de S perteneciente a [d',d'+D) tambien pertenece a $[d_i,d_i +D)$
+Si $(!\exists i: 0<i\leq n) \ d' < d_i$ entonces la solución T no tiene ningún elemento, ya que no hay ningún elemento $d_i \in S$ tal que $d' \leq d_i < d' + D$. Por lo tanto si tomo una solución T' que contenga a un día de S como por ejemplo una que empiece en $d_i$ esta solución sería mejor que la solución T lo cual es absurdo ya que habíamos dicho que T era óptima.  
+
+El otro subcaso es en el que $(\exists i: 0<i\leq n) \ d' < d_i$. En ese caso tomamos el mínimo i / d' $< d_i$
+Ahora construimos una nueva solución desde $d_i$, veamos que todo elemento de S perteneciente a [d',d'+D) también pertenece a $[d_i,d_i +D)$
 
 sea $d_j \in [d',d'+D) \Rightarrow d' \leq d_j < d'+D $
 
 q.v.q.$ d_j \in  [d',d'+D) \Rightarrow d_i \leq d_j < d_i+D $
 
-$ d' \leq d_j < d'+D \Rightarrow d_i \leq d_j < d_i+D  \Leftrightarrow$    
-$ d' \leq d_j \Rightarrow d_i \leq d_j$  como sabemos que $d' < d_i$
-este es valido ya que sabemos que $d_i$ es el minimo elemento de S mayor que d' $\Rightarrow$ 
-$( !\exists k: 0 < k \leq n) d' < d_j < d_i$
+%$( d' \leq d_j < d'+D \Rightarrow d_i \leq d_j < d_i+D)  \Leftrightarrow$    
+%$( d' \leq d_j \Rightarrow d_i \leq d_j)$  como sabemos que $d' < d_i$
+%este es valido ya que sabemos que $d_i$ es el minimo elemento de S mayor que d' $\Rightarrow$ 
+%$( !\exists k: 0 < k \leq n) d' < d_j < d_i$
+
+Esto es lo mismo que probar que $(d' \leq d_j < d'+D) \Rightarrow (d_i \leq d_j < d_i+D) $, que a su vez es lo mismo que probar que $(d' \leq d_j \Rightarrow d_i \leq d_j) \wedge (d_j < d'+D \Rightarrow d_j < d_i+D)$
+
+Primero vamos a probar que $d' \leq d_j \Rightarrow d_i \leq d_j$:
+
+Como sabemos que $d' < d_i$ y sabemos que $d_i$ es el mínimo elemento de S mayor que $d'$ entonces si $d' \leq d_j$ tiene que pasar que $d' < d_i \leq d_j$, de lo contrario $d_j$ no pertenecería al conjunto S.
+
+Ahora vamos a probar que $d_j < d'+D \Rightarrow d_j < d_i+D$:
+
+Como $d' < d_i$ entonces $d'+D < d_i+D$ por lo tanto $d_j<d'+D<d_i+D \Rightarrow d_j<d_i+D$.
 
 Ahora queremos demostrar la propiedad 2 : $((\forall k: i \leq k < j)\;d_k \in [d_i, d_i + D)) \Rightarrow ((\forall k: i + 1 \leq k < j)\;d_k \in [d_{i+1}, d_{i+1} + D))$
 
 Vamos a demostrar esto por el absurdo. Tomando como verdadero el antecedente y suponiendo falso el consecuente.
 
-Para eso suponemos que $(\exists k': i+1\leq k' < n) \;d_{k'} \notin [d_{i+1}, d_{i+1} + D) $
+Para eso suponemos que $(\exists k': i+1\leq k' < j) \;d_{k'} \notin [d_{i+1}, d_{i+1} + D) $
 
-Primero vamos a enumerar varias propiedades que sabemos por el antecedente y porque los elementos $d_i$ estan ordenados
+Primero vamos a enumerar varias propiedades que sabemos por el antecedente y porque los elementos $d_i$ están ordenados
 
 A : $d_i < d_{i+1}$
 
@@ -41,9 +53,9 @@ Equivalentemente: $d_{k'} < d_{i+1} \vee d_{k'} \geq d_{i+1} + D $
 
 $d_{k'} < d_{i+1}$ es falso por B.
 
-$d_{k'} \geq d_{i+1} + D  > d_i + D$ por A.
+$d_{k'} \geq d_{i+1} + D  > d_i + D$ por A,
 
 $d_{k'} > d_i + D$ lo cual es falso por C.
 
-Al ser falso ambas partes del $\vee$, la afirmacion es falsa, lo cual nos lleva al absurdo que queriamos encontrar.
+Al ser falsas ambas partes del $\vee$, la afirmación es falsa, lo cual nos lleva al absurdo que queríamos encontrar.
 
