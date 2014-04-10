@@ -5,7 +5,7 @@ Para experimentar, utilizamos una computadora con las siguientes característica
  \item RAM: 
 \end{itemize}
 
-Al igual que en el problema 1, la primer etapa de experimentación consistió en verificar empíricamente la cota de complejidad temporal obtenida teóricamente para el algoritmo completo. Estas primeras cuatro figuras nos permiten ver que efectivamente nuestro algoritmo es $O(n * log(n))$. Utilizamos entradas aleatorias, generadas pseudo-aleatoriamente que no necesariamente están ordenadas.
+Al igual que en el problema 1, la primer etapa de experimentación consistió en verificar empíricamente la cota de complejidad temporal obtenida teóricamente para el algoritmo completo. Estas primeras dos figuras nos permiten ver que efectivamente nuestro algoritmo es $O(n * log(n))$. Utilizamos entradas aleatorias, generadas pseudo-aleatoriamente que no necesariamente están ordenadas.
 
 \begin{figure}[H]
     \includegraphics[width=0.5\linewidth]{problema2/graficos/problema2_aleatoria_10000.eps}
@@ -29,6 +29,6 @@ Como se puede observar en la figura 4, nuevamente al dividir por $n$ a cada resu
 
 Cabe aclarar que en el caso de este problema, al remover la etapa de ordenamiento no existe ni mejor caso ni peor caso (O, mejor dicho, todos los casos son $\theta$(n)). Esto se debe a que este algoritmo recorre una vez el vector para guardar los datos, y una vez más para calcular las pérdidas. Siempre realiza esto, sin importar los datos.
 
-Por otro lado, como utilizamos el \emph{sort} de la \emph{STL}, no podemos asegurar si un caso en particular va a ser un ``mejor caso'', o un ``peor caso''. Esto se debe a que, como explicamos anteriormente, el sorting utiliza un \emph{intro sort} que usa primordialmente un algoritmo similar a \emph{quick sort}. Por esto al depender del azar, no se puede saber \emph{a priori} si un caso va a ser un ``mejor caso'', o un ``peor caso''.
+Por otro lado, como utilizamos el \emph{sort} de la \emph{stl}, no podemos asegurar si un caso en particular va a ser un ``mejor caso'', o un ``peor caso''. Esto se debe a que, como explicamos anteriormente, el sorting utiliza un \emph{IntroSort} que usa primordialmente un algoritmo similar a \emph{QuickSort}. Por esto al depender del azar, no se puede saber \emph{a priori} si un caso va a ser un ``mejor caso'', o un ``peor caso''.
 
 Por estas razones, para el ejercicio 2 no incluimos gráficos extra en los cuales hablamos de ``peor caso'' y ``mejor caso''.
