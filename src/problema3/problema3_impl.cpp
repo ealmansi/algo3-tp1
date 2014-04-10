@@ -57,7 +57,7 @@ static void removerPieza(int p, int i, int j, Tablero &tablero, vector<bool> &pi
 
 Salida Problema3::resolver(const Entrada &e)
 {
-  Tablero solucionParcial(e.n, e.m), solucionOptima(e.n, e.m);
+	Tablero solucionParcial(e.n, e.m), solucionOptima(e.n, e.m);
   vector<bool> piezaDisponible(e.n * e.m, true);
 
   resolverBacktracking(0, 0, solucionParcial, solucionOptima, piezaDisponible, e);
@@ -114,7 +114,7 @@ bool llamarRecursivamente(int i, int j, Tablero &solucionParcial, Tablero &soluc
 
   for (int h = 0; h < e.n * e.m; ++h)
     if (piezaDisponible[h])
-      --coloresNecesarios[e.piezas[h - 1].sup - 1];
+      --coloresNecesarios[e.piezas[h].sup - 1];
 
   for (int h = 0; h < e.c; ++h)
     if (coloresNecesarios[h] > 0)
@@ -174,7 +174,13 @@ Entrada Problema3::generar_instancia_unidimensional(int n)
   e.m = 1;
   e.c = 10;
   for (int i = 0; i < n * 1; ++i)
-    e.piezas.push_back(Pieza(i + 1, i * 2 % e.c, i * 3 % e.c, i * 5 % e.c, i * 7 % e.c));
+    e.piezas.push_back(Pieza(i + 1, (1 + 2 )  + 1, (1 + 3 )  + 1, (1 + 5 )  + 1, (1 + 7 )  + 1));
+
+	EXPR(e.n);
+		EXPR(e.m);
+					EXPR(e.c);
+	for (int i = 0; i < n * 1; ++i)
+		EXPR(e.piezas[i].inf);
 
   return e;
 }
@@ -186,7 +192,16 @@ Entrada Problema3::generar_instancia_cuadrada(int n)
   e.m = n;
   e.c = 10;
   for (int i = 0; i < n * n; ++i)
-    e.piezas.push_back(Pieza(i + 1, i * 2 % e.c, i * 3 % e.c, i * 5 % e.c, i * 7 % e.c));
-
+    e.piezas.push_back(Pieza(i + 1, (1 + 2 )  + 1, (1 + 3 )  + 1, (1 + 5 )  + 1, (1 + 7)  + 1));
+		EXPR(e.n);
+		EXPR(e.m);
+					EXPR(e.c);
+	for (int i = 0; i < n * n; ++i){
+		EXPR(e.piezas[i].indice);
+		EXPR(e.piezas[i].izq);
+		EXPR(e.piezas[i].inf);
+		EXPR(e.piezas[i].der);
+		EXPR(e.piezas[i].sup);
+		}
   return e;
 }
