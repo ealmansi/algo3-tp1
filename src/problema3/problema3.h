@@ -36,6 +36,8 @@ namespace Problema3
 
 	Entrada generar_instancia_unidimensional(int n);
 	Entrada generar_instancia_cuadrada(int n);
+	void generar_toda_instancia(int n);
+
 }
 
 #endif /* PROBLEMA_3_H */
