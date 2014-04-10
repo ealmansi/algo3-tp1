@@ -1,5 +1,46 @@
-Proin accumsan erat dignissim elit posuere, sed facilisis nisi semper. Cras suscipit sapien sed neque consectetur, ac pellentesque erat tristique. Interdum et malesuada fames ac ante ipsum primis in faucibus. Mauris lectus dolor, mattis eget ante sed, gravida blandit ante. Phasellus in bibendum lectus. Sed ut lectus hendrerit, convallis erat sed, feugiat nisl. Donec porttitor volutpat tortor, ac convallis mauris volutpat id. Nam a dictum ante. Maecenas ultrices eu elit in tincidunt. Morbi pellentesque varius ante nec scelerisque. Suspendisse potenti.
+Para resolver el problema implementamos el siguiente algortimo:
 
-Nullam sem felis, consequat quis dui quis, rutrum gravida felis. Aenean et felis et dolor convallis elementum. Etiam neque lorem, ullamcorper vitae pulvinar id, molestie id elit. Morbi urna sapien, porttitor sit amet lorem sit amet, consequat convallis velit. Vestibulum auctor sapien ac ullamcorper volutpat. Nulla ut tellus at nibh luctus congue. Nam luctus feugiat feugiat.
+\begin{pseudo}
+\State Tipo de dato Pieza es Tupla $\langle$ id : entero, inferior : entero, superior : entero, izquierda : entero, derecha : entero $\rangle$
+\State Tipo de dato Tablero es Tupla $\langle$ cantFichas : entero, casillas : Matriz$\langle$Pieza$\rangle$ $\rangle$
+    \Procedure{Rompecolores}{$n,m,c,\langle p_1, \ldots, p_{n*m} \rangle$}
+        \State SolucionParcial, SolucionOptima$\leftarrow$ nuevo Tablero
+        \State ResolverBacktracking(SolucionOptima,SolucionParcial,0,0,...) 
+        \State \textbf{return} SolucionOptima
+    \EndProcedure
+\end{pseudo}
 
-Aenean et turpis nec quam volutpat lacinia eu eget nibh. Cras id velit laoreet, sollicitudin nulla nec, volutpat ipsum. Nulla sagittis lacus eget nibh porttitor venenatis. Phasellus eu sem in purus suscipit accumsan. Cras tristique justo ligula, ultrices consectetur nisl tempor vitae. Cras nibh diam, aliquet tincidunt lobortis non, eleifend vel quam. In eleifend pretium volutpat. Mauris vulputate dapibus nibh non rhoncus. Sed ut ipsum leo. Cras posuere congue purus id porta. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
+\begin{pseudo}
+
+    \Procedure{ResolverBacktracking}{SolucionOptima,SolucionParcial,i,j,...}
+        \For{Cada Ficha}
+	  \If{EstaDisponible $\wedge$ esCompatible}
+	    \State Agrego ficha a SolucionParcial
+	    \If{SolucionParcial mejor que SolucionOptima}
+	      \State SolucionOptima = SolucionParcial
+	    \EndIf
+	    \If{!Podo}
+	      \State ResolverBacktracking en siguiente posicion
+	    \EndIf
+	    \State Remuevo ficha 
+	  \EndIf
+	\EndFor
+        \State Agrego ficha blanca a SolucionParcial
+        \State ResolverBacktracking en siguiente posicion
+    \EndProcedure
+\end{pseudo}
+
+Donde: 
+
+$\bullet$ EstaDisponible devuelve si la ficha no fue usada todavia (verdadero), o si ya fue agregada al tablero (falso).
+
+$\bullet$ esCompatible devuelve verdadero si al agregar la ficha en la posicion en la cual se esta trabajando en el tablero SolucionParcial, no se genera ninguna contradiccion.
+
+$\bullet$ Podo devuelve verdadero si a travez de alguna de nuetras podas podemos asegurar que en esa rama no se encuentra ninguna solucion mejor a SolucionOptima.
+
+Implementamos tres posibles funciones Podo(), la primera es la mas simple que solo devuelve falso cuando se llega al final del tablero, osea no poda nada.
+
+La segunda opcion se fija si la cantidad de fichas que puse en el tablero más la cantidad de lugares del tablero que todavia no recorrí es menor que la cantidad de fichas de SolucionOptima. Si es menor sabemos que no hay ninguna forma que por esa rama se llegue a una solucion mejor que SolucionOptima.
+
+La tercer poda que realizamos incluye a la anterior pero ademas en las posiciones que todavia no recorrimos pero ya sabemos que tienen una restriccion,queremos saber dado las fichas que tenemos disponible en cuantas de esas posiciones tienen fichas disponibles. Para esto contamos para cada color, cuantos de estos lugares necesitan una ficha con ese color en la posicion superior. Luego recorremos las fichas disponibles y restamos 1 al nuemero calculado anteriormente para ese color.
+Si sumamos todos los contadores de color que no nos quedaron negarivos, conseguimos el numero de estos casilleros a los que no le vamos a poder agregar fichas. Entonces a el numero de fichas posibles calculado en la opcion 2 le restamos lo que acabamos de calcular obteniendo una cota mas ajustada de la cantidad de fichas que puede llegar a tener esta rama del árbol.
