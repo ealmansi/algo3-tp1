@@ -105,15 +105,20 @@ vector<Medicion> tomar_mediciones(string &problema, string &funcion_generadora, 
       return tomar_mediciones<Problema1::Entrada, Problema1::Salida>
              (n_max, Problema1::generar_instancia_aleatoria, Problema1::resolver);
     }
+    else if (funcion_generadora == "generar_instancia_ordenada_aleatoria")
+    {
+      return tomar_mediciones<Problema1::Entrada, Problema1::Salida>
+             (n_max, Problema1::generar_instancia_ordenada_aleatoria, Problema1::resolver);
+    }
     else if (funcion_generadora == "generar_instancia_ordenada_siempre_actualiza")
     {
       return tomar_mediciones<Problema1::Entrada, Problema1::Salida>
              (n_max, Problema1::generar_instancia_ordenada_siempre_actualiza, Problema1::resolver);
     }
-    else if (funcion_generadora == "generar_instancia_todos_distintos")
+    else if (funcion_generadora == "generar_instancia_ordenada_todos_distintos")
     {
       return tomar_mediciones<Problema1::Entrada, Problema1::Salida>
-             (n_max, Problema1::generar_instancia_todos_distintos, Problema1::resolver);
+             (n_max, Problema1::generar_instancia_ordenada_todos_distintos, Problema1::resolver);
     }
     else
     {
