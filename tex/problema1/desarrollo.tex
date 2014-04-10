@@ -1,7 +1,7 @@
 El algoritmo desarrollado para resolver el problema considera como posibles candidatos para fecha de inicio únicamente a los valores del conjunto $\{d_1\;d_2\;...\;d_n\}$, haciendo uso de la siguiente propiedad (demostración en la sección \ref{problema1-demostracion}):
 
 \begin{propiedad}\label{propiedad-candidatos}
-Siempre existe un intervalo óptimo $[d, d + D)$ (en el sentido de que comprende la mayor cantidad posible de elementos de la lista) cuyo límite inferior sea $d \in \{d_1,d_2,...,d_n\}$.
+Siempre existe un intervalo óptimo $[d, d + D)$ (en el sentido de que comprende la mayor cantidad posible de elementos de la lista) cuyo límite inferior es $d \in \{d_1,d_2,...,d_n\}$.
 \end{propiedad}
 
 Para cada candidato $d_i$, se computa la cantidad de elementos contenidos en el intervalo $[d_i, d_i + D)$, guardando un registro del día $d$ para el cual dicha cantidad es mayor. Finalmente, se emite como solución el valor de $d$ y la cantidad $c$ de números contenidos en su respectivo intervalo.
