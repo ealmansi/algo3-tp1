@@ -1,37 +1,27 @@
-Para demostrar la correctitud del algoritmo, vamos a demostrar 2 propiedades:
+Para demostrar la correctitud del algoritmo propuesto, es necesario probar esencialmente dos afirmaciones mencionadas en la sección \ref{problema1-desarrollo}. En primer lugar, debe justificarse la decisión de cuáles candidatos se eligen como posibles fechas de inicio del período de contratación; o, formalmente, se debe demostrar la Propiedad \ref{propiedad-candidatos}. Luego, es importante argumentar por qué el ciclo del algoritmo computa efectivamente la cantidad de elementos de la lista contenidos en el intervalo asociado a cada candidato.
 
-Primero queremos ver que siempre existe una solucion optima que empieza en algunos de los dias dados(Propiedad 1).
+\subsubsection{Demostración de la Propiedad \ref{propiedad-candidatos}}
 
-$(\forall \ n,\ D\ , S = \{d_1,..,d_n\} ) \ \exists \ 0 < i \leq n \ / \ [d_i,d_i + D )$ es optimo 
+Dada una instancia $<D,\;n,\;l = [d_1, d_2, ..., d_n]>$, se quiere probar que siempre existe un intervalo óptimo $[d, d + D)$ (en el sentido de que comprende la mayor cantidad posible de elementos de la lista $l$) cuyo límite inferior es $d \in \{d_1,d_2,...,d_n\}$.
 
-Tomamos cualquier solución óptima T que empieza en el día d'.
-Si $(\exists i: 0 < i\leq n ) \ d' = d_i$ para algún 0 $<$ i $\leq$ n, encontramos lo que buscabamos.
+Como cualquier valor $d$ natural genera un intervalo $[d, d + D)$ válido, el conjunto de posibles soluciones es no vacío. Como además cualquier solución posible contiene entre 0 y $n$ elementos de la lista, necesariamente existe solución óptima. Sea $d'$ tal que $[d', d' + D)$ es un intervalo óptimo.
 
-Si $(\forall i: 0<i \leq n) \  d' \neq d_i$, dividimos en 2 subcasos
+\begin{itemize}
+  \item Si $(\nexists\;i : 1 \leq i \leq n)\;d' \leq d_i$, entonces el intervalo $[d', d' + D)$ no contiene ningún elemento de la lista. Esto es absurdo porque cualquier intervalo $[d_i, d_i + D)$ contiene al menos un elemento, y sería mejor que el óptimo.
+  \item De lo contrario, se puede definir $d^*$ como el menor elemento de la lista que es mayor o igual a $d'$; es decir: $d^* = min\;\{\;d_i : 1 \leq i \leq n \land d' \leq d_i\;\}$.
 
-Si $(!\exists i: 0<i\leq n) \ d' < d_i$ entonces la solución T no tiene ningún elemento, ya que no hay ningún elemento $d_i \in S$ tal que $d' \leq d_i < d' + D$. Por lo tanto si tomo una solución T' que contenga a un día de S como por ejemplo una que empiece en $d_i$ esta solución sería mejor que la solución T lo cual es absurdo ya que habíamos dicho que T era óptima.  
+  Luego, $\forall\;i : 1 \leq i \leq n$:
+  
+  \begin{itemize}
+    \item Como $d^*$ es el menor elemento que cumple la propiedad de ser mayor o igual que $d'$:
+    $$d' \leq d_i \rightarrow d^*\leq d_i$$
+    \item Como $d' \leq d^*$, se desprende que $d' + D \leq d^* + D$, y por lo tanto:
+    $$(d_i < d' + D) \rightarrow (d_i < d^* + D)$$
+  \end{itemize}
+  Entonces, vale que todo elemento contenido en el intervalo óptimo también está contenido en el intervalo $[d^*, d^* + D)$. Como $d^* \in \{d_1,d_2,...,d_n\}$, queda demostrada la propiedad.
+\end{itemize}
 
-El otro subcaso es en el que $(\exists i: 0<i\leq n) \ d' < d_i$. En ese caso tomamos el mínimo i / d' $< d_i$
-Ahora construimos una nueva solución desde $d_i$, veamos que todo elemento de S perteneciente a [d',d'+D) también pertenece a $[d_i,d_i +D)$
-
-sea $d_j \in [d',d'+D) \Rightarrow d' \leq d_j < d'+D $
-
-q.v.q.$ d_j \in  [d',d'+D) \Rightarrow d_i \leq d_j < d_i+D $
-
-%$( d' \leq d_j < d'+D \Rightarrow d_i \leq d_j < d_i+D)  \Leftrightarrow$    
-%$( d' \leq d_j \Rightarrow d_i \leq d_j)$  como sabemos que $d' < d_i$
-%este es valido ya que sabemos que $d_i$ es el minimo elemento de S mayor que d' $\Rightarrow$ 
-%$( !\exists k: 0 < k \leq n) d' < d_j < d_i$
-
-Esto es lo mismo que probar que $(d' \leq d_j < d'+D) \Rightarrow (d_i \leq d_j < d_i+D) $, que a su vez es lo mismo que probar que $(d' \leq d_j \Rightarrow d_i \leq d_j) \wedge (d_j < d'+D \Rightarrow d_j < d_i+D)$
-
-Primero vamos a probar que $d' \leq d_j \Rightarrow d_i \leq d_j$:
-
-Como sabemos que $d' < d_i$ y sabemos que $d_i$ es el mínimo elemento de S mayor que $d'$ entonces si $d' \leq d_j$ tiene que pasar que $d' < d_i \leq d_j$, de lo contrario $d_j$ no pertenecería al conjunto S.
-
-Ahora vamos a probar que $d_j < d'+D \Rightarrow d_j < d_i+D$:
-
-Como $d' < d_i$ entonces $d'+D < d_i+D$ por lo tanto $d_j<d'+D<d_i+D \Rightarrow d_j<d_i+D$.
+\subsubsection{Correctitud del ciclo}
 
 Ahora queremos demostrar la propiedad 2 : $((\forall k: i \leq k < j)\;d_k \in [d_i, d_i + D)) \Rightarrow ((\forall k: i + 1 \leq k < j)\;d_k \in [d_{i+1}, d_{i+1} + D))$
 
