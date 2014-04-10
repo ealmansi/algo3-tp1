@@ -1,4 +1,4 @@
-Hallamos que el orden óptimo es de menor a mayor según el coeficiente $\frac{Tiempo_i}{Perdida_i}$, lo cual está demostrado en su sección correspondiente. Siguiendo este orden, podemos asegurar que una solución óptima cumple con el siguiente invariante:
+Lo primero que hicimos fue hallar que el orden óptimo en el que se deben armar las piezaspara minimizar la pérdida es de menor a mayor según el coeficiente $\frac{Tiempo_i}{Perdida_i}$, lo cual está demostrado en su sección correspondiente. Siguiendo este orden, podemos asegurar que una solución óptima cumple con el siguiente invariante:
 
 \begin{center}
 
@@ -16,7 +16,7 @@ $(\forall i \in [1..\#{piezas})) Tiempo_i * Perdida_{i+1} < Tiempo_{i+1} * Perdi
 
 Este último es el que usamos debido a que al usar enteros, preferimos usar multiplicación antes que división.
 
-Nuestro algoritmo crea un vector, y coloca una a una las piezas una atrás de otra. Luego, ordena según el orden previamente enunciado. Finalmente, calcula la pérdida total. El pseudocódigo de nuestro algoritmo es el siguiente:
+Lo que nuestro algoritmo hace es crear un vector y colocar una a una las piezas, una atrás de otra. Luego, ordena según el orden previamente enunciado. Finalmente, calcula la pérdida total. El pseudocódigo de nuestro algoritmo es el siguiente:
 
 \renewcommand{\algorithmiccomment}[1]{\hskip2em$//$ #1}
 
@@ -29,4 +29,20 @@ Nuestro algoritmo crea un vector, y coloca una a una las piezas una atrás de ot
         \Comment Este sort se hace de menor a mayor según el coeficiente anteriormente dicho
         \State \textbf{return} V, Calcular\_perdida(V) %\Ode{n}
     \EndProcedure
+\end{pseudo}
+
+Y el pseudo código de Calcular\_perdida(V) es el siguiente:
+
+\begin{pseudo}
+  \Procedure{Calcular\_perdida}{V}
+      \State $total \leftarrow 0$
+      \State $tiempo \leftarrow 0$
+      \State $i \leftarrow 0$
+      \While{$i < n$}
+	\State $tiempo \leftarrow tiempo + V[i].tiempo$
+	\State $total \leftarrow total + V[i].perdida * tiempo$
+	\State $i \leftarrow  i + 1$
+      \EndWhile
+      \State \textbf{return} total
+  \EndProcedure
 \end{pseudo}
