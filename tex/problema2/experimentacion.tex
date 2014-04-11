@@ -24,7 +24,7 @@ Medimos el tiempo de ejecución al resolver instancias de entre 1 y 10000 piezas
 
 Además de presentar los datos según fueron medidos, incluimos un gráfico donde se muestra el comportamiento del costo temporal para instancias de tamaño $n$ dividido $n * log(n)$. Esto permite visualizar la tendencia asintótica del cociente $T(n) / (n * log(n))$, que en este caso se aproxima a una constante cercana al valor $50$, sugiriendo dentro del marco de mediciones que $T(n)$ tiende a un crecimiento del orden de $n * log(n)$ para instancias promedio. Esto coincide con el comportamiento observado durante la experimentación del problema \emph{Camiones Sospechosos}, lo cual es de esperarse dado que en ambos casos se utilizó la misma función de ordenamiento para la implementación (ver apéndices \ref{problema1-codigo} y \ref{problema2-codigo}).
 
-\subsubsection{Mediciones sobre el ciclo en instancias ordenadas}
+\subsubsection{Mediciones sobre el ciclo para instancias ordenadas}
 
 En la figura (\ref{fig:problema2-ciclo}) se muestran los resultados de las mediciones sobre instancias ordenadas, omitiendo el ordenamiento.
 
