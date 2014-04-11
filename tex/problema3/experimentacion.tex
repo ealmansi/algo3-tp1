@@ -1,11 +1,10 @@
 \emph{Nota:} Como vamos a hablar mucho de las distintas podas vamos a denominarlas de la siguiente manera:
 \begin{itemize}
-\item Primer poda: Terminar cuando lleno el tablero.
-\item Segunda poda: Si aunque ponga piezas en los casilleros que me queda revisar, no llego a alcanzar la cantidad de piezas de la solución óptima encontrada a ese momento, corto.
-\item Tercer poda: Similar a la segunda poda, pero además revisa hasta $m$ casillas para adelante teniendo en cuenta las restricciones ya existentes en el tablero.
+\item Poda 1: Si aunque ponga piezas en los casilleros que me queda revisar, no llego a alcanzar la cantidad de piezas de la solución óptima encontrada a ese momento, corto.
+\item Poda 2: Similar a la poda 1, pero además revisa hasta $m$ casillas para adelante teniendo en cuenta las restricciones ya existentes en el tablero.
 \end{itemize}
 
-En este ejercicio, vamos a enfocar la experimentación orientándolo a la comparación entre las distintas podas, así como también comparar las mismas contra no usar ninguna poda.
+En este ejercicio, vamos a enfocar la experimentación orientándolo a la comparación entre las distintas podas, así como también comparar las mismas contra no usar ninguna poda. Cabe aclarar que no usar ninguna poda tiene un método de corte \emph{naïf}: cortar si logré llenar el tablero.
 
 En el siguiente gráfico se puede observar que utilizar podas mejora drásticamente el tiempo de ejecución.
 
@@ -17,8 +16,8 @@ Por esta razón, los siguientes casos sólo van a ser comparados utilizando poda
 
 Figuras mostrando distintos tableros (3*3, 4*4, 4*1, 4*2, 5*1, etc. No tienen por que ser cuadrados) y usando distintas podas, mostrando como mejora y eso.
 
-En el gráfico X, se puede observar claramente que la tercer poda logra podar mas casos, pero no logra compensar lo suficiente el costo adicional de $O(m)$ para lograr que sea considerablemente mejor que la segunda poda. Dicha poda podría servir en otro problema en el que cual cada llamada recursiva tenga un mayor costo.
+En el gráfico X, se puede observar claramente que la poda 2 logra podar mas casos, pero no logra compensar lo suficiente el costo adicional de $O(m)$ para lograr que sea considerablemente mejor que la segunda poda. Dicha poda podría servir en otro problema en el que cual cada llamada recursiva tenga un mayor costo.
 
 ///Estaria bueno ver si mejora en casos mas "flacos" (mas filas que columnas) o "gordos" (viceversa)
 
-Por otro lado, la segunda poda también tiene otros beneficios. Es considerablemente más fácil de implementar que la tercer poda. A su vez, la segunda poda no depende de la cantidad de colores existentes, mientras que la tercer poda sí lo hace. La tercer poda crea un $vector<int>$ donde la cantidad de posiciones se corresponde con la cantidad de colores existentes. Si bien no es un problema muy grave, puede ocurrir que sí lo sea si tenemos una computadora con memoria acotada y tenemos un caso donde la cantidad de colores es muy alta, como por ejemplo un millón de colores.
+Por otro lado, la poda 1 también tiene otros beneficios. Es considerablemente más fácil de implementar que la poda 2. A su vez, la poda 1 no depende de la cantidad de colores existentes, mientras que la poda 2 sí lo hace. La poda 2 crea un $vector<int>$ donde la cantidad de posiciones se corresponde con la cantidad de colores existentes. Si bien no es un problema muy grave, puede ocurrir que sí lo sea si tenemos una computadora con memoria acotada y tenemos un caso donde la cantidad de colores es muy alta, como por ejemplo un millón de colores.
