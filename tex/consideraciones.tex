@@ -7,7 +7,7 @@ Para implementar las soluciones algorítmicas desarrolladas en cada problema uti
 En las implementaciones desarrollados para resolver los problemas planteados, utilizamos la función \emph{sort} de la Standard Template Library (STL). Para que la complejidad temporal de las soluciones se condiga con el análisis teórico, es necesario verificar que dicha función tenga efectivamente una complejidad temporal $O(n * log(n))$.
 
 En la página de documentación oficial cppreference\footnote{http://en.cppreference.com/w/cpp/algorithm/sort}, se observa que a partir del standard C+11 de C++, la complejidad requerida para std::sort es de $O(n*log (n))$ 
-comparaciones, y a lo sumo $O(n * log(n))$ swaps. Como utilizamos contenedores de acceso aleatorio en tiempo constante para desarrollar las soluciones, las operaciones de comparación y swap son $O(1)$. Por esto, efectivamente las operaciones de ordenamiento utilizadas tienen una complejidad de $O(n * log(n))$ operaciones.
+comparaciones, y a lo sumo $O(n * log(n))$ swaps. Como utilizamos contenedores de acceso aleatorio en tiempo constante para desarrollar las soluciones, las operaciones de comparación y swap son $O(1)$. Por esto, efectivamente las rutinas de ordenamiento utilizadas tienen una complejidad de $O(n * log(n))$ operaciones.
 
 % Con sólo esta informacion no podemos asegurar que el algoritmo en su totalidad tenga una complejidad temporal de $O(n*log (n))$  operaciones, por lo que buscamos que hace el algoritmo \emph{std::sort} revisando el código de \emph{algorithm.h}.
 
