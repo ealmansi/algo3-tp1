@@ -19,9 +19,8 @@ struct Tablero
 
 Salida Problema3::resolver(const Entrada &e)
 {
-  Tablero solucionParcial(e.n, e.m), solucionOptima(e.n, e.m);
+Tablero solucionParcial(e.n, e.m), solucionOptima(e.n, e.m);
   vector<bool> piezaDisponible(e.n * e.m, true);
-
   resolverBacktracking(0, 0, solucionParcial, solucionOptima, piezaDisponible, e);
 
   Salida s;
@@ -29,9 +28,9 @@ Salida Problema3::resolver(const Entrada &e)
   return s;
 }
 
-void resolverBacktracking(int i, int j, Tablero &solucionParcial,
-  Tablero &solucionOptima, vector<bool> &piezaDisponible, const Entrada &e)
+void resolverBacktracking(int i, int j, Tablero &solucionParcial, Tablero &solucionOptima, vector<bool> &piezaDisponible, const Entrada &e)
 {
+  acumulador++;
   int sig_i, sig_j;
   calcularSiguientePos(sig_i, sig_j, i, j, e);
 
@@ -55,8 +54,7 @@ void resolverBacktracking(int i, int j, Tablero &solucionParcial,
     resolverBacktracking(sig_i, sig_j, solucionParcial, solucionOptima, piezaDisponible, e);
 }
 
-bool llamarRecursivamente(int i, int j, Tablero &solucionParcial,
-  Tablero &solucionOptima, vector<bool> &piezaDisponible, const Entrada &e)
+bool llamarRecursivamente(int i, int j, Tablero &solucionParcial, Tablero &solucionOptima, vector<bool> &piezaDisponible, const Entrada &e)
 {
   if (solucionOptima.cantPiezas == e.n * e.m)
     return false;
@@ -69,16 +67,27 @@ bool llamarRecursivamente(int i, int j, Tablero &solucionParcial,
   int f, c, indice;
   f = (i == 0) ? 0 : i - 1;
   c = (i == 0) ? 0 : j;
-  for (; f != i && c != j ; calcularSiguientePos(f, c, f, c, e))
-  {
-    indice = solucionParcial.casilleros[f][c];
-    if (indice != 0)
-      ++coloresNecesarios[e.piezas[indice - 1].inf - 1];
-  }
+  if(i == e.n-1){
+    for (; c >= j && f == e.n-1 ; calcularSiguientePos(f, c, f, c, e))
+    {
+      indice = solucionParcial.casilleros[f][c];
+      if (indice != 0)
+        ++coloresNecesarios[e.piezas[indice - 1].inf - 1];
+    }
 
+  }
+  else
+  {
+    for (; f != i && c != j ; calcularSiguientePos(f, c, f, c, e))
+    {
+      indice = solucionParcial.casilleros[f][c];
+      if (indice != 0)
+        ++coloresNecesarios[e.piezas[indice - 1].inf - 1];
+    }
+  }
   for (int h = 0; h < e.n * e.m; ++h)
     if (piezaDisponible[h])
-      --coloresNecesarios[e.piezas[h - 1].sup - 1];
+      --coloresNecesarios[e.piezas[h].sup - 1];
 
   for (int h = 0; h < e.c; ++h)
     if (coloresNecesarios[h] > 0)
@@ -117,19 +126,16 @@ bool esCompatible(int indicePieza, int i, int j, Tablero &solucionParcial, const
   return true;
 }
 
-void colocarPieza(int indicePieza, int i, int j,
-  Tablero &tablero, vector<bool> &piezaDisponible)
+void colocarPieza(int indicePieza, int i, int j, Tablero &tablero, vector<bool> &piezaDisponible)
 {
   tablero.casilleros[i][j] = indicePieza;
   ++tablero.cantPiezas;
   piezaDisponible[indicePieza - 1] = false;
 }
 
-void removerPieza(int indicePieza, int i, int j,
-  Tablero &tablero, vector<bool> &piezaDisponible)
+void removerPieza(int indicePieza, int i, int j, Tablero &tablero, vector<bool> &piezaDisponible)
 {
   tablero.casilleros[i][j] = 0;
   --tablero.cantPiezas;
   piezaDisponible[indicePieza - 1] = true;
 }
-
