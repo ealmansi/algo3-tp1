@@ -28,7 +28,7 @@ Lo que hace la función Cargo\_Piezas, es leer la entrada que nos pasan y agrega
  \State \textbf{Sort(V)}
 \end{pseudo}
 
-Como vimos en la sección del ejercicio 1, la función Sort tiene complejidad $O(n*log n)$.
+Como vimos en la sección del ejercicio 1, la función Sort tiene complejidad $O(n*log(n))$.
 
 \begin{pseudo}
  \State \textbf{return V, Calcular\_perdida(V)}
@@ -36,4 +36,4 @@ Como vimos en la sección del ejercicio 1, la función Sort tiene complejidad $O
 
 Devolver el vector es O(1), y calcular la pérdida es O(n), ya que hay que recorrer todas las piezas. Para cada calcular la pérdida de cada pieza, tenemos que tener en cuenta el tiempo que pasó hasta ese momento sumar el tiempo que tarda en hacer la pieza (una suma), calcular la pérdida y sumarlo a la pérdida hasta ese momento (multiplicación y suma). Estas operaciones son $O(1)$ ya que trabajamos con enteros.
 
-Luego, por álgebra de ordenes O(1) + O(n) + O(n.log n) + O(1) + O(n) = $O(n*log n)$, como queríamos demostrar.
+Luego, por álgebra de ordenes $O(1) + O(n) + O(n*log(n)) + O(1) + O(n) = O(n*log(n))$, como queríamos demostrar.
