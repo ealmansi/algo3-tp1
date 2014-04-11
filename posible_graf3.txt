@@ -1,0 +1,8 @@
+## un caso por cada n, se ve mejor q la poda 1 es mejor en tiempo y la 2 en llamadas. (no se si agregarla como grafico)
+
+1  			2  			3  					4  			
+1  177072   32  67154 	1360  3.08483e+06	375505  3.60358e+08
+1  177628	6  72580	407  4.05421e+06	184551  6.67306e+08
+
+
+
