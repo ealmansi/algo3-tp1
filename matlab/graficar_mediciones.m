@@ -49,12 +49,62 @@ function graficar_mediciones(problema)
     saveas(gca, [dir_graficos '/' tipo_medicion '_div_nlogn' '.eps'],'epsc');
 
   else
-    files = dir([dir_mediciones '/' '*.csv']);
-    for file = files'
-      [~,tipo_medicion,~] = fileparts(file.name);
-      ms = cargar_mediciones([dir_mediciones '/' tipo_medicion '.csv']);
-      grafico_complejidad(ms, '');
-      saveas(gca, [dir_graficos '/' tipo_medicion '.eps'],'epsc');
-    end
+    
+    % aleatorias_4x4_poda1 = [dir_mediciones '/4x4_aleatorias_poda1.csv'];
+    % aleatorias_4x4_poda2 = [dir_mediciones '/4x4_aleatorias_poda2.csv'];
+    % ms1 = double(csvread(aleatorias_4x4_poda1, 1, 0));
+    % ms2 = double(csvread(aleatorias_4x4_poda2, 1, 0));
+    
+    % figure;
+    % bar(1:50, [ms1(:,1), ms2(:,1)]);
+    % title('Comparacion cantidad de llamados recursivos Poda 1 vs Poda 2');
+    % axis([0 51 0 1.2*max(max(ms1(:,1), ms2(:,1)))]);
+    % legend({'Poda 1', 'Poda 2'});
+    % xlabel('Caso');
+    % ylabel('Cantidad de llamados recursivos');
+    % saveas(gca, [dir_graficos '/comparacion_podas1y2_llamados_recursivos.eps'],'epsc');
+
+    % figure;
+    % bar(1:50, [ms1(:,2), ms2(:,2)]);
+    % title('Comparacion tiempo de ejecucion Poda 1 vs Poda 2');
+    % axis([0 51 0 1.2*max(max(ms1(:,2), ms2(:,2)))]);
+    % legend({'Poda 1', 'Poda 2'});
+    % xlabel('Caso');
+    % ylabel('Tiempo (ns)');
+    % saveas(gca, [dir_graficos '/comparacion_podas1y2_tiempo.eps'],'epsc');
+
+    close all;
+
+    todas_instancias_todas_podas_llamados = [dir_mediciones '/todas_instancias_todas_podas_llamados.csv'];
+    todas_instancias_todas_podas_tiempo = [dir_mediciones '/todas_instancias_todas_podas_tiempo.csv'];
+    ms1 = double(csvread(todas_instancias_todas_podas_llamados, 1, 0));
+    ms2 = double(csvread(todas_instancias_todas_podas_tiempo, 1, 0));
+
+    figure;
+    subplot(1,3,1);
+    bar(ms1(:,1), ms1(1,2:end));
+    ylabel('Cantidad de llamados recursivos');
+    subplot(1,3,2);
+    bar(ms1(:,1), ms1(2,2:end));
+    xlabel('Tipo de poda (sin podas, Poda 1, Poda 2)');
+    subplot(1,3,3);
+    bar(ms1(:,1), ms1(3,2:end));
+    hold on;
+    plot([1],[1000000],'rx','MarkerSize',10,'LineWidth',3);
+    saveas(gca, [dir_graficos '/comparacion_podas_todas_instancias_llamados.eps'],'epsc');
+
+    figure;
+    subplot(1,3,1);
+    bar(ms2(:,1), ms2(1,2:end));
+    ylabel('Tiempo de ejecucion total');
+    subplot(1,3,2);
+    bar(ms2(:,1), ms2(2,2:end));
+    xlabel('Tipo de poda (sin podas, Poda 1, Poda 2)');
+    subplot(1,3,3);
+    bar(ms2(:,1), ms2(3,2:end));
+    hold on;
+    plot([1],[1000000],'rx','MarkerSize',10,'LineWidth',3);
+    saveas(gca, [dir_graficos '/comparacion_podas_todas_instancias_tiempo.eps'],'epsc');
+
   end
 end
