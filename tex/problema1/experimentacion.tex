@@ -1,4 +1,10 @@
-La primer etapa de experimentación consistió en contrastar empíricamente la cota de complejidad temporal obtenida de forma teórica para el algoritmo propuesto. Dado que la función de ordenamiento pertenece a la librería de C++ y a que su análisis de peor caso es altamente complejo, medimos el rendimiento de nuestra implementación sobre instancias generadas pseudo-aleatoriamente y no en instancias de peor caso. Esto limita la experimentación a un análisis de caso promedio.
+Como se dijo en la sección \ref{problema1-complejidad}, el análisis teórico muestra que la complejidad temporal de la solución se encuentra dominada por la etapa de ordenamiento. En una primera etapa de experimentación, contrastamos empíricamente la cota de complejidad temporal obtenida de forma teórica para el algoritmo propuesto. Dado que la función de ordenamiento pertenece a la librería de C++ y a que su análisis de peor caso es altamente complejo, medimos el rendimiento de nuestra implementación sobre instancias generadas pseudo-aleatoriamente y no en instancias de peor caso. Esto limita la experimentación a un análisis de caso promedio.
+
+En la experimentación subsiguiente, para verificar el aporte del ciclo al procedimiento en su totalidad, realizamos mediciones sobre instancias donde la lista de entrada se encuentra ordenada; eliminando la etapa de ordenamiento.
+
+En este caso, generamos tanto instancias pseudo-aleatorias como instancias con estructuras particulares, como por ejemplo aquellas donde todos los camiones llegan en dias distintos (evitando que se saltee el cuerpo del ciclo) o donde, dado un período de inspección de un único día, cada día llega un camión más que el día anterior (realizando sucesivas actualizaciones del máximo por cada día nuevo)\footnote{Un ejemplo sería: 1,2,2,3,3,3,4,4,4,4,5,5,5,5,5,...}.
+
+\subsubsection{Incluyendo etapa de ordenamiento}
 
 Medimos el tiempo de ejecución al resolver instancias de entre 1 y 10000 camiones, según las consideraciones de la sección \ref{consideraciones-mediciones}, permitiendo graficar el costo temporal de la implementación en función del tamaño de entrada $T(n)$. En la figura (\ref{fig:problema1-aleatoria-10000}) se observan los resultados obtenidos.
 
@@ -13,9 +19,9 @@ Medimos el tiempo de ejecución al resolver instancias de entre 1 y 10000 camion
 
 Además de presentar los datos según fueron medidos, incluimos un gráfico donde se muestra el comportamiento del costo temporal para instancias de tamaño $n$ dividido $n * log(n)$. Esto permite visualizar la tendencia asintótica del cociente $T(n) / (n * log(n))$, que en este caso se aproxima a una constante cercana al valor $40$, sugiriendo dentro del marco de mediciones que $T(n)$ tiende a un crecimiento del orden de $n * log(n)$ para instancias promedio.
 
-Como se dijo en la sección \ref{problema1-complejidad}, el análisis teórico muestra que la complejidad temporal de la solución se encuentra dominada por la etapa de ordenamiento. Para verificar esta afirmación y analizar el comportamiento del ciclo, realizamos la experimentación subsiguiente sobre instancias donde la lista de entrada se encuentra ordenada, eliminando la etapa de ordenamiento.
+\subsubsection{Mediciones sobre el ciclo para instancias ordenadas}
 
-En este caso, generamos tanto instancias pseudo-aleatorias como instancias con estructuras particulares, como por ejemplo aquellas donde todos los camiones llegan en dias distintos (evitando que se saltee el cuerpo del ciclo) o donde, dado un período de inspección de un único día, cada día llega un camión más que el día anterior (realizando sucesivas actualizaciones del máximo por cada día nuevo)\footnote{Un ejemplo sería: 1,2,2,3,3,3,4,4,4,4,5,5,5,5,5,...}. Los resultados de las mediciones se muestran en la figura (\ref{fig:problema1-ordenadas-comparacion}).
+Los resultados de las mediciones se muestran en la figura (\ref{fig:problema1-ordenadas-comparacion}), donde se puede ver un gráfico comparativo entre el rendimiento de la función sobre los diferentes tipos de instancias.
 
   \begin{figure}[H]
     \begin{center}
