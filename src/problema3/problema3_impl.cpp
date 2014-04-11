@@ -46,8 +46,8 @@ void Problema3::escribir_salida(Salida &s)
   {
     vector<int>::const_iterator j;
     for (j = i->begin(); j + 1 != i->end(); ++j)
-      cout << *j  << " ";
-    cout << *j  << endl;
+      cout << *j << " ";
+    cout << *j << endl;
   }
 }
 
@@ -61,7 +61,7 @@ static void sumarUnColor(Entrada &e, int pieza, int color);
 
 Salida Problema3::resolver(const Entrada &e)
 {
-	Tablero solucionParcial(e.n, e.m), solucionOptima(e.n, e.m);
+Tablero solucionParcial(e.n, e.m), solucionOptima(e.n, e.m);
   vector<bool> piezaDisponible(e.n * e.m, true);
   resolverBacktracking(0, 0, solucionParcial, solucionOptima, piezaDisponible, e);
 
@@ -109,13 +109,24 @@ bool llamarRecursivamente(int i, int j, Tablero &solucionParcial, Tablero &soluc
   int f, c, indice;
   f = (i == 0) ? 0 : i - 1;
   c = (i == 0) ? 0 : j;
-  for (; f != i && c != j ; calcularSiguientePos(f, c, f, c, e))
-  {
-    indice = solucionParcial.casilleros[f][c];
-    if (indice != 0)
-      ++coloresNecesarios[e.piezas[indice - 1].inf - 1];
-  }
+  if(i == e.n-1){
+    for (; c >= j && f == e.n-1 ; calcularSiguientePos(f, c, f, c, e))
+    {
+      indice = solucionParcial.casilleros[f][c];
+      if (indice != 0)
+        ++coloresNecesarios[e.piezas[indice - 1].inf - 1];
+    }
 
+  }
+  else
+  {
+    for (; f != i && c != j ; calcularSiguientePos(f, c, f, c, e))
+    {
+      indice = solucionParcial.casilleros[f][c];
+      if (indice != 0)
+        ++coloresNecesarios[e.piezas[indice - 1].inf - 1];
+    }
+  }
   for (int h = 0; h < e.n * e.m; ++h)
     if (piezaDisponible[h])
       --coloresNecesarios[e.piezas[h].sup - 1];
@@ -178,13 +189,13 @@ Entrada Problema3::generar_instancia_unidimensional(int n)
   e.m = 1;
   e.c = 10;
   for (int i = 0; i < n * 1; ++i)
-    e.piezas.push_back(Pieza(i + 1, (1 + 2 )  + 1, (1 + 3 )  + 1, (1 + 5 )  + 1, (1 + 7 )  + 1));
+    e.piezas.push_back(Pieza(i + 1, (1 + 2 ) + 1, (1 + 3 ) + 1, (1 + 5 ) + 1, (1 + 7 ) + 1));
 
-	EXPR(e.n);
-		EXPR(e.m);
-					EXPR(e.c);
-	for (int i = 0; i < n * 1; ++i)
-		EXPR(e.piezas[i].inf);
+EXPR(e.n);
+EXPR(e.m);
+EXPR(e.c);
+for (int i = 0; i < n * 1; ++i)
+EXPR(e.piezas[i].inf);
 
   return e;
 }
@@ -196,7 +207,7 @@ Entrada Problema3::generar_instancia_cuadrada(int n)
   e.m = n;
   e.c = 10;
   for (int i = 0; i < n * n; ++i)
-    e.piezas.push_back(Pieza(i + 1, (1 + 2 )  + 1, (1 + 3 )  + 1, (1 + 5 )  + 1, (1 + 7)  + 1));
+    e.piezas.push_back(Pieza(i + 1, (1 + 2 ) + 1, (1 + 3 ) + 1, (1 + 5 ) + 1, (1 + 7) + 1));
   return e;
 }
 
@@ -221,7 +232,7 @@ void Problema3::generar_toda_instancia(int n)
       total += acumulador;
     }
   }
-  std::cout <<  n << " " << total << endl;
+  std::cout << n << " " << total << endl;
 }
 
 void sumarUnColor(Entrada &e, int pieza, int color)
@@ -232,7 +243,7 @@ void sumarUnColor(Entrada &e, int pieza, int color)
       if(e.piezas[pieza].sup == e.c)
       {
         e.piezas[pieza].sup = 1;
-        sumarUnColor(e,pieza,color+1); 
+        sumarUnColor(e,pieza,color+1);
       }
       else{e.piezas[pieza].sup++;}
       break;
@@ -240,7 +251,7 @@ void sumarUnColor(Entrada &e, int pieza, int color)
       if(e.piezas[pieza].inf == e.c)
       {
         e.piezas[pieza].inf = 1;
-        sumarUnColor(e,pieza,color+1); 
+        sumarUnColor(e,pieza,color+1);
       }
       else{++e.piezas[pieza].inf;}
       break;
@@ -248,7 +259,7 @@ void sumarUnColor(Entrada &e, int pieza, int color)
       if(e.piezas[pieza].izq == e.c)
       {
         e.piezas[pieza].izq = 1;
-        sumarUnColor(e,pieza,color+1); 
+        sumarUnColor(e,pieza,color+1);
       }
       else{++e.piezas[pieza].izq;}
       break;
@@ -256,7 +267,7 @@ void sumarUnColor(Entrada &e, int pieza, int color)
       if(e.piezas[pieza].der == e.c)
       {
         e.piezas[pieza].der = 1;
-        sumarUnColor(e,pieza+1,0); 
+        sumarUnColor(e,pieza+1,0);
       }
       else{++e.piezas[pieza].der;}
       break;
