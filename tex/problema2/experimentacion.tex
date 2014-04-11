@@ -5,7 +5,11 @@
 %  \item RAM: 
 % \end{itemize}
 
-Al igual que en el problema \emph{Camiones Sospechosos}, la solución propuesta tiene la característica de que la complejidad temporal del algoritmo es dominada por la etapa de ordenamiento. Por esta razón, lo que mencionamos en la sección \ref{problema1-experimentacion} también vale en este caso: las instancias utilizadas para la medición se generaron de forma pseudo-aleatoria, limitando el análisis de los resultados al rendimiento de caso promedio.
+Al igual que en el problema \emph{Camiones Sospechosos}, la solución propuesta tiene la característica de que la complejidad temporal del algoritmo es dominada por la etapa de ordenamiento. Por esta razón, lo que mencionamos en la sección \ref{problema1-experimentacion} también vale en este caso: las instancias utilizadas para la medición se generaron de forma pseudo-aleatoria, limitando el análisis de los resultados al rendimiento de caso promedio. 
+
+Adicionalmente, para corroborar que el ciclo posterior al ordenamiento incurre efectivamente en un costo a lo sumo lineal, continuamos la experimentación sobre instancias donde la lista de entrada se encuentra ordenada, eliminando la primer etapa. En este caso, dado que el ciclo no contiene ejecución condicional y siempre ejecuta exactamente la misma cantidad de instrucciones independientemente de la entrada, no se puede distinguir entre mejor y peor caso. Por esa razón, realizamos mediciones únicamente sobre instancias pseudo-aleatorias ordenadas según el coeficiente mencionado en \ref{problema2-desarrollo}.
+
+\subsubsection{Incluyendo etapa de ordenamiento}
 
 Medimos el tiempo de ejecución al resolver instancias de entre 1 y 10000 piezas, según las consideraciones de la sección \ref{consideraciones-mediciones}, permitiendo graficar el costo temporal de la implementación en función del tamaño de entrada $T(n)$. En la figura (\ref{fig:problema2-aleatoria-10000}) se observan los resultados obtenidos.
 
@@ -20,7 +24,9 @@ Medimos el tiempo de ejecución al resolver instancias de entre 1 y 10000 piezas
 
 Además de presentar los datos según fueron medidos, incluimos un gráfico donde se muestra el comportamiento del costo temporal para instancias de tamaño $n$ dividido $n * log(n)$. Esto permite visualizar la tendencia asintótica del cociente $T(n) / (n * log(n))$, que en este caso se aproxima a una constante cercana al valor $50$, sugiriendo dentro del marco de mediciones que $T(n)$ tiende a un crecimiento del orden de $n * log(n)$ para instancias promedio. Esto coincide con el comportamiento observado durante la experimentación del problema \emph{Camiones Sospechosos}, lo cual es de esperarse dado que en ambos casos se utilizó la misma función de ordenamiento para la implementación (ver apéndices \ref{problema1-codigo} y \ref{problema2-codigo}).
 
-Nuevamente, para corroborar que el ciclo posterior al ordenamiento incurre efectivamente en un costo a lo sumo lineal, continuamos la experimentación sobre instancias donde la lista de entrada se encuentra ordenada, eliminando la primer etapa. En este caso, dado que el ciclo no contiene ejecución condicional (siempre ejecuta exactamente la misma cantidad de instrucciones independientemente de la entrada), solo realizamos mediciones sobre instancias pseudo-aleatorias ordenadas según el coeficiente mencionado en \ref{problema2-desarrollo}. En la figura (\ref{fig:problema2-ciclo}) se muestran los resultados.
+\subsubsection{Mediciones sobre el ciclo en instancias ordenadas}
+
+En la figura (\ref{fig:problema2-ciclo}) se muestran los resultados de las mediciones sobre instancias ordenadas, omitiendo el ordenamiento.
 
 \begin{center}
   \begin{figure}[H]
