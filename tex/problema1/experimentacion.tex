@@ -11,7 +11,7 @@ Medimos el tiempo de ejecución al resolver instancias de entre 1 y 10000 camion
   \end{figure}
 \end{center}
 
-Además de presentar los datos según fueron medidos, incluímos un gráfico donde se muestra el comportamiento del costo temporal para instancias de tamaño $n$ dividido $n * log(n)$. Esto permite visualizar la tendencia asintótica del cociente $T(n) / (n * log(n))$, que en este caso se aproxima a una constante cercana al valor $40$, sugiriendo dentro del marco de mediciones que $T(n)$ tiende a un crecimiento del orden de $n * log(n)$ para instancias promedio.
+Además de presentar los datos según fueron medidos, incluimos un gráfico donde se muestra el comportamiento del costo temporal para instancias de tamaño $n$ dividido $n * log(n)$. Esto permite visualizar la tendencia asintótica del cociente $T(n) / (n * log(n))$, que en este caso se aproxima a una constante cercana al valor $40$, sugiriendo dentro del marco de mediciones que $T(n)$ tiende a un crecimiento del orden de $n * log(n)$ para instancias promedio.
 
 Como se dijo en la sección \ref{problema1-complejidad}, el análisis teórico muestra que la complejidad temporal de la solución se encuentra dominada por la etapa de ordenamiento. Para verificar esta afirmación y analizar el comportamiento del ciclo, realizamos la experimentación subsiguiente sobre instancias donde la lista de entrada se encuentra ordenada, eliminando la etapa de ordenamiento.
 
@@ -25,7 +25,7 @@ En este caso, generamos tanto instancias pseudo-aleatorias como instancias con e
     \label{fig:problema1-ordenadas-comparacion}
   \end{figure}
 
-En el gráfico observamos un comportamiento lineal para los dos tipos de instancias particulares, y utilizando una técnica similar a la de la figura \ref{fig:problema1-aleatoria-10000}, lado derecho, concluímos lo mismo para las instancias aleatorias. Es decir, el ciclo presenta un costo temporal proporcional a la cantidad de camiones en la entrada. Adicionalmente, se observa que las instancias promedio consumen en general más tiempo que las instancias particulares generadas a modo comparativo.
+En el gráfico observamos un comportamiento lineal para los dos tipos de instancias particulares, y utilizando una técnica similar a la de la figura \ref{fig:problema1-aleatoria-10000}, lado derecho, concluimos lo mismo para las instancias aleatorias. Es decir, el ciclo presenta un costo temporal proporcional a la cantidad de camiones en la entrada. Adicionalmente, se observa que las instancias promedio consumen en general más tiempo que las instancias particulares generadas a modo comparativo.
 
 % Curiosamente, ``siempre actualiza'' es mejor que ``Todos distintos''. Investigamos y llegamos a la conclusión que esto se debe a como creamos las instancias de entrada. Las creamos siguiendo la siguiente secuencia:
 

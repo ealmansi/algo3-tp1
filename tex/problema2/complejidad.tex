@@ -1,4 +1,4 @@
-Nuestro algoritmo tiene una complejidad de $O(n*log n)$ operaciones. Para eso vamos a analizar el pseudocodigo de a partes.
+Nuestro algoritmo tiene una complejidad de $O(n*log n)$ operaciones. Para eso vamos a analizar el pseudocódigo de a partes.
 
 \begin{pseudo}
 \State Tipo de dato Pieza es Tupla $\langle$ id : entero, pérdida : entero, tiempo : entero $\rangle$
@@ -34,6 +34,6 @@ Como vimos en la sección del ejercicio 1, la función Sort tiene complejidad $O
  \State \textbf{return V, Calcular\_perdida(V)}
 \end{pseudo}
 
-Devolver el vector es O(1), y calcular la pérdida es O(n), ya que hay que recorrer todas las piezas. Para cada calcular la pérdida de cada pieza, tenemos que tener en cuenta el tiempo que pasó hasta ese momento sumar el tiempo que tarda en hacer la pieza (una suma), calcular la pérdida y sumarlo a la pérdida hasta ese momento (multiplicación y suma). Estas operaciones son $O(1)$ ya que trabajamos con ints.
+Devolver el vector es O(1), y calcular la pérdida es O(n), ya que hay que recorrer todas las piezas. Para cada calcular la pérdida de cada pieza, tenemos que tener en cuenta el tiempo que pasó hasta ese momento sumar el tiempo que tarda en hacer la pieza (una suma), calcular la pérdida y sumarlo a la pérdida hasta ese momento (multiplicación y suma). Estas operaciones son $O(1)$ ya que trabajamos con enteros.
 
 Luego, por álgebra de ordenes O(1) + O(n) + O(n.log n) + O(1) + O(n) = $O(n*log n)$, como queríamos demostrar.

@@ -35,7 +35,7 @@ $$(j \leq n) \land (d_i \leq d_j < d_i + D) \equiv (j \leq n) \land d_j \in [d_i
 
 Es decir, $j$ jamás se incrementa si el $j$-ésimo elemento no pertenece al intervalo $[d_i, d_i + D)$. Esto mantiene el invariante, evitando que algún elemento con índice menor a $j$ no pertenezca al intervalo del candidato en evaluación. Como además $j$ se incrementa tantas veces como sea posible sin romper el invariante, esto garantiza que al terminar el ciclo interno la variable tendrá su valor máximo (cuando $j = n + 1$ ó $d_j \notin [d_i, d_i + D)$).
 
-Luego, $d_i$ es el primer elemento de la lista contenido en $[d_i, d_i + D)$ por no tener predecesor o por ser mayor que el mismo. Además, $d_{j-1}$ es el último elemento de la lista contenido en $[d_i, d_i + D)$ por no tener sucesor, o porque lo garantiza el invariante en caso contrario. De ello se desprende que existen $(j - 1) - i + 1 = j - i$ elementos de la lista contenidos en el intervalo, por lo cual es el valor que se utiliza para actualizar el estado de la solucion parcial.
+Luego, $d_i$ es el primer elemento de la lista contenido en $[d_i, d_i + D)$ por no tener predecesor o por ser mayor que el mismo. Además, $d_{j-1}$ es el último elemento de la lista contenido en $[d_i, d_i + D)$ por no tener sucesor, o porque lo garantiza el invariante en caso contrario. De ello se desprende que existen $(j - 1) - i + 1 = j - i$ elementos de la lista contenidos en el intervalo, por lo cual es el valor que se utiliza para actualizar el estado de la solución parcial.
 
 Por último, es necesario probar que el invariante se mantiene al incrementar $i$ al final del ciclo. Esto es equivalente a demostrar la propiedad \ref{propiedad-maximo-j}.
 
