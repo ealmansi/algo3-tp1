@@ -11,6 +11,7 @@ Buscando en la pagina de cppreference\footnote{http://en.cppreference.com/w/cpp/
 En los algoritmos utilizados en el problema 1 y 2, guardamos los datos en \emph{vector<int>} por lo que sabemos que la comparaciones y swaps son $O(1)$. Luego, en ambos algoritmos, usamos dicho algoritmo de sorting sobre el  \emph{vector$<$int$>$}. Por esto, cual podemos garantizar que ordenar los \emph{vector$<$int$>$} tiene una complejidad de $O(n*log (n))$ operaciones.
 
 \subsection{Mediciones de performance}
+\label{consideraciones-mediciones}
 
 Para llevar a cabo mediciones de performance sobre las implementaciones desarrolladas, medimos el tiempo consumido para resolver instancias de sucesivos tamaños en función de un parámetro a definir según el caso. Procuramos medir exclusivamente el tiempo consumido por la etapa de resolución, ignorando tareas adicionales propias al proceso como, por ejemplo, la generación de la instancia a ser resuelta.
 
