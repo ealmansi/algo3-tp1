@@ -20,3 +20,5 @@ Figuras mostrando distintos tableros (3*3, 4*4, 4*1, 4*2, 5*1, etc. No tienen po
 En el gráfico X, se puede observar claramente que la tercer poda logra podar mas casos, pero no logra compensar lo suficiente el costo adicional de $O(m)$ para lograr que sea considerablemente mejor que la segunda poda. Dicha poda podría servir en otro problema en el que cual cada llamada recursiva tenga un mayor costo.
 
 ///Estaria bueno ver si mejora en casos mas "flacos" (mas filas que columnas) o "gordos" (viceversa)
+
+Por otro lado, la segunda poda también tiene otros beneficios. Es considerablemente más fácil de implementar que la tercer poda. A su vez, la segunda poda no depende de la cantidad de colores existentes, mientras que la tercer poda sí lo hace. La tercer poda crea un $vector<int>$ donde la cantidad de posiciones se corresponde con la cantidad de colores existentes. Si bien no es un problema muy grave, puede ocurrir que sí lo sea si tenemos una computadora con memoria acotada y tenemos un caso donde la cantidad de colores es muy alta, como por ejemplo un millón de colores.
