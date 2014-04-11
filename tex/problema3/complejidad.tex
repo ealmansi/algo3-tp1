@@ -1,21 +1,21 @@
 Para calcular la complejidad vamos a tener en cuenta el peor caso, en el cual toda pieza disponible se puede agregar al tablero. Para facilitar el calculo llamaremos n a la cantidad de casillas, que en el problema esta representado por n*m.
 
 %Facu: esto es lo que vi de como queda la sumatoria desarmando T(n,n) no se si estara bien igual
-Si pensamos la recurcion en una sola variable llegamos a una cota demasiado amplia:
+Si pensamos la recursión en una sola variable llegamos a una cota demasiado amplia:
 T(k)=n*T(k-1) donde n es la cantidad de fichas. Ya que no podemos asegurar que en cada paso tenemos disponible una pieza menos porque pudimos haber puesto una ficha blanca.
 
-Por esto vamos a hacer una recursion en 2 variables, la cantidad de espacios por procesar y la cantidad de fichas disponibles. Siempre vamos a suponer que $n\leq k$, osea que siempre tengo más o igual cantidad de fichas que de casilleros a rellenar.
+Por esto vamos a hacer una recursión en 2 variables, la cantidad de espacios por procesar y la cantidad de fichas disponibles. Siempre vamos a suponer que $n\leq k$, osea que siempre tengo una cantidad de fichas mayor o igual que de casilleros a rellenar.
 Sabemos que :$T(n,k) = T(n-1,k) + k*T(n-1,k-1)$ ya que en cada paso ponemos una ficha blanca con lo cual se reduce el n pero no el k, y para las k fichas disponibles la agregamos al tablero y pasamos a un caso n-1,k-1.
 
-Nuestro caso base es $(\forall k) T(0,k)= c$ siendo c una constante, ya que no tener espacios por procesar significa que termine.
+Nuestro caso base es $(\forall k) T(0,k)= c$ siendo c una constante, ya que no tener casillas en el tablero por procesar significa que el problema terminó.
 
 % Observando el arbol de recursion y pensando en el problema llegamos a la suposicion que:
 
 $T(n,k) = c \sum_{i=0}^{n} \binom{n}{i} \binom{k}{i} i!$
 
-Esto parece logico ya que $\binom{n}{i} \binom{k}{i} i!$ se puede pensar la cantidad de formas de elejir i casillas entre n para poner fichas, i fichas entra k y ponerlas en todas sus permutaciones posibles. Si sumo para todo i entre 0 y la cantidad de casillas obtengo todos los tableros posibles.
+Esto parece lógico ya que $\binom{n}{i} \binom{k}{i} i!$ se puede pensar como la cantidad de formas de elegir i casillas entre n para poner fichas, i fichas entre k y ponerlas en todas sus permutaciones posibles. Si sumo para todo i entre 0 y la cantidad de casillas obtengo todas las combinaciones de fichas en el tablero posibles.
 
-A continuacion demostraremos haciendo induccion sobre n:
+A continuación demostraremos haciendo inducción sobre n:
 
 Caso base: $(\forall q)T(0,q)= c \sum_{i=0}^{0} \binom{0}{i} \binom{q}{i} i! = c \binom{0}{0} \binom{q}{0} 0! = c*1*1*1 = c$
 
@@ -31,21 +31,41 @@ $T(n,k) = c \sum_{i=0}^{n-1} \binom{n-1}{i} \binom{k}{i} i! + k * c \sum_{i=0}^{
 
 $ = c \sum_{i=0}^{n-1} \binom{n-1}{i} \frac{k!}{(k-i)!*i!} i! + c \sum_{i=0}^{n-1} \binom{n-1}{i} \frac{k!}{(k-i-1)!*i!}i! $ 
 
-$ = c \sum_{i=0}^{n-1} \binom{n-1}{i} \frac{k!}{(k-i)!} + c \sum_{i=0}^{n-1} \binom{n-1}{i} \frac{k!}{(k-i-1)!} $ simplifico i!
+Ahora simplifico el i! en las dos sumatorias:
 
-$ = c (\frac{k!}{(k-i)!} + \sum_{i=1}^{n-1} \binom{n-1}{i} \frac{k!}{(k-i)!} + \frac{k!}{(k-i)!} + \sum_{i=0}^{n-2} \binom{n-1}{i} \frac{k!}{(k-i-1)!} )$ saco el primer valor de la primera sumatoria y el ultima de la segunda.
+$ = c \sum_{i=0}^{n-1} \binom{n-1}{i} \frac{k!}{(k-i)!} + c \sum_{i=0}^{n-1} \binom{n-1}{i} \frac{k!}{(k-i-1)!} $
 
-$ = c (\frac{k!}{(k-i)!} + \sum_{i=1}^{n-1} \binom{n-1}{i} \frac{k!}{(k-i)!} + \frac{k!}{(k-i)!} + \sum_{j=1}^{n-1} \binom{n-1}{j-1} \frac{k!}{(k-j)!} )$ renombro i = j-1 en la segunda sumatoria
+Luego saco el primer valor de la primera sumatoria y el último de la segunda:
 
-$ = c (\frac{k!}{(k-i)!} + \frac{k!}{(k-i)!} + \sum_{i=1}^{n-1} \binom{n-1}{i} \frac{k!}{(k-i)!} + \binom{n-1}{i-1} \frac{k!}{(k-i)!} )$ Como ambas sumatoria van de i = 1 a (n-1) puedo juntarlas.
+$ = c (\binom{n-1}{0} \frac{k!}{(k-0)!} + \sum_{i=1}^{n-1} \binom{n-1}{i} \frac{k!}{(k-i)!} + \binom{n-1}{n-1} \frac{k!}{(k-(n-1)-1)!} + \sum_{i=0}^{n-2} \binom{n-1}{i} \frac{k!}{(k-i-1)!} )$
 
-$ = c (\frac{k!}{(k-i)!} + \frac{k!}{(k-i)!} + \sum_{i=1}^{n-1} \frac{k!}{(k-i)!} (\binom{n-1}{i} + \binom{n-1}{i-1} ))$ Saco factor comun $\frac{k!}{(k-i)!}$.
+Como $\binom{n-1}{0} = \binom{n-1}{n-1} = 1$:
 
-$ = c (\frac{k!}{(k-i)!} + \frac{k!}{(k-i)!} + \sum_{i=1}^{n-1} \frac{k!}{(k-i)!}\binom{n}{i})$ Por propiedad de numeros combinatorios.
+$ = c (\frac{k!}{(k-0)!} + \sum_{i=1}^{n-1} \binom{n-1}{i} \frac{k!}{(k-i)!} + \frac{k!}{(k-n)!} + \sum_{i=0}^{n-2} \binom{n-1}{i} \frac{k!}{(k-i-1)!} )$
 
-$ = c (\binom{n}{0}\frac{k!}{(k-i)!} + \binom{n}{n}\frac{k!}{(k-i)!} + \sum_{i=1}^{n-1} \frac{k!}{(k-i)!}\binom{n}{i})$ Multiplico por $\binom{n}{0} = \binom{n}{n}= 1$
+Renombro i = j-1 en la segunda sumatoria:
 
-$ = c  \sum_{i=0}^{n} \frac{k!}{(k-i)!}\binom{n}{i}$ Agrego el elemento 0 y n de la sumatoria.
+$ = c (\frac{k!}{(k-0)!} + \sum_{i=1}^{n-1} \binom{n-1}{i} \frac{k!}{(k-i)!} + \frac{k!}{(k-n)!} + \sum_{j=1}^{n-1} \binom{n-1}{j-1} \frac{k!}{(k-j)!} )$ 
+
+Como ambas sumatorias van de i = 1 a (n-1) puedo juntarlas:
+
+$ = c (\frac{k!}{(k-0)!} + \frac{k!}{(k-n)!} + \sum_{i=1}^{n-1} \binom{n-1}{i} \frac{k!}{(k-i)!} + \binom{n-1}{i-1} \frac{k!}{(k-i)!} )$ 
+
+Saco factor común $\frac{k!}{(k-i)!}$:
+
+$ = c (\frac{k!}{(k-0)!} + \frac{k!}{(k-n)!} + \sum_{i=1}^{n-1} \frac{k!}{(k-i)!} (\binom{n-1}{i} + \binom{n-1}{i-1} ))$ 
+
+Por propiedad de números combinatorios:
+
+$ = c (\frac{k!}{(k-0)!} + \frac{k!}{(k-n)!} + \sum_{i=1}^{n-1} \frac{k!}{(k-i)!}\binom{n}{i})$ 
+
+Multiplico por $\binom{n}{0} = \binom{n}{n}= 1$ a los dos primeros términos:
+
+$ = c (\binom{n}{0}\frac{k!}{(k-0)!} + \binom{n}{n}\frac{k!}{(k-n)!} + \sum_{i=1}^{n-1} \frac{k!}{(k-i)!}\binom{n}{i})$
+
+Para finalizar, agrego el elemento 0 y n de la sumatoria:
+
+$ = c  \sum_{i=0}^{n} \frac{k!}{(k-i)!}\binom{n}{i}$ 
 
 Entonces $T(n,k)  = c  \sum_{i=0}^{n} \frac{k!}{(k-i)!}\binom{n}{i}$ 
 
