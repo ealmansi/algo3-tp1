@@ -1,1 +1,13 @@
 Para calcular la complejidad vamos a tener en cuenta el peor caso, en el cual 
+
+%Facu: esto es lo que vi de como queda la sumatoria desarmando T(n,n) no se si estara bien igual
+
+$T(n,n) = T(n-1,n) + n*T(n-1,n-1)$
+
+$T(n,n) = T(1, n) + n*n * T(1, n-1) + \binom{n}{2} * \binom{n}{2} * T(1, n-2) + \binom{n}{3}^2 *T(1,n-3) + \hdots + \binom{n}{i}^2 * T(1, n-i) + \hdots + T(1,1)$
+
+Si todo esta bien:
+
+$T(n,n) = \sum_{j=0}^{n}{T(1,j) * \binom{n}{j}^2}$
+
+Donde $T(1,j) \in O(j)$
