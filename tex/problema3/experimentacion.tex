@@ -12,12 +12,27 @@ Figura 1: Tablero 2*2 (sin poda, con poda, etc)
 
 A su vez, pudimos observar que sin utilizar podas la complejidad es de $O((n*m)^{n*m})$ ya que revisa todos los tableros posibles, y una vez revisados todos termina. Esto implica que ya para tableros de 3*3 es un número grande de tableros posibles, y para tableros aún más grandes el algoritmo tarda una cantidad incomparable de tiempo con respecto a las podas.
 
-Por esta razón, los siguientes casos sólo van a ser comparados utilizando podas.
+Por esta razón, los siguientes 50 casos sólo van a ser comparados utilizando podas.
 
-Figuras mostrando distintos tableros (3*3, 4*4, 4*1, 4*2, 5*1, etc. No tienen por que ser cuadrados) y usando distintas podas, mostrando como mejora y eso.
+\begin{center}
+  \begin{figure}[H]
+    \includegraphics[width=\linewidth]{problema3/graficos/comparacion_podas1y2_llamados_recursivos.eps}
+    \caption{Comparación de podas, según llamados recursivos}
+    \label{fig:problema3-podas-llamados}
+  \end{figure}
+\end{center}
 
-En el gráfico X, se puede observar claramente que la poda 2 logra podar mas casos, pero no logra compensar lo suficiente el costo adicional de $O(m)$ para lograr que sea considerablemente mejor que la segunda poda. Dicha poda podría servir en otro problema en el que cual cada llamada recursiva tenga un mayor costo.
+\begin{center}
+  \begin{figure}[H]
+\includegraphics[width=\linewidth]{problema3/graficos/comparacion_podas1y2_tiempo.eps}
+    \caption{Comparación de podas, según llamados tiempo de ejecución}
+    \label{fig:problema3-podas-tiempo}
+  \end{figure}
+\end{center}
 
-///Estaria bueno ver si mejora en casos mas "flacos" (mas filas que columnas) o "gordos" (viceversa)
 
-Por otro lado, la poda 1 también tiene otros beneficios. Es considerablemente más fácil de implementar que la poda 2. A su vez, la poda 1 no depende de la cantidad de colores existentes, mientras que la poda 2 sí lo hace. La poda 2 crea un $vector<int>$ donde la cantidad de posiciones se corresponde con la cantidad de colores existentes. Si bien no es un problema muy grave, puede ocurrir que sí lo sea si tenemos una computadora con memoria acotada y tenemos un caso donde la cantidad de colores es muy alta, como por ejemplo un millón de colores.
+En el gráfico \ref{fig:problema3-podas-llamados}, podemos observar claramente que la poda 2 logra podar mas casos y por consiguiente, realiza menos llamados recursivos. Sin embargo, en la figura \ref{fig:problema3-podas-tiempo} podemos observar que no siempre logra compensar lo suficiente el costo adicional de $O(m)$ para lograr que sea considerablemente mejor.
+
+Como ejemplo, el caso 35 logra podar lo suficiente para lograr 4 veces menos llamados recursivos. Sin embargo, logra solamente ser un 25\% (aproximadamente) mejor en tiempo de ejecución.
+
+Por otro lado, la poda 1 también tiene beneficios. Es considerablemente más fácil de implementar que la poda 2. A su vez, la poda 1 no depende de la cantidad de colores existentes, mientras que la poda 2 sí lo hace. La poda 2 crea un $vector<int>$ donde la cantidad de posiciones se corresponde con la cantidad de colores existentes. Si bien no es un problema muy grave, puede ocurrir que sí lo sea si tenemos una computadora con memoria acotada y tenemos un caso donde la cantidad de colores es muy alta, como por ejemplo un millón de colores.
